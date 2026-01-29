@@ -1,5 +1,5 @@
 import { Building2, Clock, Star, Users, Shield, Sparkles, CheckCircle2, Calendar, Moon, Sun } from 'lucide-react';
-import { SupabaseImage } from '../components/SupabaseImage';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { CommercialLeadForm } from '../components/CommercialLeadForm';
 
 export function HotelCleaningPage() {
@@ -60,8 +60,8 @@ export function HotelCleaningPage() {
             </div>
 
             <div className="bg-slate-200 rounded-2xl shadow-2xl overflow-hidden min-h-[400px] flex items-center justify-center animate-fade-in-scale">
-              <SupabaseImage
-                path="hotel/hotel-exterior.jpg"
+              <DynamicSectionImage
+                section="hotel/hotel-exterior.jpg"
                 alt="Luxury hotel exterior"
                 className="w-full h-full object-cover"
                 fallback="Luxury Hotel"
