@@ -30,6 +30,11 @@ export async function getSiteImage(section: string): Promise<SiteImage | null> {
   return data;
 }
 
+export function getImageUrl(storagePath: string): string {
+  const { data } = supabase.storage.from('site-images').getPublicUrl(storagePath);
+  return data.publicUrl;
+}
+
 export async function uploadSiteImage(
   file: File,
   section: string,
