@@ -17,6 +17,8 @@ export async function getSiteImage(section: string): Promise<SiteImage | null> {
     .eq('section', section)
     .eq('is_active', true)
     .order('sort_order', { ascending: true })
+    .order('created_at', { ascending: false })
+    .limit(1)
     .maybeSingle();
 
   if (error) {
