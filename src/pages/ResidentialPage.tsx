@@ -1,6 +1,6 @@
 import { Home, Droplets, Wind, Square, Heart, Shield, Leaf, CheckCircle2, AlertTriangle, Sparkles, ArrowRight, Sun } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
+import { DynamicBeforeAfterSlider } from '../components/DynamicBeforeAfterSlider';
 import { ResidentialLeadForm } from '../components/ResidentialLeadForm';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
 
@@ -83,11 +83,10 @@ export function ResidentialPage() {
             </p>
           </div>
 
-          <BeforeAfterSlider
-            beforeImage="roof-dirty.jpg"
-            afterImage="roof-clean.jpg"
-            beforeAlt="Roof before cleaning"
-            afterAlt="Roof after cleaning"
+          <DynamicBeforeAfterSlider
+            serviceType="residential"
+            fallbackBefore="roof-dirty.jpg"
+            fallbackAfter="roof-clean.jpg"
           />
 
           <div className="mt-12 text-center">
