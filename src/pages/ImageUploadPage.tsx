@@ -4,9 +4,9 @@ import { uploadSiteImage } from '../lib/siteImages';
 
 export function ImageUploadPage() {
   const [file, setFile] = useState<File | null>(null);
-  const [section, setSection] = useState('about');
-  const [title, setTitle] = useState('Drone Cleaning Technology in Action');
-  const [altText, setAltText] = useState('Skywash Innovations drone performing exterior cleaning');
+  const [section, setSection] = useState('membership-loudoun-county-chamber');
+  const [title, setTitle] = useState('Loudoun County Chamber Logo');
+  const [altText, setAltText] = useState('Loudoun County Chamber of Commerce logo');
   const [uploading, setUploading] = useState(false);
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
 
@@ -62,6 +62,19 @@ export function ImageUploadPage() {
                 <option value="hero">Hero</option>
                 <option value="services">Services</option>
                 <option value="testimonials">Testimonials</option>
+                <optgroup label="Memberships">
+                  <option value="membership-loudoun-county-chamber">Loudoun County Chamber</option>
+                  <option value="membership-purcellville-business">Purcellville Business Association</option>
+                  <option value="membership-aoba">AOBA</option>
+                  <option value="membership-iwca">IWCA</option>
+                </optgroup>
+                <optgroup label="Partners">
+                  <option value="partner-lucid-bots">Lucid BOTS</option>
+                  <option value="partner-apellix">Apellix</option>
+                  <option value="partner-midwest-washing">Midwest Washing Equipment</option>
+                  <option value="partner-sesw">SESW</option>
+                  <option value="partner-window-cleaning">Window Cleaning Resource</option>
+                </optgroup>
               </select>
             </div>
 
