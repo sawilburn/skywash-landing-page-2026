@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
-import { SupabaseImage } from '../components/SupabaseImage';
 import { Shield, Clock, Eye, Building2, FileCheck, Camera, Sparkles, Phone, CheckCircle } from 'lucide-react';
 
 export function CommercialWindowCleaningPage() {
@@ -66,7 +65,7 @@ export function CommercialWindowCleaningPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <DynamicSectionImage
-                section="commercial-window-cleaning-1"
+                section="commercial/drone-cleaning-glass.jpg"
                 alt="Drone cleaning Class A office building windows"
                 className="rounded-2xl shadow-2xl"
                 fallback="commercial/drone-office-building.jpg"
@@ -247,7 +246,7 @@ export function CommercialWindowCleaningPage() {
             </div>
             <div className="order-1 md:order-2">
               <DynamicSectionImage
-                section="commercial-window-cleaning-2"
+                section="commercial/highrise-drone-wash.jpg"
                 alt="Pristine office building with spotless windows"
                 className="rounded-2xl shadow-2xl"
                 fallback="commercial/clean-office-building.jpg"
@@ -382,10 +381,11 @@ export function CommercialWindowCleaningPage() {
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="relative group">
-              <SupabaseImage
-                path="commercial/drone-cleaning-glass.jpg"
+              <DynamicSectionImage
+                section="commercial/drone-cleaning-glass.jpg"
                 alt="Drone washing commercial glass facade"
                 className="rounded-2xl shadow-xl"
+                fallback="commercial/drone-office-building.jpg"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                 <div className="text-white">
@@ -396,10 +396,11 @@ export function CommercialWindowCleaningPage() {
             </div>
 
             <div className="relative group">
-              <SupabaseImage
-                path="commercial/highrise-drone-wash.jpg"
+              <DynamicSectionImage
+                section="commercial/highrise-drone-wash.jpg"
                 alt="Drone cleaning high-rise office building"
                 className="rounded-2xl shadow-xl"
+                fallback="commercial/clean-office-building.jpg"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                 <div className="text-white">

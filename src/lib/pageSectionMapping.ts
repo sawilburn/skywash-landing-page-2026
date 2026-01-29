@@ -37,17 +37,17 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
     sections: [
       {
         id: 'commercial/drone-cleaning-glass.jpg',
-        displayName: 'Hero Image - Drone Cleaning',
+        displayName: 'Hero & Gallery Image - Drone Cleaning',
         suggestedAltText: 'Drone cleaning commercial office building windows',
         fallbackImage: 'commercial/drone-office-building.jpg',
-        description: 'Main hero image'
+        description: 'First hero image and gallery showcase image'
       },
       {
         id: 'commercial/highrise-drone-wash.jpg',
-        displayName: 'Content Image - High-Rise Building',
+        displayName: 'Content & Gallery Image - High-Rise',
         suggestedAltText: 'Professional high-rise window cleaning with drone technology',
         fallbackImage: 'commercial/clean-office-building.jpg',
-        description: 'Secondary content section image'
+        description: 'Second content image and gallery showcase image'
       }
     ]
   },
