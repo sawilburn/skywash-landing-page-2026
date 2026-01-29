@@ -74,3 +74,41 @@ export async function uploadSiteImage(
     };
   }
 }
+
+export async function uploadBeforeAfterImages(
+  beforeFile: File,
+  afterFile: File,
+  name: string
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    const beforeExt = beforeFile.name.split('.').pop();
+    const afterExt = afterFile.name.split('.').pop();
+
+    const beforePath = `${name}-dirty.${beforeExt}`;
+    const afterPath = `${name}-clean.${afterExt}`;
+
+    const { error: beforeError } = await supabase.storage
+      .from('images')
+      .upload(beforePath, beforeFile, { upsert: true });
+
+    if (beforeError) {
+      throw new Error(`Failed to upload before image: ${beforeError.message}`);
+    }
+
+    const { error: afterError } = await supabase.storage
+      .from('images')
+      .upload(afterPath, afterFile, { upsert: true });
+
+    if (afterError) {
+      throw new Error(`Failed to upload after image: ${afterError.message}`);
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error('Error uploading before/after images:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    };
+  }
+}

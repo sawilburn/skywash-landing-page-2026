@@ -1,10 +1,19 @@
-import { useState } from 'react';
-import { Upload, CheckCircle, AlertCircle } from 'lucide-react';
-import { uploadSiteImage } from '../lib/siteImages';
+import { useState, useRef } from 'react';
+import { Upload, CheckCircle, AlertCircle, ImageIcon } from 'lucide-react';
+import { uploadSiteImage, uploadBeforeAfterImages } from '../lib/siteImages';
+import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
+
+type UploadMode = 'section' | 'before-after';
 
 export function ImageUploadPage() {
+  const [mode, setMode] = useState<UploadMode>('section');
   const [file, setFile] = useState<File | null>(null);
+  const [beforeFile, setBeforeFile] = useState<File | null>(null);
+  const [afterFile, setAfterFile] = useState<File | null>(null);
+  const [beforePreview, setBeforePreview] = useState<string>('');
+  const [afterPreview, setAfterPreview] = useState<string>('');
   const [section, setSection] = useState('residential-hero');
+  const [beforeAfterName, setBeforeAfterName] = useState('roof');
   const [title, setTitle] = useState('Beautiful Clean Home');
   const [altText, setAltText] = useState('Beautiful clean home after professional soft wash cleaning');
   const [uploading, setUploading] = useState(false);
@@ -17,123 +26,295 @@ export function ImageUploadPage() {
     }
   };
 
+  const handleBeforeFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setBeforeFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setBeforePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+      setResult(null);
+    }
+  };
+
+  const handleAfterFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setAfterFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAfterPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+      setResult(null);
+    }
+  };
+
+  const handleModeChange = (newMode: UploadMode) => {
+    setMode(newMode);
+    setResult(null);
+    setFile(null);
+    setBeforeFile(null);
+    setAfterFile(null);
+    setBeforePreview('');
+    setAfterPreview('');
+  };
+
   const handleUpload = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!file) {
-      setResult({ success: false, message: 'Please select a file' });
-      return;
-    }
+    if (mode === 'section') {
+      if (!file) {
+        setResult({ success: false, message: 'Please select a file' });
+        return;
+      }
 
-    setUploading(true);
-    setResult(null);
+      setUploading(true);
+      setResult(null);
 
-    const response = await uploadSiteImage(file, section, title, altText);
+      const response = await uploadSiteImage(file, section, title, altText);
 
-    setUploading(false);
+      setUploading(false);
 
-    if (response.success) {
-      setResult({ success: true, message: 'Image uploaded successfully!' });
-      setFile(null);
-      const fileInput = document.getElementById('file-input') as HTMLInputElement;
-      if (fileInput) fileInput.value = '';
+      if (response.success) {
+        setResult({ success: true, message: 'Image uploaded successfully!' });
+        setFile(null);
+        const fileInput = document.getElementById('file-input') as HTMLInputElement;
+        if (fileInput) fileInput.value = '';
+      } else {
+        setResult({ success: false, message: response.error || 'Upload failed' });
+      }
     } else {
-      setResult({ success: false, message: response.error || 'Upload failed' });
+      if (!beforeFile || !afterFile) {
+        setResult({ success: false, message: 'Please select both before and after images' });
+        return;
+      }
+
+      setUploading(true);
+      setResult(null);
+
+      const response = await uploadBeforeAfterImages(beforeFile, afterFile, beforeAfterName);
+
+      setUploading(false);
+
+      if (response.success) {
+        setResult({ success: true, message: 'Before/After images uploaded successfully!' });
+        setBeforeFile(null);
+        setAfterFile(null);
+        setBeforePreview('');
+        setAfterPreview('');
+        const beforeInput = document.getElementById('before-input') as HTMLInputElement;
+        const afterInput = document.getElementById('after-input') as HTMLInputElement;
+        if (beforeInput) beforeInput.value = '';
+        if (afterInput) afterInput.value = '';
+      } else {
+        setResult({ success: false, message: response.error || 'Upload failed' });
+      }
     }
   };
 
   return (
     <div className="min-h-screen bg-slate-50 py-20">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl shadow-xl p-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-6">Upload Site Image</h1>
+          <h1 className="text-3xl font-bold text-slate-900 mb-6">Upload Site Images</h1>
+
+          <div className="mb-6 flex gap-4">
+            <button
+              type="button"
+              onClick={() => handleModeChange('section')}
+              className={`flex-1 px-4 py-3 rounded-lg font-semibold transition-all ${
+                mode === 'section'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
+            >
+              <ImageIcon className="inline-block mr-2" size={20} />
+              Section Image
+            </button>
+            <button
+              type="button"
+              onClick={() => handleModeChange('before-after')}
+              className={`flex-1 px-4 py-3 rounded-lg font-semibold transition-all ${
+                mode === 'before-after'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
+            >
+              <ImageIcon className="inline-block mr-2" size={20} />
+              Before/After Images
+            </button>
+          </div>
 
           <form onSubmit={handleUpload} className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
-                Section
-              </label>
-              <select
-                value={section}
-                onChange={(e) => setSection(e.target.value)}
-                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="about">About</option>
-                <option value="hero">Hero</option>
-                <option value="services">Services</option>
-                <option value="testimonials">Testimonials</option>
-                <optgroup label="Commercial Services">
-                  <option value="commercial-office-window">Class A Office Window Cleaning</option>
-                  <option value="commercial-midrise">Mid-Rise Soft Wash</option>
-                  <option value="commercial-datacenter">Data Center Exterior</option>
-                  <option value="commercial-solar">Commercial Solar</option>
-                </optgroup>
-                <optgroup label="Residential Services">
-                  <option value="residential-hero">Beautiful Clean Home</option>
-                </optgroup>
-                <optgroup label="Memberships">
-                  <option value="membership-loudoun-county-chamber">Loudoun County Chamber</option>
-                  <option value="membership-purcellville-business">Purcellville Business Association</option>
-                  <option value="membership-aoba">AOBA</option>
-                  <option value="membership-iwca">IWCA</option>
-                </optgroup>
-                <optgroup label="Partners">
-                  <option value="partner-lucid-bots">Lucid BOTS</option>
-                  <option value="partner-apellix">Apellix</option>
-                  <option value="partner-midwest-washing">Midwest Washing Equipment</option>
-                  <option value="partner-sesw">SESW</option>
-                  <option value="partner-window-cleaning">Window Cleaning Resource</option>
-                </optgroup>
-              </select>
-            </div>
+            {mode === 'section' ? (
+              <>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Section
+                  </label>
+                  <select
+                    value={section}
+                    onChange={(e) => setSection(e.target.value)}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="about">About</option>
+                    <option value="hero">Hero</option>
+                    <option value="services">Services</option>
+                    <option value="testimonials">Testimonials</option>
+                    <optgroup label="Commercial Services">
+                      <option value="commercial-office-window">Class A Office Window Cleaning</option>
+                      <option value="commercial-midrise">Mid-Rise Soft Wash</option>
+                      <option value="commercial-datacenter">Data Center Exterior</option>
+                      <option value="commercial-solar">Commercial Solar</option>
+                    </optgroup>
+                    <optgroup label="Residential Services">
+                      <option value="residential-hero">Beautiful Clean Home</option>
+                    </optgroup>
+                    <optgroup label="Memberships">
+                      <option value="membership-loudoun-county-chamber">Loudoun County Chamber</option>
+                      <option value="membership-purcellville-business">Purcellville Business Association</option>
+                      <option value="membership-aoba">AOBA</option>
+                      <option value="membership-iwca">IWCA</option>
+                    </optgroup>
+                    <optgroup label="Partners">
+                      <option value="partner-lucid-bots">Lucid BOTS</option>
+                      <option value="partner-apellix">Apellix</option>
+                      <option value="partner-midwest-washing">Midwest Washing Equipment</option>
+                      <option value="partner-sesw">SESW</option>
+                      <option value="partner-window-cleaning">Window Cleaning Resource</option>
+                    </optgroup>
+                  </select>
+                </div>
 
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
-                Title
-              </label>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
-                Alt Text
-              </label>
-              <input
-                type="text"
-                value={altText}
-                onChange={(e) => setAltText(e.target.value)}
-                required
-                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
-                Image File
-              </label>
-              <div className="flex items-center justify-center w-full">
-                <label className="w-full flex flex-col items-center px-4 py-6 bg-slate-50 text-slate-500 rounded-lg border-2 border-slate-300 border-dashed cursor-pointer hover:bg-slate-100">
-                  <Upload size={40} className="mb-2" />
-                  <span className="text-sm">
-                    {file ? file.name : 'Click to select image'}
-                  </span>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Title
+                  </label>
                   <input
-                    id="file-input"
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    className="hidden"
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     required
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
-                </label>
-              </div>
-            </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Alt Text
+                  </label>
+                  <input
+                    type="text"
+                    value={altText}
+                    onChange={(e) => setAltText(e.target.value)}
+                    required
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Image File
+                  </label>
+                  <div className="flex items-center justify-center w-full">
+                    <label className="w-full flex flex-col items-center px-4 py-6 bg-slate-50 text-slate-500 rounded-lg border-2 border-slate-300 border-dashed cursor-pointer hover:bg-slate-100">
+                      <Upload size={40} className="mb-2" />
+                      <span className="text-sm">
+                        {file ? file.name : 'Click to select image'}
+                      </span>
+                      <input
+                        id="file-input"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        className="hidden"
+                        required
+                      />
+                    </label>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Name (e.g., "roof", "house", "driveway")
+                  </label>
+                  <input
+                    type="text"
+                    value={beforeAfterName}
+                    onChange={(e) => setBeforeAfterName(e.target.value)}
+                    required
+                    placeholder="roof"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                  <p className="mt-1 text-xs text-slate-500">
+                    Files will be saved as {beforeAfterName}-dirty.jpg and {beforeAfterName}-clean.jpg
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Before Image
+                    </label>
+                    <div className="flex items-center justify-center w-full">
+                      <label className="w-full flex flex-col items-center px-4 py-6 bg-slate-50 text-slate-500 rounded-lg border-2 border-slate-300 border-dashed cursor-pointer hover:bg-slate-100">
+                        <Upload size={40} className="mb-2" />
+                        <span className="text-sm text-center">
+                          {beforeFile ? beforeFile.name : 'Before (dirty)'}
+                        </span>
+                        <input
+                          id="before-input"
+                          type="file"
+                          accept="image/*"
+                          onChange={handleBeforeFileChange}
+                          className="hidden"
+                          required
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      After Image
+                    </label>
+                    <div className="flex items-center justify-center w-full">
+                      <label className="w-full flex flex-col items-center px-4 py-6 bg-slate-50 text-slate-500 rounded-lg border-2 border-slate-300 border-dashed cursor-pointer hover:bg-slate-100">
+                        <Upload size={40} className="mb-2" />
+                        <span className="text-sm text-center">
+                          {afterFile ? afterFile.name : 'After (clean)'}
+                        </span>
+                        <input
+                          id="after-input"
+                          type="file"
+                          accept="image/*"
+                          onChange={handleAfterFileChange}
+                          className="hidden"
+                          required
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                {beforePreview && afterPreview && (
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Preview
+                    </label>
+                    <BeforeAfterSliderPreview
+                      beforeImage={beforePreview}
+                      afterImage={afterPreview}
+                    />
+                  </div>
+                )}
+              </>
+            )}
 
             {result && (
               <div
@@ -154,13 +335,67 @@ export function ImageUploadPage() {
 
             <button
               type="submit"
-              disabled={uploading || !file}
+              disabled={uploading || (mode === 'section' ? !file : !beforeFile || !afterFile)}
               className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors"
             >
-              {uploading ? 'Uploading...' : 'Upload Image'}
+              {uploading ? 'Uploading...' : mode === 'section' ? 'Upload Image' : 'Upload Before/After Images'}
             </button>
           </form>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function BeforeAfterSliderPreview({ beforeImage, afterImage }: { beforeImage: string; afterImage: string }) {
+  const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleMove = (clientX: number) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const percentage = (x / rect.width) * 100;
+    setSliderPosition(Math.min(Math.max(percentage, 0), 100));
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg cursor-col-resize select-none bg-slate-200"
+      onMouseDown={() => setIsDragging(true)}
+      onMouseUp={() => setIsDragging(false)}
+      onMouseMove={(e) => isDragging && handleMove(e.clientX)}
+      onTouchStart={() => setIsDragging(true)}
+      onTouchEnd={() => setIsDragging(false)}
+      onTouchMove={(e) => isDragging && handleMove(e.touches[0].clientX)}
+    >
+      <div className="absolute inset-0 w-full h-full">
+        <img src={afterImage} alt="After" className="w-full h-full object-cover" />
+      </div>
+      <div
+        className="absolute inset-0 w-full h-full overflow-hidden"
+        style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+      >
+        <img src={beforeImage} alt="Before" className="w-full h-full object-cover" />
+      </div>
+      <div
+        className="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-10"
+        style={{ left: `${sliderPosition}%` }}
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-xl flex items-center justify-center">
+          <div className="flex space-x-1">
+            <div className="w-0.5 h-3 bg-slate-400"></div>
+            <div className="w-0.5 h-3 bg-slate-400"></div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute top-2 left-2 bg-black/60 text-white px-3 py-1 rounded text-xs font-semibold">
+        Before
+      </div>
+      <div className="absolute top-2 right-2 bg-black/60 text-white px-3 py-1 rounded text-xs font-semibold">
+        After
       </div>
     </div>
   );
