@@ -26,6 +26,7 @@ export async function getSiteImage(section: string): Promise<SiteImage | null> {
     return null;
   }
 
+  console.log(`Site image for section "${section}":`, data);
   return data;
 }
 

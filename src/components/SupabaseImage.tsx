@@ -14,8 +14,11 @@ export function SupabaseImage({ path, alt, className = '', fallback }: SupabaseI
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
+    setHasError(false);
     try {
       const url = getPublicUrl(path);
+      console.log('Loading image from:', url);
       setImageUrl(url);
     } catch (error) {
       console.error('Error loading image:', error);
@@ -30,6 +33,7 @@ export function SupabaseImage({ path, alt, className = '', fallback }: SupabaseI
   };
 
   const handleError = () => {
+    console.error('Image failed to load:', imageUrl);
     setIsLoading(false);
     setHasError(true);
   };

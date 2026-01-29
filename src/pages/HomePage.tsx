@@ -9,7 +9,10 @@ export function HomePage() {
   const [aboutImage, setAboutImage] = useState<SiteImage | null>(null);
 
   useEffect(() => {
-    getSiteImage('about').then(setAboutImage);
+    getSiteImage('about').then((img) => {
+      console.log('About image loaded:', img);
+      setAboutImage(img);
+    });
   }, []);
 
   return (
