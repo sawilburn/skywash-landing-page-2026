@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Upload, CheckCircle, AlertCircle, ImageIcon, Trash2, Eye, EyeOff, RefreshCw } from 'lucide-react';
+import { Upload, CheckCircle, AlertCircle, ImageIcon, Trash2, Eye, EyeOff, RefreshCw, Info } from 'lucide-react';
 import {
   uploadSiteImage,
   uploadBeforeAfterImages,
@@ -10,6 +10,7 @@ import {
   BeforeAfterImage
 } from '../lib/siteImages';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
+import { PAGE_SECTION_MAPPINGS, getPagesByCategory, getCategoryDisplayName, getSectionsForPage, ImageSection } from '../lib/pageSectionMapping';
 
 type UploadMode = 'section' | 'before-after';
 
@@ -20,16 +21,57 @@ export function ImageUploadPage() {
   const [afterFile, setAfterFile] = useState<File | null>(null);
   const [beforePreview, setBeforePreview] = useState<string>('');
   const [afterPreview, setAfterPreview] = useState<string>('');
-  const [section, setSection] = useState('residential-hero');
+
+  const [selectedPage, setSelectedPage] = useState('Home Page');
+  const [selectedSectionIndex, setSelectedSectionIndex] = useState(0);
+  const [availableSections, setAvailableSections] = useState<ImageSection[]>([]);
+
+  const [section, setSection] = useState('about');
   const [serviceType, setServiceType] = useState('roof');
   const [beforeAlt, setBeforeAlt] = useState('Roof covered with Gloeocapsa magma bacteria');
   const [afterAlt, setAfterAlt] = useState('Clean roof after professional soft washing');
-  const [title, setTitle] = useState('Beautiful Clean Home');
-  const [altText, setAltText] = useState('Beautiful clean home after professional soft wash cleaning');
+  const [title, setTitle] = useState('Drone Cleaning Technology');
+  const [altText, setAltText] = useState('Drone cleaning technology in action');
   const [uploading, setUploading] = useState(false);
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
   const [allImages, setAllImages] = useState<BeforeAfterImage[]>([]);
   const [loadingImages, setLoadingImages] = useState(false);
+
+  const pagesByCategory = getPagesByCategory();
+
+  useEffect(() => {
+    const sections = getSectionsForPage(selectedPage);
+    setAvailableSections(sections);
+    if (sections.length > 0) {
+      setSelectedSectionIndex(0);
+      updateFormFieldsFromSection(sections[0]);
+    }
+  }, []);
+
+  const updateFormFieldsFromSection = (imageSection: ImageSection) => {
+    setSection(imageSection.id);
+    setTitle(imageSection.displayName);
+    setAltText(imageSection.suggestedAltText);
+  };
+
+  const handlePageChange = (pageName: string) => {
+    setSelectedPage(pageName);
+    const sections = getSectionsForPage(pageName);
+    setAvailableSections(sections);
+    if (sections.length > 0) {
+      setSelectedSectionIndex(0);
+      updateFormFieldsFromSection(sections[0]);
+    }
+    setResult(null);
+  };
+
+  const handleSectionChange = (index: number) => {
+    setSelectedSectionIndex(index);
+    if (availableSections[index]) {
+      updateFormFieldsFromSection(availableSections[index]);
+    }
+    setResult(null);
+  };
 
   const loadAllImages = async () => {
     setLoadingImages(true);
@@ -150,11 +192,14 @@ export function ImageUploadPage() {
     }
   };
 
+  const currentSection = availableSections[selectedSectionIndex];
+
   return (
     <div className="min-h-screen bg-slate-50 py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl shadow-xl p-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-6">Upload Site Images</h1>
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">Upload Site Images</h1>
+          <p className="text-slate-600 mb-6">Select a page and section to upload images for your website</p>
 
           <div className="mb-6 flex gap-4">
             <button
@@ -186,43 +231,68 @@ export function ImageUploadPage() {
           <form onSubmit={handleUpload} className="space-y-6">
             {mode === 'section' ? (
               <>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Section
-                  </label>
-                  <select
-                    value={section}
-                    onChange={(e) => setSection(e.target.value)}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    <option value="about">About</option>
-                    <option value="hero">Hero</option>
-                    <option value="services">Services</option>
-                    <option value="testimonials">Testimonials</option>
-                    <optgroup label="Commercial Services">
-                      <option value="commercial-office-window">Class A Office Window Cleaning</option>
-                      <option value="commercial-midrise">Mid-Rise Soft Wash</option>
-                      <option value="commercial-datacenter">Data Center Exterior</option>
-                      <option value="commercial-solar">Commercial Solar</option>
-                    </optgroup>
-                    <optgroup label="Residential Services">
-                      <option value="residential-hero">Beautiful Clean Home</option>
-                    </optgroup>
-                    <optgroup label="Memberships">
-                      <option value="membership-loudoun-county-chamber">Loudoun County Chamber</option>
-                      <option value="membership-purcellville-business">Purcellville Business Association</option>
-                      <option value="membership-aoba">AOBA</option>
-                      <option value="membership-iwca">IWCA</option>
-                    </optgroup>
-                    <optgroup label="Partners">
-                      <option value="partner-lucid-bots">Lucid BOTS</option>
-                      <option value="partner-apellix">Apellix</option>
-                      <option value="partner-midwest-washing">Midwest Washing Equipment</option>
-                      <option value="partner-sesw">SESW</option>
-                      <option value="partner-window-cleaning">Window Cleaning Resource</option>
-                    </optgroup>
-                  </select>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Select Page
+                    </label>
+                    <select
+                      value={selectedPage}
+                      onChange={(e) => handlePageChange(e.target.value)}
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                    >
+                      {Object.entries(pagesByCategory).map(([category, pages]) => (
+                        <optgroup key={category} label={getCategoryDisplayName(category)}>
+                          {pages.map((page) => (
+                            <option key={page.pageName} value={page.pageName}>
+                              {page.pageName}
+                            </option>
+                          ))}
+                        </optgroup>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Select Section
+                    </label>
+                    <select
+                      value={selectedSectionIndex}
+                      onChange={(e) => handleSectionChange(parseInt(e.target.value))}
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                      disabled={availableSections.length === 0}
+                    >
+                      {availableSections.length === 0 ? (
+                        <option>No sections available</option>
+                      ) : (
+                        availableSections.map((sec, index) => (
+                          <option key={sec.id} value={index}>
+                            {sec.displayName}
+                          </option>
+                        ))
+                      )}
+                    </select>
+                  </div>
                 </div>
+
+                {currentSection && (
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="flex items-start gap-3">
+                      <Info className="text-blue-600 flex-shrink-0 mt-0.5" size={20} />
+                      <div className="text-sm">
+                        <p className="font-semibold text-blue-900 mb-1">Section Information</p>
+                        <p className="text-blue-800 mb-2">{currentSection.description || 'Upload an image for this section'}</p>
+                        <div className="space-y-1 text-xs text-blue-700">
+                          <p><strong>Section ID:</strong> {currentSection.id}</p>
+                          {currentSection.fallbackImage && (
+                            <p><strong>Current Fallback:</strong> {currentSection.fallbackImage}</p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">
@@ -248,6 +318,9 @@ export function ImageUploadPage() {
                     required
                     className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-slate-500">
+                    Describe the image for accessibility and SEO
+                  </p>
                 </div>
 
                 <div>
@@ -255,10 +328,13 @@ export function ImageUploadPage() {
                     Image File
                   </label>
                   <div className="flex items-center justify-center w-full">
-                    <label className="w-full flex flex-col items-center px-4 py-6 bg-slate-50 text-slate-500 rounded-lg border-2 border-slate-300 border-dashed cursor-pointer hover:bg-slate-100">
+                    <label className="w-full flex flex-col items-center px-4 py-6 bg-slate-50 text-slate-500 rounded-lg border-2 border-slate-300 border-dashed cursor-pointer hover:bg-slate-100 transition-colors">
                       <Upload size={40} className="mb-2" />
-                      <span className="text-sm">
+                      <span className="text-sm font-medium">
                         {file ? file.name : 'Click to select image'}
+                      </span>
+                      <span className="text-xs text-slate-400 mt-1">
+                        PNG, JPG, WEBP up to 10MB
                       </span>
                       <input
                         id="file-input"
@@ -392,8 +468,8 @@ export function ImageUploadPage() {
               <div
                 className={`flex items-center gap-3 p-4 rounded-lg ${
                   result.success
-                    ? 'bg-green-50 text-green-800'
-                    : 'bg-red-50 text-red-800'
+                    ? 'bg-green-50 text-green-800 border border-green-200'
+                    : 'bg-red-50 text-red-800 border border-red-200'
                 }`}
               >
                 {result.success ? (
@@ -401,16 +477,23 @@ export function ImageUploadPage() {
                 ) : (
                   <AlertCircle size={20} />
                 )}
-                <span>{result.message}</span>
+                <span className="text-sm">{result.message}</span>
               </div>
             )}
 
             <button
               type="submit"
               disabled={uploading || (mode === 'section' ? !file : !beforeFile || !afterFile)}
-              className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors"
+              className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors shadow-lg hover:shadow-xl"
             >
-              {uploading ? 'Uploading...' : mode === 'section' ? 'Upload Image' : 'Upload Before/After Images'}
+              {uploading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                  Uploading...
+                </span>
+              ) : (
+                mode === 'section' ? 'Upload Image' : 'Upload Before/After Images'
+              )}
             </button>
           </form>
 
