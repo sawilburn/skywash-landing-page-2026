@@ -53,7 +53,7 @@ async function createZohoLead(
   leadData: LeadData,
   region: string
 ): Promise<any> {
-  const zohoApiUrl = `https://zohoapis.${region}/crm/v2/Leads`;
+  const zohoApiUrl = `https://www.zohoapis.${region}/crm/v2/Leads`;
 
   const zohoLead = {
     data: [
@@ -99,6 +99,7 @@ Deno.serve(async (req: Request) => {
     const zohoClientId = Deno.env.get("ZOHO_CLIENT_ID");
     const zohoClientSecret = Deno.env.get("ZOHO_CLIENT_SECRET");
     const zohoRefreshToken = Deno.env.get("ZOHO_REFRESH_TOKEN");
+    // Valid regions: com, eu, in, com.au, jp, ca
     const zohoRegion = Deno.env.get("ZOHO_REGION") || "com";
 
     console.log("Zoho credentials check:", {
