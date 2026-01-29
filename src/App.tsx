@@ -1,0 +1,54 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import { HomePage } from './pages/HomePage';
+import { CommercialPage } from './pages/CommercialPage';
+import { ResidentialPage } from './pages/ResidentialPage';
+import { CommercialWindowCleaningPage } from './pages/CommercialWindowCleaningPage';
+import { HotelCleaningPage } from './pages/HotelCleaningPage';
+import { DataCenterCleaningPage } from './pages/DataCenterCleaningPage';
+import { ChurchCleaningPage } from './pages/ChurchCleaningPage';
+import { SchoolsUniversityCleaningPage } from './pages/SchoolsUniversityCleaningPage';
+import { MedicalCleaningPage } from './pages/MedicalCleaningPage';
+import { HouseWashingPage } from './pages/HouseWashingPage';
+import { RoofWashingPage } from './pages/RoofWashingPage';
+import { SolarWashingPage } from './pages/SolarWashingPage';
+import { AshburnPage } from './pages/AshburnPage';
+import { GreatFallsPage } from './pages/GreatFallsPage';
+import { RestonPage } from './pages/RestonPage';
+import { LeesburgPage } from './pages/LeesburgPage';
+import { MiddleburgPage } from './pages/MiddleburgPage';
+import { PurcellvillePage } from './pages/PurcellvillePage';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="min-h-screen">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/commercial" element={<CommercialPage />} />
+          <Route path="/commercial/window-cleaning" element={<CommercialWindowCleaningPage />} />
+          <Route path="/commercial/hotel-cleaning" element={<HotelCleaningPage />} />
+          <Route path="/commercial/data-center-cleaning" element={<DataCenterCleaningPage />} />
+          <Route path="/commercial/church-cleaning" element={<ChurchCleaningPage />} />
+          <Route path="/commercial/schools-university-washing" element={<SchoolsUniversityCleaningPage />} />
+          <Route path="/commercial/medical-cleaning" element={<MedicalCleaningPage />} />
+          <Route path="/residential" element={<ResidentialPage />} />
+          <Route path="/residential/house-washing" element={<HouseWashingPage />} />
+          <Route path="/residential/roof-washing" element={<RoofWashingPage />} />
+          <Route path="/residential/solar-washing" element={<SolarWashingPage />} />
+          <Route path="/locations/ashburn" element={<AshburnPage />} />
+          <Route path="/locations/greatfalls" element={<GreatFallsPage />} />
+          <Route path="/locations/reston" element={<RestonPage />} />
+          <Route path="/locations/leesburg" element={<LeesburgPage />} />
+          <Route path="/locations/middleburg" element={<MiddleburgPage />} />
+          <Route path="/locations/purcellville" element={<PurcellvillePage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
+}
+
+export default App;
