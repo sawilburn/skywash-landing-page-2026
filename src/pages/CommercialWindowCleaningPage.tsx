@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { SupabaseImage } from '../components/SupabaseImage';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { Shield, Clock, Eye, Building2, FileCheck, Camera, Sparkles, Phone, CheckCircle } from 'lucide-react';
 
 export function CommercialWindowCleaningPage() {
@@ -64,10 +64,11 @@ export function CommercialWindowCleaningPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <SupabaseImage
-                path="commercial/drone-office-building.jpg"
+              <DynamicSectionImage
+                section="commercial-window-cleaning-1"
                 alt="Drone cleaning Class A office building windows"
                 className="rounded-2xl shadow-2xl"
+                fallback="commercial/drone-office-building.jpg"
               />
             </div>
             <div>
@@ -244,10 +245,11 @@ export function CommercialWindowCleaningPage() {
               </div>
             </div>
             <div className="order-1 md:order-2">
-              <SupabaseImage
-                path="commercial/clean-office-building.jpg"
+              <DynamicSectionImage
+                section="commercial-window-cleaning-2"
                 alt="Pristine office building with spotless windows"
                 className="rounded-2xl shadow-2xl"
+                fallback="commercial/clean-office-building.jpg"
               />
             </div>
           </div>
