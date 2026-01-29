@@ -1,5 +1,5 @@
 import { GraduationCap, Shield, Zap, Users, TrendingUp, Brain, Sparkles, CheckCircle2, Rocket, Clock, DollarSign, Award, BookOpen, Building2 } from 'lucide-react';
-import { SupabaseImage } from '../components/SupabaseImage';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { CommercialLeadForm } from '../components/CommercialLeadForm';
 
 export function SchoolsUniversityCleaningPage() {
@@ -66,8 +66,8 @@ export function SchoolsUniversityCleaningPage() {
             </div>
 
             <div className="bg-slate-200 rounded-2xl shadow-2xl overflow-hidden min-h-[400px] flex items-center justify-center animate-fade-in-scale border border-slate-300">
-              <SupabaseImage
-                path="campus/university-building.jpg"
+              <DynamicSectionImage
+                section="campus/university-building.jpg"
                 alt="University campus building"
                 className="w-full h-full object-cover"
                 fallback="Modern Campus"
@@ -224,8 +224,8 @@ export function SchoolsUniversityCleaningPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
             <div className="bg-slate-200 rounded-2xl shadow-xl overflow-hidden min-h-[400px] flex items-center justify-center">
-              <SupabaseImage
-                path="campus/academic-building.jpg"
+              <DynamicSectionImage
+                section="campus/academic-building.jpg"
                 alt="Academic building exterior"
                 className="w-full h-full object-cover"
                 fallback="Academic Building"

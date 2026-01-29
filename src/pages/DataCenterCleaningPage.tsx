@@ -1,5 +1,5 @@
 import { Shield, CheckCircle2, UserCheck, Award, Lock, Zap, Building2, FileCheck, Clock, Target } from 'lucide-react';
-import { SupabaseImage } from '../components/SupabaseImage';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { CommercialLeadForm } from '../components/CommercialLeadForm';
 
 export function DataCenterCleaningPage() {
@@ -64,8 +64,8 @@ export function DataCenterCleaningPage() {
             </div>
 
             <div className="bg-slate-700 rounded-2xl shadow-2xl overflow-hidden min-h-[400px] flex items-center justify-center animate-fade-in-scale border border-slate-600">
-              <SupabaseImage
-                path="datacenter/datacenter-building.jpg"
+              <DynamicSectionImage
+                section="datacenter/datacenter-building.jpg"
                 alt="Data center exterior"
                 className="w-full h-full object-cover"
                 fallback="Data Center Facility"

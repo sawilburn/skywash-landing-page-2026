@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Zap, Shield, TrendingUp, AlertTriangle, CheckCircle2, XCircle, Leaf, Award, FileCheck, Sun, DollarSign, Clock, Sparkles, Battery, Heart } from 'lucide-react';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import { ResidentialLeadForm } from '../components/ResidentialLeadForm';
-import { SupabaseImage } from '../components/SupabaseImage';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { getBeforeAfterImages, getImageUrl } from '../lib/siteImages';
 
 export function SolarWashingPage() {
@@ -84,8 +84,8 @@ export function SolarWashingPage() {
             </div>
 
             <div className="bg-slate-200 rounded-2xl shadow-2xl overflow-hidden min-h-[400px] flex items-center justify-center animate-fade-in-scale">
-              <SupabaseImage
-                path="solar-clean.jpg"
+              <DynamicSectionImage
+                section="solar-clean.jpg"
                 alt="Clean solar panels producing maximum energy"
                 className="w-full h-full object-cover"
                 fallback="Professional Solar Panel Cleaning"

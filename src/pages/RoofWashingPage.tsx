@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Home, Shield, AlertTriangle, CheckCircle2, XCircle, Leaf, Award, FileCheck, Users, TrendingUp, Clock, Sparkles, Heart } from 'lucide-react';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import { ResidentialLeadForm } from '../components/ResidentialLeadForm';
-import { SupabaseImage } from '../components/SupabaseImage';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { getBeforeAfterImages, getImageUrl } from '../lib/siteImages';
 
 export function RoofWashingPage() {
@@ -84,8 +84,8 @@ export function RoofWashingPage() {
             </div>
 
             <div className="bg-slate-200 rounded-2xl shadow-2xl overflow-hidden min-h-[400px] flex items-center justify-center animate-fade-in-scale">
-              <SupabaseImage
-                path="roof-clean.jpg"
+              <DynamicSectionImage
+                section="roof-clean.jpg"
                 alt="Clean roof after professional washing"
                 className="w-full h-full object-cover"
                 fallback="Professional Roof Cleaning"

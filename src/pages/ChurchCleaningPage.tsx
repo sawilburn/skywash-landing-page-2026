@@ -1,5 +1,5 @@
 import { Heart, Shield, Sparkles, Award, CheckCircle2, Church, Lock, Droplets, Clock, FileCheck, Info } from 'lucide-react';
-import { SupabaseImage } from '../components/SupabaseImage';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { CommercialLeadForm } from '../components/CommercialLeadForm';
 
 export function ChurchCleaningPage() {
@@ -64,8 +64,8 @@ export function ChurchCleaningPage() {
             </div>
 
             <div className="bg-slate-200 rounded-2xl shadow-2xl overflow-hidden min-h-[400px] flex items-center justify-center animate-fade-in-scale border border-slate-300">
-              <SupabaseImage
-                path="church/white-church.jpg"
+              <DynamicSectionImage
+                section="church/white-church.jpg"
                 alt="Church exterior"
                 className="w-full h-full object-cover"
                 fallback="Historic Church"
@@ -201,8 +201,8 @@ export function ChurchCleaningPage() {
             </div>
 
             <div className="bg-slate-200 rounded-2xl shadow-xl overflow-hidden min-h-[400px] flex items-center justify-center">
-              <SupabaseImage
-                path="church/historic-church.jpg"
+              <DynamicSectionImage
+                section="church/historic-church.jpg"
                 alt="Historic church building"
                 className="w-full h-full object-cover"
                 fallback="Historic Church Architecture"
@@ -384,8 +384,8 @@ export function ChurchCleaningPage() {
             </div>
 
             <div className="bg-slate-700 rounded-2xl shadow-xl overflow-hidden min-h-[400px] flex items-center justify-center border border-slate-600">
-              <SupabaseImage
-                path="church/stone-church.jpg"
+              <DynamicSectionImage
+                section="church/stone-church.jpg"
                 alt="Church architecture"
                 className="w-full h-full object-cover"
                 fallback="Beautiful Church"

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Home, Shield, Zap, Sparkles, CheckCircle2, AlertTriangle, Sun, Eye, Droplets, TrendingUp, Clock } from 'lucide-react';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import { ResidentialLeadForm } from '../components/ResidentialLeadForm';
-import { SupabaseImage } from '../components/SupabaseImage';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { getBeforeAfterImages, getImageUrl } from '../lib/siteImages';
 
 export function HouseWashingPage() {
@@ -84,8 +84,8 @@ export function HouseWashingPage() {
             </div>
 
             <div className="bg-slate-200 rounded-2xl shadow-2xl overflow-hidden min-h-[400px] flex items-center justify-center animate-fade-in-scale">
-              <SupabaseImage
-                path="residential-hero.jpg"
+              <DynamicSectionImage
+                section="residential-hero.jpg"
                 alt="Beautiful clean home"
                 className="w-full h-full object-cover"
                 fallback="Beautiful Clean Home"

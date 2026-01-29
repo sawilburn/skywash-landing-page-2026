@@ -1,5 +1,5 @@
 import { Heart, Shield, Clock, CheckCircle2, Users, Lock, Building2, Stethoscope, UserCheck, Eye } from 'lucide-react';
-import { SupabaseImage } from '../components/SupabaseImage';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { CommercialLeadForm } from '../components/CommercialLeadForm';
 
 export function MedicalCleaningPage() {
@@ -64,8 +64,8 @@ export function MedicalCleaningPage() {
             </div>
 
             <div className="bg-slate-200 rounded-2xl shadow-2xl overflow-hidden min-h-[400px] flex items-center justify-center animate-fade-in-scale">
-              <SupabaseImage
-                path="medical/medical-building.jpg"
+              <DynamicSectionImage
+                section="medical/medical-building.jpg"
                 alt="Medical facility exterior"
                 className="w-full h-full object-cover"
                 fallback="Medical Facility"
