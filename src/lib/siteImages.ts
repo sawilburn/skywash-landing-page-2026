@@ -31,7 +31,7 @@ export async function getSiteImage(section: string): Promise<SiteImage | null> {
 }
 
 export function getImageUrl(storagePath: string): string {
-  const { data } = supabase.storage.from('site-images').getPublicUrl(storagePath);
+  const { data } = supabase.storage.from('images').getPublicUrl(storagePath);
   return data.publicUrl;
 }
 
