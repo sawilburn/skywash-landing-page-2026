@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { SupabaseImage } from './SupabaseImage';
 
 interface BeforeAfterSliderProps {
   beforeImage: string;
@@ -71,11 +70,10 @@ export function BeforeAfterSlider({
       onTouchStart={handleMouseDown}
     >
       <div className="absolute inset-0 w-full h-full">
-        <SupabaseImage
-          path={afterImage}
+        <img
+          src={afterImage}
           alt={afterAlt}
           className="w-full h-full object-cover"
-          fallback="After Cleaning"
         />
       </div>
 
@@ -83,11 +81,10 @@ export function BeforeAfterSlider({
         className="absolute inset-0 w-full h-full overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
-        <SupabaseImage
-          path={beforeImage}
+        <img
+          src={beforeImage}
           alt={beforeAlt}
           className="w-full h-full object-cover"
-          fallback="Before Cleaning"
         />
       </div>
 
