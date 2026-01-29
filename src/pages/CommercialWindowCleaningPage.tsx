@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
+import { SupabaseImage } from '../components/SupabaseImage';
 import { Shield, Clock, Eye, Building2, FileCheck, Camera, Sparkles, Phone, CheckCircle } from 'lucide-react';
 
 export function CommercialWindowCleaningPage() {

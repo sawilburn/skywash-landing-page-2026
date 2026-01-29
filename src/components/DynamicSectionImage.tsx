@@ -32,10 +32,20 @@ export function DynamicSectionImage({ section, alt, className = '', fallback }: 
     return <div className={`bg-slate-200 animate-pulse ${className}`} />;
   }
 
+  if (!imagePath && fallback) {
+    return (
+      <SupabaseImage
+        path={fallback}
+        alt={alt}
+        className={className}
+      />
+    );
+  }
+
   if (!imagePath) {
     return (
       <div className={`bg-slate-200 flex items-center justify-center ${className}`}>
-        <span className="text-slate-400 text-sm">{fallback || 'No image available'}</span>
+        <span className="text-slate-400 text-sm">No image available</span>
       </div>
     );
   }
@@ -45,7 +55,6 @@ export function DynamicSectionImage({ section, alt, className = '', fallback }: 
       path={imagePath}
       alt={alt}
       className={className}
-      fallback={fallback}
     />
   );
 }
