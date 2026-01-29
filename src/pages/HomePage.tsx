@@ -290,6 +290,7 @@ export function HomePage() {
             <div className="bg-slate-200 rounded-2xl shadow-2xl overflow-hidden min-h-[400px] flex items-center justify-center">
               {aboutImage ? (
                 <SupabaseImage
+                  key={aboutImage.storage_path}
                   path={aboutImage.storage_path}
                   alt={aboutImage.alt_text}
                   className="w-full h-full object-cover"
