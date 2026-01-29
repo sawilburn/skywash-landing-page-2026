@@ -4,9 +4,9 @@ import { uploadSiteImage } from '../lib/siteImages';
 
 export function ImageUploadPage() {
   const [file, setFile] = useState<File | null>(null);
-  const [section, setSection] = useState('commercial-office-window');
-  const [title, setTitle] = useState('Class A Office Window Cleaning');
-  const [altText, setAltText] = useState('Professional window cleaning on a Class A office building');
+  const [section, setSection] = useState('residential-hero');
+  const [title, setTitle] = useState('Beautiful Clean Home');
+  const [altText, setAltText] = useState('Beautiful clean home after professional soft wash cleaning');
   const [uploading, setUploading] = useState(false);
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
 
@@ -67,6 +67,9 @@ export function ImageUploadPage() {
                   <option value="commercial-midrise">Mid-Rise Soft Wash</option>
                   <option value="commercial-datacenter">Data Center Exterior</option>
                   <option value="commercial-solar">Commercial Solar</option>
+                </optgroup>
+                <optgroup label="Residential Services">
+                  <option value="residential-hero">Beautiful Clean Home</option>
                 </optgroup>
                 <optgroup label="Memberships">
                   <option value="membership-loudoun-county-chamber">Loudoun County Chamber</option>

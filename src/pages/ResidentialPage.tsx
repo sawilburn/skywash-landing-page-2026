@@ -2,7 +2,7 @@ import { Home, Droplets, Wind, Square, Heart, Shield, Leaf, CheckCircle2, AlertT
 import { Link } from 'react-router-dom';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import { ResidentialLeadForm } from '../components/ResidentialLeadForm';
-import { SupabaseImage } from '../components/SupabaseImage';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 
 export function ResidentialPage() {
   const scrollToForm = () => {
@@ -61,8 +61,8 @@ export function ResidentialPage() {
             </div>
 
             <div className="bg-slate-200 rounded-2xl shadow-2xl overflow-hidden min-h-[400px] flex items-center justify-center animate-fade-in-scale">
-              <SupabaseImage
-                path="residential-hero.jpg"
+              <DynamicSectionImage
+                section="residential-hero"
                 alt="Beautiful clean home"
                 className="w-full h-full object-cover"
                 fallback="Beautiful Clean Home"
