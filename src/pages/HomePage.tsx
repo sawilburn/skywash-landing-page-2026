@@ -1,9 +1,17 @@
+import { useState, useEffect } from 'react';
 import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen, MapPin, Phone, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SupabaseImage } from '../components/SupabaseImage';
 import { PartnersAndMemberships } from '../components/PartnersAndMemberships';
+import { getSiteImage, SiteImage } from '../lib/siteImages';
 
 export function HomePage() {
+  const [aboutImage, setAboutImage] = useState<SiteImage | null>(null);
+
+  useEffect(() => {
+    getSiteImage('about').then(setAboutImage);
+  }, []);
+
   return (
     <div className="min-h-screen">
       <section className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-900 via-[#1a3c75] to-slate-800 text-white pt-20">
@@ -280,12 +288,18 @@ export function HomePage() {
               </div>
             </div>
             <div className="bg-slate-200 rounded-2xl shadow-2xl overflow-hidden min-h-[400px] flex items-center justify-center">
-              <SupabaseImage
-                path="drone-cleaning.jpg"
-                alt="Drone cleaning in action"
-                className="w-full h-full object-cover"
-                fallback="Drone Cleaning Technology"
-              />
+              {aboutImage ? (
+                <SupabaseImage
+                  path={aboutImage.storage_path}
+                  alt={aboutImage.alt_text}
+                  className="w-full h-full object-cover"
+                  fallback="Drone Cleaning Technology"
+                />
+              ) : (
+                <div className="flex items-center justify-center w-full h-full">
+                  <span className="text-slate-400">Drone Cleaning Technology</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

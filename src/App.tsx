@@ -19,6 +19,7 @@ import { RestonPage } from './pages/RestonPage';
 import { LeesburgPage } from './pages/LeesburgPage';
 import { MiddleburgPage } from './pages/MiddleburgPage';
 import { PurcellvillePage } from './pages/PurcellvillePage';
+import { ImageUploadPage } from './pages/ImageUploadPage';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="/locations/leesburg" element={<LeesburgPage />} />
           <Route path="/locations/middleburg" element={<MiddleburgPage />} />
           <Route path="/locations/purcellville" element={<PurcellvillePage />} />
+          <Route path="/admin/upload-image" element={<ImageUploadPage />} />
         </Routes>
         <Footer />
       </div>
