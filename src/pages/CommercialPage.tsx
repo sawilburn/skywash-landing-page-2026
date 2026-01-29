@@ -1,6 +1,6 @@
 import { Shield, Clock, FileCheck, Zap, Thermometer, TrendingUp, CheckCircle2, Building2, Sun, Eye, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { SupabaseImage } from '../components/SupabaseImage';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { CommercialLeadForm } from '../components/CommercialLeadForm';
 
 export function CommercialPage() {
@@ -167,8 +167,8 @@ export function CommercialPage() {
             <div className="bg-gradient-to-br from-slate-900 to-[#1a3c75] rounded-2xl shadow-xl overflow-hidden border-2 border-cyan-400">
               <div className="grid md:grid-cols-2">
                 <div className="bg-slate-800 min-h-[400px] flex items-center justify-center order-2 md:order-1">
-                  <SupabaseImage
-                    path="commercial/drone-office-building.jpg"
+                  <DynamicSectionImage
+                    section="commercial-office-window"
                     alt="Class A Office Window Cleaning"
                     className="w-full h-full object-cover"
                     fallback="Office Window Cleaning"
@@ -263,10 +263,12 @@ export function CommercialPage() {
                   </button>
                 </div>
                 <div className="bg-slate-200 min-h-[400px] flex items-center justify-center">
-                  <div className="text-slate-400 text-center p-8">
-                    <Building2 size={64} className="mx-auto mb-4" />
-                    <p className="text-sm">Mid-Rise Cleaning</p>
-                  </div>
+                  <DynamicSectionImage
+                    section="commercial-midrise"
+                    alt="Mid-Rise Soft Wash"
+                    className="w-full h-full object-cover"
+                    fallback="Mid-Rise Cleaning"
+                  />
                 </div>
               </div>
             </div>
@@ -274,8 +276,8 @@ export function CommercialPage() {
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
               <div className="grid md:grid-cols-2">
                 <div className="bg-slate-200 min-h-[400px] flex items-center justify-center order-2 md:order-1">
-                  <SupabaseImage
-                    path="data-center-cleaning.jpg"
+                  <DynamicSectionImage
+                    section="commercial-datacenter"
                     alt="Data Center Exterior Cleaning"
                     className="w-full h-full object-cover"
                     fallback="Data Center Cleaning"
@@ -367,8 +369,8 @@ export function CommercialPage() {
                   </button>
                 </div>
                 <div className="bg-slate-200 min-h-[400px] flex items-center justify-center">
-                  <SupabaseImage
-                    path="commercial-solar.jpg"
+                  <DynamicSectionImage
+                    section="commercial-solar"
                     alt="Commercial Solar Cleaning"
                     className="w-full h-full object-cover"
                     fallback="Solar Farm Cleaning"

@@ -4,9 +4,9 @@ import { uploadSiteImage } from '../lib/siteImages';
 
 export function ImageUploadPage() {
   const [file, setFile] = useState<File | null>(null);
-  const [section, setSection] = useState('membership-loudoun-county-chamber');
-  const [title, setTitle] = useState('Loudoun County Chamber Logo');
-  const [altText, setAltText] = useState('Loudoun County Chamber of Commerce logo');
+  const [section, setSection] = useState('commercial-office-window');
+  const [title, setTitle] = useState('Class A Office Window Cleaning');
+  const [altText, setAltText] = useState('Professional window cleaning on a Class A office building');
   const [uploading, setUploading] = useState(false);
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
 
@@ -62,6 +62,12 @@ export function ImageUploadPage() {
                 <option value="hero">Hero</option>
                 <option value="services">Services</option>
                 <option value="testimonials">Testimonials</option>
+                <optgroup label="Commercial Services">
+                  <option value="commercial-office-window">Class A Office Window Cleaning</option>
+                  <option value="commercial-midrise">Mid-Rise Soft Wash</option>
+                  <option value="commercial-datacenter">Data Center Exterior</option>
+                  <option value="commercial-solar">Commercial Solar</option>
+                </optgroup>
                 <optgroup label="Memberships">
                   <option value="membership-loudoun-county-chamber">Loudoun County Chamber</option>
                   <option value="membership-purcellville-business">Purcellville Business Association</option>
