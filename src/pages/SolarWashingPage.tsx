@@ -1,9 +1,29 @@
+import { useState, useEffect } from 'react';
 import { Zap, Shield, TrendingUp, AlertTriangle, CheckCircle2, XCircle, Leaf, Award, FileCheck, Sun, DollarSign, Clock, Sparkles, Battery, Heart } from 'lucide-react';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import { ResidentialLeadForm } from '../components/ResidentialLeadForm';
 import { SupabaseImage } from '../components/SupabaseImage';
+import { getBeforeAfterImages, getImageUrl } from '../lib/siteImages';
 
 export function SolarWashingPage() {
+  const [beforeImage, setBeforeImage] = useState('solar-dirty.jpg');
+  const [afterImage, setAfterImage] = useState('solar-clean.jpg');
+  const [beforeAlt, setBeforeAlt] = useState('Dirty solar panels covered in dust and debris');
+  const [afterAlt, setAfterAlt] = useState('Clean solar panels producing maximum energy');
+
+  useEffect(() => {
+    const loadImages = async () => {
+      const images = await getBeforeAfterImages('solar');
+      if (images) {
+        setBeforeImage(getImageUrl(images.before_image_path));
+        setAfterImage(getImageUrl(images.after_image_path));
+        setBeforeAlt(images.before_alt);
+        setAfterAlt(images.after_alt);
+      }
+    };
+    loadImages();
+  }, []);
+
   const scrollToForm = () => {
     const element = document.getElementById('residential-form');
     if (element) element.scrollIntoView({ behavior: 'smooth' });
@@ -120,10 +140,10 @@ export function SolarWashingPage() {
           </div>
 
           <BeforeAfterSlider
-            beforeImage="solar-dirty.jpg"
-            afterImage="solar-clean.jpg"
-            beforeAlt="Dirty solar panels covered in dust and debris"
-            afterAlt="Clean solar panels producing maximum energy"
+            beforeImage={beforeImage}
+            afterImage={afterImage}
+            beforeAlt={beforeAlt}
+            afterAlt={afterAlt}
           />
 
           <div className="mt-12 bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 text-white">

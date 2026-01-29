@@ -10,6 +10,18 @@ export interface SiteImage {
   sort_order: number;
 }
 
+export interface BeforeAfterImage {
+  id: string;
+  service_type: string;
+  before_image_path: string;
+  after_image_path: string;
+  before_alt: string;
+  after_alt: string;
+  is_active: boolean;
+  display_order: number;
+  created_at: string;
+}
+
 export async function getSiteImage(section: string): Promise<SiteImage | null> {
   const { data, error } = await supabase
     .from('site_images')
@@ -78,18 +90,18 @@ export async function uploadSiteImage(
 export async function uploadBeforeAfterImages(
   beforeFile: File,
   afterFile: File,
-  name: string
-): Promise<{ success: boolean; error?: string }> {
+  serviceType: string,
+  beforeAlt: string,
+  afterAlt: string
+): Promise<{ success: boolean; error?: string; data?: BeforeAfterImage }> {
   try {
-    const beforeExt = beforeFile.name.split('.').pop();
-    const afterExt = afterFile.name.split('.').pop();
-
-    const beforePath = `${name}-dirty.${beforeExt}`;
-    const afterPath = `${name}-clean.${afterExt}`;
+    const timestamp = Date.now();
+    const beforePath = `${timestamp}-${beforeFile.name}`;
+    const afterPath = `${timestamp}-${afterFile.name}`;
 
     const { error: beforeError } = await supabase.storage
       .from('images')
-      .upload(beforePath, beforeFile, { upsert: true });
+      .upload(beforePath, beforeFile, { upsert: false });
 
     if (beforeError) {
       throw new Error(`Failed to upload before image: ${beforeError.message}`);
@@ -97,15 +109,170 @@ export async function uploadBeforeAfterImages(
 
     const { error: afterError } = await supabase.storage
       .from('images')
-      .upload(afterPath, afterFile, { upsert: true });
+      .upload(afterPath, afterFile, { upsert: false });
 
     if (afterError) {
+      await supabase.storage.from('images').remove([beforePath]);
       throw new Error(`Failed to upload after image: ${afterError.message}`);
+    }
+
+    const { data: existingActive, error: queryError } = await supabase
+      .from('before_after_images')
+      .select('id')
+      .eq('service_type', serviceType)
+      .eq('is_active', true)
+      .maybeSingle();
+
+    if (queryError) {
+      await supabase.storage.from('images').remove([beforePath, afterPath]);
+      throw new Error(`Database query error: ${queryError.message}`);
+    }
+
+    if (existingActive) {
+      const { error: deactivateError } = await supabase
+        .from('before_after_images')
+        .update({ is_active: false })
+        .eq('id', existingActive.id);
+
+      if (deactivateError) {
+        console.warn('Failed to deactivate existing image:', deactivateError);
+      }
+    }
+
+    const { data: newRecord, error: insertError } = await supabase
+      .from('before_after_images')
+      .insert({
+        service_type: serviceType,
+        before_image_path: beforePath,
+        after_image_path: afterPath,
+        before_alt: beforeAlt,
+        after_alt: afterAlt,
+        is_active: true,
+        display_order: 0,
+      })
+      .select()
+      .single();
+
+    if (insertError) {
+      await supabase.storage.from('images').remove([beforePath, afterPath]);
+      throw new Error(`Failed to save image metadata: ${insertError.message}`);
+    }
+
+    return { success: true, data: newRecord };
+  } catch (error) {
+    console.error('Error uploading before/after images:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    };
+  }
+}
+
+export async function getBeforeAfterImages(
+  serviceType: string
+): Promise<BeforeAfterImage | null> {
+  const { data, error } = await supabase
+    .from('before_after_images')
+    .select('*')
+    .eq('service_type', serviceType)
+    .eq('is_active', true)
+    .order('display_order', { ascending: true })
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (error) {
+    console.error('Error fetching before/after images:', error);
+    return null;
+  }
+
+  return data;
+}
+
+export async function getAllBeforeAfterImages(): Promise<BeforeAfterImage[]> {
+  const { data, error } = await supabase
+    .from('before_after_images')
+    .select('*')
+    .order('service_type', { ascending: true })
+    .order('is_active', { ascending: false })
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching all before/after images:', error);
+    return [];
+  }
+
+  return data || [];
+}
+
+export async function updateBeforeAfterImageStatus(
+  id: string,
+  isActive: boolean,
+  serviceType?: string
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    if (isActive && serviceType) {
+      const { error: deactivateError } = await supabase
+        .from('before_after_images')
+        .update({ is_active: false })
+        .eq('service_type', serviceType)
+        .eq('is_active', true)
+        .neq('id', id);
+
+      if (deactivateError) {
+        throw new Error(`Failed to deactivate other images: ${deactivateError.message}`);
+      }
+    }
+
+    const { error } = await supabase
+      .from('before_after_images')
+      .update({ is_active: isActive })
+      .eq('id', id);
+
+    if (error) {
+      throw new Error(`Failed to update image status: ${error.message}`);
     }
 
     return { success: true };
   } catch (error) {
-    console.error('Error uploading before/after images:', error);
+    console.error('Error updating image status:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    };
+  }
+}
+
+export async function deleteBeforeAfterImage(
+  id: string
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    const { data: image, error: fetchError } = await supabase
+      .from('before_after_images')
+      .select('before_image_path, after_image_path')
+      .eq('id', id)
+      .single();
+
+    if (fetchError) {
+      throw new Error(`Failed to fetch image: ${fetchError.message}`);
+    }
+
+    const { error: deleteError } = await supabase
+      .from('before_after_images')
+      .delete()
+      .eq('id', id);
+
+    if (deleteError) {
+      throw new Error(`Failed to delete image record: ${deleteError.message}`);
+    }
+
+    await supabase.storage
+      .from('images')
+      .remove([image.before_image_path, image.after_image_path]);
+
+    return { success: true };
+  } catch (error) {
+    console.error('Error deleting image:', error);
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Unknown error',

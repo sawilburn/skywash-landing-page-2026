@@ -1,6 +1,14 @@
-import { useState, useRef } from 'react';
-import { Upload, CheckCircle, AlertCircle, ImageIcon } from 'lucide-react';
-import { uploadSiteImage, uploadBeforeAfterImages } from '../lib/siteImages';
+import { useState, useRef, useEffect } from 'react';
+import { Upload, CheckCircle, AlertCircle, ImageIcon, Trash2, Eye, EyeOff, RefreshCw } from 'lucide-react';
+import {
+  uploadSiteImage,
+  uploadBeforeAfterImages,
+  getAllBeforeAfterImages,
+  updateBeforeAfterImageStatus,
+  deleteBeforeAfterImage,
+  getImageUrl,
+  BeforeAfterImage
+} from '../lib/siteImages';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 
 type UploadMode = 'section' | 'before-after';
@@ -13,11 +21,28 @@ export function ImageUploadPage() {
   const [beforePreview, setBeforePreview] = useState<string>('');
   const [afterPreview, setAfterPreview] = useState<string>('');
   const [section, setSection] = useState('residential-hero');
-  const [beforeAfterName, setBeforeAfterName] = useState('roof');
+  const [serviceType, setServiceType] = useState('roof');
+  const [beforeAlt, setBeforeAlt] = useState('Roof covered with Gloeocapsa magma bacteria');
+  const [afterAlt, setAfterAlt] = useState('Clean roof after professional soft washing');
   const [title, setTitle] = useState('Beautiful Clean Home');
   const [altText, setAltText] = useState('Beautiful clean home after professional soft wash cleaning');
   const [uploading, setUploading] = useState(false);
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
+  const [allImages, setAllImages] = useState<BeforeAfterImage[]>([]);
+  const [loadingImages, setLoadingImages] = useState(false);
+
+  const loadAllImages = async () => {
+    setLoadingImages(true);
+    const images = await getAllBeforeAfterImages();
+    setAllImages(images);
+    setLoadingImages(false);
+  };
+
+  useEffect(() => {
+    if (mode === 'before-after') {
+      loadAllImages();
+    }
+  }, [mode]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -95,12 +120,21 @@ export function ImageUploadPage() {
       setUploading(true);
       setResult(null);
 
-      const response = await uploadBeforeAfterImages(beforeFile, afterFile, beforeAfterName);
+      const response = await uploadBeforeAfterImages(
+        beforeFile,
+        afterFile,
+        serviceType,
+        beforeAlt,
+        afterAlt
+      );
 
       setUploading(false);
 
-      if (response.success) {
-        setResult({ success: true, message: 'Before/After images uploaded successfully!' });
+      if (response.success && response.data) {
+        setResult({
+          success: true,
+          message: `Before/After images uploaded successfully! Files: ${response.data.before_image_path} & ${response.data.after_image_path}`,
+        });
         setBeforeFile(null);
         setAfterFile(null);
         setBeforePreview('');
@@ -109,6 +143,7 @@ export function ImageUploadPage() {
         const afterInput = document.getElementById('after-input') as HTMLInputElement;
         if (beforeInput) beforeInput.value = '';
         if (afterInput) afterInput.value = '';
+        loadAllImages();
       } else {
         setResult({ success: false, message: response.error || 'Upload failed' });
       }
@@ -241,19 +276,56 @@ export function ImageUploadPage() {
               <>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Name (e.g., "roof", "house", "driveway")
+                    Service Type
                   </label>
-                  <input
-                    type="text"
-                    value={beforeAfterName}
-                    onChange={(e) => setBeforeAfterName(e.target.value)}
-                    required
-                    placeholder="roof"
+                  <select
+                    value={serviceType}
+                    onChange={(e) => setServiceType(e.target.value)}
                     className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
+                  >
+                    <option value="roof">Roof</option>
+                    <option value="solar">Solar Panels</option>
+                    <option value="house">House Washing</option>
+                    <option value="siding">Siding</option>
+                    <option value="driveway">Driveway</option>
+                    <option value="deck">Deck</option>
+                    <option value="fence">Fence</option>
+                    <option value="patio">Patio</option>
+                    <option value="gutters">Gutters</option>
+                    <option value="windows">Windows</option>
+                  </select>
                   <p className="mt-1 text-xs text-slate-500">
-                    Files will be saved as {beforeAfterName}-dirty.jpg and {beforeAfterName}-clean.jpg
+                    Original filenames will be preserved with a timestamp prefix
                   </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Before Alt Text
+                    </label>
+                    <input
+                      type="text"
+                      value={beforeAlt}
+                      onChange={(e) => setBeforeAlt(e.target.value)}
+                      required
+                      placeholder="Dirty roof before cleaning"
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      After Alt Text
+                    </label>
+                    <input
+                      type="text"
+                      value={afterAlt}
+                      onChange={(e) => setAfterAlt(e.target.value)}
+                      required
+                      placeholder="Clean roof after professional washing"
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
@@ -341,6 +413,136 @@ export function ImageUploadPage() {
               {uploading ? 'Uploading...' : mode === 'section' ? 'Upload Image' : 'Upload Before/After Images'}
             </button>
           </form>
+
+          {mode === 'before-after' && (
+            <div className="mt-12 pt-12 border-t border-slate-200">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-slate-900">Manage Before/After Images</h2>
+                <button
+                  onClick={loadAllImages}
+                  disabled={loadingImages}
+                  className="flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors disabled:opacity-50"
+                >
+                  <RefreshCw size={18} className={loadingImages ? 'animate-spin' : ''} />
+                  Refresh
+                </button>
+              </div>
+
+              {loadingImages ? (
+                <div className="text-center py-12">
+                  <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                  <p className="mt-4 text-slate-600">Loading images...</p>
+                </div>
+              ) : allImages.length === 0 ? (
+                <div className="text-center py-12 bg-slate-50 rounded-lg">
+                  <ImageIcon className="mx-auto mb-4 text-slate-400" size={48} />
+                  <p className="text-slate-600">No before/after images uploaded yet</p>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {allImages.map((image) => (
+                    <ImageManagementCard
+                      key={image.id}
+                      image={image}
+                      onToggleActive={async () => {
+                        await updateBeforeAfterImageStatus(
+                          image.id,
+                          !image.is_active,
+                          image.service_type
+                        );
+                        loadAllImages();
+                      }}
+                      onDelete={async () => {
+                        if (confirm('Are you sure you want to delete this image pair?')) {
+                          await deleteBeforeAfterImage(image.id);
+                          loadAllImages();
+                        }
+                      }}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ImageManagementCard({
+  image,
+  onToggleActive,
+  onDelete,
+}: {
+  image: BeforeAfterImage;
+  onToggleActive: () => void;
+  onDelete: () => void;
+}) {
+  return (
+    <div
+      className={`bg-slate-50 rounded-xl p-6 border-2 transition-all ${
+        image.is_active ? 'border-green-500 bg-green-50' : 'border-slate-200'
+      }`}
+    >
+      <div className="flex items-start justify-between mb-4">
+        <div>
+          <h3 className="text-lg font-bold text-slate-900 capitalize">{image.service_type}</h3>
+          <p className="text-sm text-slate-500">
+            {new Date(image.created_at).toLocaleDateString()}
+          </p>
+          {image.is_active && (
+            <span className="inline-block mt-2 px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded-full">
+              Active
+            </span>
+          )}
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={onToggleActive}
+            className={`p-2 rounded-lg transition-colors ${
+              image.is_active
+                ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200'
+                : 'bg-green-100 text-green-700 hover:bg-green-200'
+            }`}
+            title={image.is_active ? 'Deactivate' : 'Activate'}
+          >
+            {image.is_active ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+          <button
+            onClick={onDelete}
+            className="p-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors"
+            title="Delete"
+          >
+            <Trash2 size={20} />
+          </button>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-4">
+        <div>
+          <p className="text-sm font-semibold text-slate-700 mb-2">Before Image</p>
+          <div className="bg-white rounded-lg overflow-hidden border border-slate-200">
+            <img
+              src={getImageUrl(image.before_image_path)}
+              alt={image.before_alt}
+              className="w-full h-48 object-cover"
+            />
+          </div>
+          <p className="text-xs text-slate-500 mt-2 break-all">{image.before_image_path}</p>
+          <p className="text-xs text-slate-600 mt-1">{image.before_alt}</p>
+        </div>
+        <div>
+          <p className="text-sm font-semibold text-slate-700 mb-2">After Image</p>
+          <div className="bg-white rounded-lg overflow-hidden border border-slate-200">
+            <img
+              src={getImageUrl(image.after_image_path)}
+              alt={image.after_alt}
+              className="w-full h-48 object-cover"
+            />
+          </div>
+          <p className="text-xs text-slate-500 mt-2 break-all">{image.after_image_path}</p>
+          <p className="text-xs text-slate-600 mt-1">{image.after_alt}</p>
         </div>
       </div>
     </div>

@@ -1,9 +1,29 @@
+import { useState, useEffect } from 'react';
 import { Home, Shield, Zap, Sparkles, CheckCircle2, AlertTriangle, Sun, Eye, Droplets, TrendingUp, Clock } from 'lucide-react';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import { ResidentialLeadForm } from '../components/ResidentialLeadForm';
 import { SupabaseImage } from '../components/SupabaseImage';
+import { getBeforeAfterImages, getImageUrl } from '../lib/siteImages';
 
 export function HouseWashingPage() {
+  const [beforeImage, setBeforeImage] = useState('roof-dirty.jpg');
+  const [afterImage, setAfterImage] = useState('roof-clean.jpg');
+  const [beforeAlt, setBeforeAlt] = useState('Home before cleaning');
+  const [afterAlt, setAfterAlt] = useState('Home after cleaning');
+
+  useEffect(() => {
+    const loadImages = async () => {
+      const images = await getBeforeAfterImages('house');
+      if (images) {
+        setBeforeImage(getImageUrl(images.before_image_path));
+        setAfterImage(getImageUrl(images.after_image_path));
+        setBeforeAlt(images.before_alt);
+        setAfterAlt(images.after_alt);
+      }
+    };
+    loadImages();
+  }, []);
+
   const scrollToForm = () => {
     const element = document.getElementById('residential-form');
     if (element) element.scrollIntoView({ behavior: 'smooth' });
@@ -87,10 +107,10 @@ export function HouseWashingPage() {
           </div>
 
           <BeforeAfterSlider
-            beforeImage="roof-dirty.jpg"
-            afterImage="roof-clean.jpg"
-            beforeAlt="Home before cleaning"
-            afterAlt="Home after cleaning"
+            beforeImage={beforeImage}
+            afterImage={afterImage}
+            beforeAlt={beforeAlt}
+            afterAlt={afterAlt}
           />
 
           <div className="mt-12 text-center">
