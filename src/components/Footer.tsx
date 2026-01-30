@@ -21,6 +21,10 @@ export function Footer() {
             </p>
             <div className="space-y-2">
               <div className="flex items-center space-x-2">
+                <Phone size={16} className="text-cyan-400" />
+                <a href="tel:+17037550865" className="text-xs hover:text-white transition-colors">(703) 755-0865</a>
+              </div>
+              <div className="flex items-center space-x-2">
                 <Mail size={16} className="text-cyan-400" />
                 <span className="text-xs">info@skywashinnovations.com</span>
               </div>

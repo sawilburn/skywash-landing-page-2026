@@ -24,7 +24,7 @@ export function CommercialWindowCleaningPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+1234567890"
+                href="tel:+17037550865"
                 className="flex items-center justify-center space-x-2 px-8 py-4 bg-cyan-500 text-white rounded-lg font-bold text-lg hover:bg-cyan-600 transition-all shadow-xl"
               >
                 <Phone size={24} />
@@ -358,7 +358,7 @@ export function CommercialWindowCleaningPage() {
               Combine window cleaning with inspection services for a comprehensive building maintenance solution at a reduced rate.
             </p>
             <a
-              href="tel:+1234567890"
+              href="tel:+17037550865"
               className="inline-flex items-center px-8 py-4 bg-cyan-500 text-white rounded-lg font-bold text-lg hover:bg-cyan-600 transition-all shadow-xl"
             >
               <Phone className="mr-2" size={20} />
@@ -424,7 +424,7 @@ export function CommercialWindowCleaningPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:+1234567890"
+              href="tel:+17037550865"
               className="flex items-center justify-center space-x-2 px-8 py-4 bg-cyan-500 text-white rounded-lg font-bold text-lg hover:bg-cyan-600 transition-all shadow-xl"
             >
               <Phone size={24} />

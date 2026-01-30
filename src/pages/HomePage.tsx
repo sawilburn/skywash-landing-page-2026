@@ -44,7 +44,7 @@ export function HomePage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <a
-                href="tel:+1234567890"
+                href="tel:+17037550865"
                 className="flex items-center justify-center space-x-2 px-8 py-4 bg-white text-[#1a3c75] rounded-lg font-bold text-lg hover:bg-slate-100 transition-all shadow-xl"
               >
                 <Phone size={24} />
@@ -208,7 +208,7 @@ export function HomePage() {
 
           <div className="text-center mt-12">
             <a
-              href="tel:+1234567890"
+              href="tel:+17037550865"
               className="inline-flex items-center px-8 py-4 bg-cyan-500 text-white rounded-lg font-bold text-lg hover:bg-cyan-600 transition-all shadow-xl"
             >
               <Phone className="mr-2" size={20} />
@@ -437,7 +437,7 @@ export function HomePage() {
             <div className="mt-12 text-center">
               <p className="text-slate-600 text-lg">
                 Don't see your area? We serve all of Northern Virginia.{' '}
-                <a href="tel:+1234567890" className="text-blue-900 font-semibold hover:text-blue-600 transition-colors">
+                <a href="tel:+17037550865" className="text-blue-900 font-semibold hover:text-blue-600 transition-colors">
                   Contact us
                 </a>{' '}
                 to discuss your project.
@@ -508,7 +508,7 @@ export function HomePage() {
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <a
-              href="tel:+1234567890"
+              href="tel:+17037550865"
               className="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all cursor-pointer"
             >
               <Phone className="text-cyan-400 mx-auto mb-3" size={32} />
