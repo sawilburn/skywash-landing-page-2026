@@ -506,7 +506,7 @@ export function HomePage() {
             Get in touch for a free consultation and see how drone technology can transform your property maintenance.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-2xl mx-auto">
             <a
               href="tel:+17037550865"
               className="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all cursor-pointer"
@@ -523,11 +523,6 @@ export function HomePage() {
               <h3 className="font-bold mb-2">Email Quote Request</h3>
               <p className="text-slate-300 text-sm">info@skywashinnovations.com</p>
             </a>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
-              <MapPin className="text-cyan-400 mx-auto mb-3" size={32} />
-              <h3 className="font-bold mb-2">Location</h3>
-              <p className="text-slate-300 text-sm">Serving Northern Virginia</p>
-            </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
