@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { getPublicUrl } from '../lib/supabase';
 
 interface BeforeAfterSliderProps {
   beforeImage: string;
@@ -71,7 +72,7 @@ export function BeforeAfterSlider({
     >
       <div className="absolute inset-0 w-full h-full">
         <img
-          src={afterImage}
+          src={getPublicUrl(afterImage)}
           alt={afterAlt}
           className="w-full h-full object-cover"
         />
@@ -82,7 +83,7 @@ export function BeforeAfterSlider({
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <img
-          src={beforeImage}
+          src={getPublicUrl(beforeImage)}
           alt={beforeAlt}
           className="w-full h-full object-cover"
         />
