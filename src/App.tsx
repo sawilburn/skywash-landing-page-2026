@@ -20,6 +20,7 @@ import { LeesburgPage } from './pages/LeesburgPage';
 import { MiddleburgPage } from './pages/MiddleburgPage';
 import { PurcellvillePage } from './pages/PurcellvillePage';
 import { ImageUploadPage } from './pages/ImageUploadPage';
+import { ValidationPage } from './pages/ValidationPage';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route path="/locations/middleburg" element={<MiddleburgPage />} />
           <Route path="/locations/purcellville" element={<PurcellvillePage />} />
           <Route path="/admin/upload-image" element={<ImageUploadPage />} />
+          <Route path="/validate" element={<ValidationPage />} />
         </Routes>
         <Footer />
       </div>
