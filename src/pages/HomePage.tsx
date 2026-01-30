@@ -520,7 +520,7 @@ export function HomePage() {
               className="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all cursor-pointer"
             >
               <Mail className="text-cyan-400 mx-auto mb-3" size={32} />
-              <h3 className="font-bold mb-2">Email Quote Request</h3>
+              <h3 className="font-bold mb-2">Email Skywash Team</h3>
               <p className="text-slate-300 text-sm">info@skywashinnovations.com</p>
             </a>
           </div>
