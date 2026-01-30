@@ -3,7 +3,7 @@ import { Home, Shield, Zap, Sparkles, CheckCircle2, AlertTriangle, Sun, Eye, Dro
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import { ResidentialLeadForm } from '../components/ResidentialLeadForm';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
-import { getBeforeAfterImages, getImageUrl } from '../lib/siteImages';
+import { getBeforeAfterImages } from '../lib/siteImages';
 
 export function HouseWashingPage() {
   const [beforeImage, setBeforeImage] = useState('roof-dirty.jpg');
@@ -15,8 +15,8 @@ export function HouseWashingPage() {
     const loadImages = async () => {
       const images = await getBeforeAfterImages('house');
       if (images) {
-        setBeforeImage(getImageUrl(images.before_image_path));
-        setAfterImage(getImageUrl(images.after_image_path));
+        setBeforeImage(images.before_image_path);
+        setAfterImage(images.after_image_path);
         setBeforeAlt(images.before_alt);
         setAfterAlt(images.after_alt);
       }
