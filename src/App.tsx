@@ -20,6 +20,7 @@ import { LeesburgPage } from './pages/LeesburgPage';
 import { MiddleburgPage } from './pages/MiddleburgPage';
 import { PurcellvillePage } from './pages/PurcellvillePage';
 import { SafetyPage } from './pages/SafetyPage';
+import { BlogsPage } from './pages/BlogsPage';
 import { ImageUploadPage } from './pages/ImageUploadPage';
 import { ValidationPage } from './pages/ValidationPage';
 
@@ -48,6 +49,7 @@ function App() {
           <Route path="/locations/middleburg" element={<MiddleburgPage />} />
           <Route path="/locations/purcellville" element={<PurcellvillePage />} />
           <Route path="/safety" element={<SafetyPage />} />
+          <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/admin/upload-image" element={<ImageUploadPage />} />
           <Route path="/validate" element={<ValidationPage />} />
         </Routes>

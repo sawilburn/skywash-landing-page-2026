@@ -459,16 +459,16 @@ export function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
+            <Link to="/blogs" className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:shadow-lg transition-all block">
               <BookOpen className="text-[#1a3c75] mb-4" size={32} />
               <h3 className="text-xl font-bold text-slate-900 mb-3">Blog & Insights</h3>
               <p className="text-slate-600 mb-4">
                 Industry news, technology updates, and cleaning tips from our experts.
               </p>
-              <button className="text-[#1a3c75] font-semibold hover:underline">
-                Coming Soon
-              </button>
-            </div>
+              <span className="text-[#1a3c75] font-semibold hover:underline">
+                Read Articles →
+              </span>
+            </Link>
 
             <Link to="/safety" className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:shadow-lg transition-all block">
               <Shield className="text-[#1a3c75] mb-4" size={32} />
