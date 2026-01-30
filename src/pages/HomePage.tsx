@@ -451,14 +451,14 @@ export function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              Resources & Training
+              Resources
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Learn more about drone cleaning technology and industry best practices
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <Link to="/blogs" className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:shadow-lg transition-all block">
               <BookOpen className="text-[#1a3c75] mb-4" size={32} />
               <h3 className="text-xl font-bold text-slate-900 mb-3">Blog & Insights</h3>
@@ -480,17 +480,6 @@ export function HomePage() {
                 Learn More →
               </span>
             </Link>
-
-            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
-              <Target className="text-[#1a3c75] mb-4" size={32} />
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Training Center</h3>
-              <p className="text-slate-600 mb-4">
-                Professional training programs for drone-based exterior cleaning operations.
-              </p>
-              <button className="text-[#1a3c75] font-semibold hover:underline">
-                Coming Soon
-              </button>
-            </div>
           </div>
         </div>
       </section>
