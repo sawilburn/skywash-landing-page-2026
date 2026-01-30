@@ -19,6 +19,7 @@ import { RestonPage } from './pages/RestonPage';
 import { LeesburgPage } from './pages/LeesburgPage';
 import { MiddleburgPage } from './pages/MiddleburgPage';
 import { PurcellvillePage } from './pages/PurcellvillePage';
+import { SafetyPage } from './pages/SafetyPage';
 import { ImageUploadPage } from './pages/ImageUploadPage';
 import { ValidationPage } from './pages/ValidationPage';
 
@@ -46,6 +47,7 @@ function App() {
           <Route path="/locations/leesburg" element={<LeesburgPage />} />
           <Route path="/locations/middleburg" element={<MiddleburgPage />} />
           <Route path="/locations/purcellville" element={<PurcellvillePage />} />
+          <Route path="/safety" element={<SafetyPage />} />
           <Route path="/admin/upload-image" element={<ImageUploadPage />} />
           <Route path="/validate" element={<ValidationPage />} />
         </Routes>

@@ -147,6 +147,9 @@ export function Footer() {
               <Link to="/residential" className="hover:text-white transition-colors">
                 Residential
               </Link>
+              <Link to="/safety" className="hover:text-white transition-colors">
+                Safety
+              </Link>
               <button className="hover:text-white transition-colors">
                 About
               </button>

@@ -83,6 +83,12 @@ export function Header() {
             >
               Service Areas
             </button>
+            <Link
+              to="/safety"
+              className="text-slate-700 hover:text-[#1a3c75] font-medium transition-colors"
+            >
+              Safety
+            </Link>
             <a
               href="tel:+17037550865"
               className="flex items-center space-x-2 text-slate-700 hover:text-[#1a3c75] font-medium transition-colors"
@@ -136,6 +142,13 @@ export function Header() {
             >
               Service Areas
             </button>
+            <Link
+              to="/safety"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-slate-700 hover:text-[#1a3c75] font-medium text-left"
+            >
+              Safety
+            </Link>
             <a
               href="tel:+17037550865"
               className="flex items-center space-x-2 bg-cyan-500 text-white px-6 py-3 rounded-lg hover:bg-cyan-600 transition-colors font-medium text-center justify-center"
