@@ -214,27 +214,6 @@ const blogPosts: BlogPost[] = [
           </div>
         </div>
 
-        <h3 className="text-2xl font-bold text-slate-900 mb-4 mt-8">Real-World Performance</h3>
-
-        <p className="text-slate-700 mb-6">
-          Does it actually work? Our experience across hundreds of commercial properties provides compelling evidence:
-        </p>
-
-        <div className="grid md:grid-cols-3 gap-6 my-8">
-          <div className="text-center bg-gradient-to-br from-green-50 to-white p-6 rounded-xl border-2 border-green-200">
-            <div className="text-4xl font-bold text-green-600 mb-2">85%</div>
-            <div className="text-sm text-slate-700">Faster than traditional methods</div>
-          </div>
-          <div className="text-center bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl border-2 border-blue-200">
-            <div className="text-4xl font-bold text-blue-600 mb-2">Zero</div>
-            <div className="text-sm text-slate-700">Worker safety incidents</div>
-          </div>
-          <div className="text-center bg-gradient-to-br from-cyan-50 to-white p-6 rounded-xl border-2 border-cyan-200">
-            <div className="text-4xl font-bold text-cyan-600 mb-2">95%</div>
-            <div className="text-sm text-slate-700">Client satisfaction rate</div>
-          </div>
-        </div>
-
         <h3 className="text-2xl font-bold text-slate-900 mb-4 mt-8">Ideal Applications</h3>
 
         <p className="text-slate-700 mb-4">
