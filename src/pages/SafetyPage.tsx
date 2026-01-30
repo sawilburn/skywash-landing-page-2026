@@ -46,7 +46,7 @@ export function SafetyPage() {
               <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl">
                 <Lock className="text-cyan-400 mx-auto mb-2" size={32} />
                 <div className="text-2xl font-bold text-white mb-1">Licensed</div>
-                <div className="text-sm text-slate-300">& Bonded</div>
+                <div className="text-sm text-slate-300">Operators</div>
               </div>
             </div>
           </div>
@@ -231,7 +231,7 @@ export function SafetyPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="bg-gradient-to-br from-slate-50 to-white p-8 rounded-2xl border-2 border-slate-200 text-center hover:shadow-xl transition-all">
               <Shield className="text-[#1a3c75] mx-auto mb-4" size={48} />
               <h3 className="text-2xl font-bold text-slate-900 mb-3">Fully Insured</h3>
@@ -245,14 +245,6 @@ export function SafetyPage() {
               <h3 className="text-2xl font-bold text-slate-900 mb-3">Licensed Operators</h3>
               <p className="text-slate-700">
                 All pilots hold valid FAA Part 107 Remote Pilot Certificates and required state licenses.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-slate-50 to-white p-8 rounded-2xl border-2 border-slate-200 text-center hover:shadow-xl transition-all">
-              <Lock className="text-[#1a3c75] mx-auto mb-4" size={48} />
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">Bonded Business</h3>
-              <p className="text-slate-700">
-                Bonded for your protection, providing financial security and accountability.
               </p>
             </div>
           </div>
