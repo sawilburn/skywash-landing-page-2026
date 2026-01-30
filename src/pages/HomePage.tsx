@@ -470,16 +470,16 @@ export function HomePage() {
               </button>
             </div>
 
-            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
+            <Link to="/safety" className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:shadow-lg transition-all block">
               <Shield className="text-[#1a3c75] mb-4" size={32} />
               <h3 className="text-xl font-bold text-slate-900 mb-3">Safety Standards</h3>
               <p className="text-slate-600 mb-4">
                 Learn about our commitment to safety, compliance, and environmental responsibility.
               </p>
-              <button className="text-[#1a3c75] font-semibold hover:underline">
-                Coming Soon
-              </button>
-            </div>
+              <span className="text-[#1a3c75] font-semibold hover:underline">
+                Learn More →
+              </span>
+            </Link>
 
             <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
               <Target className="text-[#1a3c75] mb-4" size={32} />
