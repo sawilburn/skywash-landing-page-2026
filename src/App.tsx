@@ -23,6 +23,7 @@ import { SafetyPage } from './pages/SafetyPage';
 import { BlogsPage } from './pages/BlogsPage';
 import { ImageUploadPage } from './pages/ImageUploadPage';
 import { ValidationPage } from './pages/ValidationPage';
+import { TermsPage } from './pages/TermsPage';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
           <Route path="/locations/purcellville" element={<PurcellvillePage />} />
           <Route path="/safety" element={<SafetyPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/terms" element={<TermsPage />} />
           <Route path="/admin/upload-image" element={<ImageUploadPage />} />
           <Route path="/validate" element={<ValidationPage />} />
         </Routes>
