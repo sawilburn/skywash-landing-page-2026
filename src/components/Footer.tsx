@@ -71,6 +71,12 @@ export function Footer() {
                   <span>Schools & Universities</span>
                 </Link>
               </li>
+              <li>
+                <Link to="/commercial/large-retail" className="hover:text-white transition-colors flex items-start">
+                  <span className="text-cyan-400 mr-2">•</span>
+                  <span>Large Retail Centers</span>
+                </Link>
+              </li>
             </ul>
           </div>
 
