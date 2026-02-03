@@ -1,9 +1,6 @@
-import { useState } from 'react';
-import { FileText, ScrollText, Play } from 'lucide-react';
+import { FileText, ScrollText } from 'lucide-react';
 
 export function TermsPage() {
-  const [showVideo, setShowVideo] = useState(false);
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -11,29 +8,10 @@ export function TermsPage() {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Terms & Conditions
           </h1>
-          <p className="text-lg text-gray-600 mb-6">
+          <p className="text-lg text-gray-600">
             Skywash Innovations - Professional Drone Cleaning Services
           </p>
-          <button
-            onClick={() => setShowVideo(!showVideo)}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
-          >
-            <Play className="w-5 h-5" />
-            {showVideo ? 'Hide Video' : 'See In Action'}
-          </button>
         </div>
-
-        {showVideo && (
-          <div className="mb-12 bg-black rounded-lg overflow-hidden shadow-xl">
-            <video
-              controls
-              className="w-full"
-              src="https://lvsyooxctvdydwbnwvou.supabase.co/storage/v1/object/public/Videos/drone_720p.mp4"
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        )}
 
         <div className="space-y-12">
           <section className="bg-white rounded-lg shadow-md p-8 border border-gray-200">

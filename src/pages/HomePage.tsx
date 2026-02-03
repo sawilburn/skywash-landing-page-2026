@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen, MapPin, Phone, Mail } from 'lucide-react';
+import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen, MapPin, Phone, Mail, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SupabaseImage } from '../components/SupabaseImage';
 import { PartnersAndMemberships } from '../components/PartnersAndMemberships';
@@ -7,6 +7,7 @@ import { getSiteImage, SiteImage } from '../lib/siteImages';
 
 export function HomePage() {
   const [aboutImage, setAboutImage] = useState<SiteImage | null>(null);
+  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
     getSiteImage('about').then((img) => {
@@ -41,6 +42,29 @@ export function HomePage() {
               <br />
               Skywash Innovations brings safe, high-tech exterior cleaning to Northern Virginia's Fairfax and Loudoun counties. We specialize in drone soft washing for roofs, siding, and windows, eliminating the risk of ladders for both residential and commercial properties.
             </p>
+
+            <div className="mb-8">
+              <button
+                onClick={() => setShowVideo(!showVideo)}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-cyan-500 text-white font-bold text-lg rounded-lg hover:bg-cyan-600 transition-all shadow-xl"
+              >
+                <Play className="w-6 h-6" />
+                {showVideo ? 'Hide Video' : 'See In Action'}
+              </button>
+            </div>
+
+            {showVideo && (
+              <div className="mb-12 bg-black rounded-lg overflow-hidden shadow-2xl max-w-4xl mx-auto">
+                <video
+                  controls
+                  autoPlay
+                  className="w-full"
+                  src="https://lvsyooxctvdydwbnwvou.supabase.co/storage/v1/object/public/Videos/drone_720p.mp4"
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            )}
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <a
