@@ -1,4 +1,4 @@
-import { Shield, Clock, FileCheck, Zap, Thermometer, TrendingUp, CheckCircle2, Building2, Sun, Eye, Sparkles } from 'lucide-react';
+import { Shield, Clock, FileCheck, Zap, Thermometer, TrendingUp, CheckCircle2, Building2, Sun, Eye, Sparkles, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { CommercialLeadForm } from '../components/CommercialLeadForm';
@@ -429,6 +429,17 @@ export function CommercialPage() {
                 </div>
                 <h4 className="text-xl font-bold text-slate-900 mb-2">Churches & Places of Worship</h4>
                 <p className="text-slate-600 text-sm">Respectful service preserving sacred spaces</p>
+              </Link>
+
+              <Link
+                to="/commercial/large-retail"
+                className="bg-white p-8 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all group"
+              >
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 mx-auto group-hover:bg-blue-500 transition-colors">
+                  <ShoppingBag className="text-blue-600 group-hover:text-white transition-colors" size={24} />
+                </div>
+                <h4 className="text-xl font-bold text-slate-900 mb-2">Large Retail Centers</h4>
+                <p className="text-slate-600 text-sm">Zero disruption cleaning for shopping centers and retail properties</p>
               </Link>
 
               <Link
