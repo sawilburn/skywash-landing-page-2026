@@ -138,6 +138,47 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
     ]
   },
   {
+    pageName: 'Large Retail Cleaning',
+    category: 'commercial-services',
+    sections: [
+      {
+        id: 'commercial/drone-retail-cleaning.jpg',
+        displayName: 'Content Image - Drone Retail Operation',
+        suggestedAltText: 'Professional drone cleaning operation at retail center',
+        fallbackImage: 'commercial/retail-center-exterior.jpg',
+        description: 'Main content image showing drone operation at retail property'
+      },
+      {
+        id: 'commercial/retail-center-exterior.jpg',
+        displayName: 'Fallback Image - Retail Center',
+        suggestedAltText: 'Large retail center exterior',
+        fallbackImage: 'Retail Center',
+        description: 'Alternative retail center exterior image'
+      },
+      {
+        id: 'commercial/retail-storefront-glass.jpg',
+        displayName: 'Gallery Image - Storefront Glass',
+        suggestedAltText: 'Clean retail storefront glass windows',
+        fallbackImage: 'Clean Storefront',
+        description: 'Showcase image for glass cleaning services'
+      },
+      {
+        id: 'commercial/retail-canopy.jpg',
+        displayName: 'Gallery Image - Retail Canopy',
+        suggestedAltText: 'Clean retail entrance canopy',
+        fallbackImage: 'Retail Entrance',
+        description: 'Showcase image for canopy cleaning'
+      },
+      {
+        id: 'commercial/retail-signage.jpg',
+        displayName: 'Gallery Image - Retail Signage',
+        suggestedAltText: 'Clean retail monument sign',
+        fallbackImage: 'Retail Signage',
+        description: 'Showcase image for signage cleaning'
+      }
+    ]
+  },
+  {
     pageName: 'Commercial Services Overview',
     category: 'commercial-services',
     sections: [
