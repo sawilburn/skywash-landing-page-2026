@@ -77,6 +77,12 @@ export function Footer() {
                   <span>Large Retail Centers</span>
                 </Link>
               </li>
+              <li>
+                <Link to="/commercial/convenience" className="hover:text-white transition-colors flex items-start">
+                  <span className="text-cyan-400 mr-2">•</span>
+                  <span>Convenience & Fuel Stations</span>
+                </Link>
+              </li>
             </ul>
           </div>
 
