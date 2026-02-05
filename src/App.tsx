@@ -26,6 +26,7 @@ import { BlogsPage } from './pages/BlogsPage';
 import { ImageUploadPage } from './pages/ImageUploadPage';
 import { ValidationPage } from './pages/ValidationPage';
 import { TermsPage } from './pages/TermsPage';
+import CareersPage from './pages/CareersPage';
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
           <Route path="/locations/purcellville" element={<PurcellvillePage />} />
           <Route path="/safety" element={<SafetyPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/careers" element={<CareersPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/admin/upload-image" element={<ImageUploadPage />} />
           <Route path="/validate" element={<ValidationPage />} />
