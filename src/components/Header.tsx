@@ -100,7 +100,7 @@ export function Header() {
               onClick={() => handleNavigation('contact')}
               className="bg-[#1a3c75] text-white px-6 py-2 rounded-lg hover:bg-[#2a4c85] transition-colors font-medium"
             >
-              Get Quote
+              Get Drone Quote Now
             </button>
           </nav>
 
@@ -161,7 +161,7 @@ export function Header() {
               onClick={() => handleNavigation('contact')}
               className="bg-[#1a3c75] text-white px-6 py-2 rounded-lg hover:bg-[#2a4c85] transition-colors font-medium text-center"
             >
-              Get Quote
+              Get Drone Quote Now
             </button>
           </nav>
         </div>
