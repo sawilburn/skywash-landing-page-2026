@@ -52,7 +52,7 @@ export function ConvenienceStoreCleaningPage() {
                 className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-300 hover:text-blue-700 transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center space-x-2"
               >
                 <Zap size={24} />
-                <span>Get a Rapid Quote</span>
+                <span>Get Drone Quote Now</span>
               </button>
               <a
                 href="tel:+17037550865"
@@ -337,7 +337,7 @@ export function ConvenienceStoreCleaningPage() {
                 className="bg-white text-blue-600 px-10 py-5 rounded-xl font-black text-xl hover:bg-yellow-300 hover:text-blue-700 transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center space-x-3"
               >
                 <Zap size={28} />
-                <span>Request Instant Quote</span>
+                <span>Get Drone Quote Now</span>
               </button>
               <a
                 href="tel:+17037550865"
