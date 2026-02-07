@@ -15,6 +15,7 @@ import { ConvenienceStoreCleaningPage } from './pages/ConvenienceStoreCleaningPa
 import { HouseWashingPage } from './pages/HouseWashingPage';
 import { RoofWashingPage } from './pages/RoofWashingPage';
 import { SolarWashingPage } from './pages/SolarWashingPage';
+import { RealtorPage } from './pages/RealtorPage';
 import { AshburnPage } from './pages/AshburnPage';
 import { GreatFallsPage } from './pages/GreatFallsPage';
 import { RestonPage } from './pages/RestonPage';
@@ -48,6 +49,7 @@ function App() {
           <Route path="/residential/house-washing" element={<HouseWashingPage />} />
           <Route path="/residential/roof-washing" element={<RoofWashingPage />} />
           <Route path="/residential/solar-washing" element={<SolarWashingPage />} />
+          <Route path="/residential/who-we-serve/realtor" element={<RealtorPage />} />
           <Route path="/locations/ashburn" element={<AshburnPage />} />
           <Route path="/locations/greatfalls" element={<GreatFallsPage />} />
           <Route path="/locations/reston" element={<RestonPage />} />
