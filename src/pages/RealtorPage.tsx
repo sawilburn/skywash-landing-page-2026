@@ -54,7 +54,7 @@ export function RealtorPage() {
                 onClick={scrollToForm}
                 className="bg-white text-[#1a3c75] px-8 py-4 rounded-lg font-bold text-lg hover:bg-slate-100 transition-all shadow-xl hover:shadow-2xl"
               >
-                Get a Realtor Bundle Quote
+                Get Package Quote Now
               </button>
               <a
                 href="tel:+17037550865"
