@@ -34,7 +34,7 @@ export function RealtorPage() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/drone_footage_garage_roof_-_website(2).mp4" type="video/mp4" />
+          <source src="https://lvsyooxctvdydwbnwvou.supabase.co/storage/v1/object/public/Videos/realtor_drone_footage.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px]"></div>
