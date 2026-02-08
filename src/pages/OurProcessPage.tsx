@@ -16,8 +16,8 @@ export function OurProcessPage() {
     },
     {
       number: 2,
-      title: 'Assessment',
-      description: 'Our team conducts a thorough assessment of your property to understand the scope of work, cleaning requirements, and any unique challenges.',
+      title: 'Initial Assessment',
+      description: 'Our team conducts a thorough initial assessment of your property to understand the scope of work, cleaning requirements, and any unique challenges.',
       activities: [
         'Property evaluation',
         'Cleaning needs analysis',
@@ -27,17 +27,6 @@ export function OurProcessPage() {
     },
     {
       number: 3,
-      title: 'Site Visit / Survey / Risk Assessment',
-      description: 'We perform a comprehensive on-site visit and survey, including a detailed risk assessment to identify potential hazards and develop safety protocols.',
-      activities: [
-        'Physical site inspection',
-        'Comprehensive property survey',
-        'Risk and hazard identification',
-        'Safety protocol development'
-      ]
-    },
-    {
-      number: 4,
       title: 'Proposal Development and Method Selection',
       description: 'Based on our assessment, we develop a comprehensive proposal and select the most effective cleaning methods and equipment for optimal results.',
       activities: [
@@ -48,7 +37,7 @@ export function OurProcessPage() {
       ]
     },
     {
-      number: 5,
+      number: 4,
       title: 'Client Review and Approval',
       description: 'We present the proposal to you for review and work together to address any questions or modifications, ensuring the plan meets all your requirements.',
       activities: [
@@ -56,6 +45,20 @@ export function OurProcessPage() {
         'Client feedback and questions',
         'Modifications as needed',
         'Contract approval and signing'
+      ]
+    },
+    {
+      number: 5,
+      title: 'Detailed Site Visit, Survey & Operations Planning',
+      description: 'Once the proposal is accepted, we perform an extensive on-site visit to document our comprehensive cleaning operations plan, including risk assessment and all operational details.',
+      activities: [
+        'Comprehensive physical site inspection',
+        'Risk identification and hazard assessment',
+        'Cleaning approach documentation',
+        'Flight areas mapping and planning',
+        'Survey and labor planning and assignment',
+        'Secure flight clearances as needed',
+        'Safety protocol development'
       ]
     },
     {
