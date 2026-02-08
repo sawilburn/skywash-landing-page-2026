@@ -28,6 +28,7 @@ import { ImageUploadPage } from './pages/ImageUploadPage';
 import { ValidationPage } from './pages/ValidationPage';
 import { TermsPage } from './pages/TermsPage';
 import CareersPage from './pages/CareersPage';
+import { OurProcessPage } from './pages/OurProcessPage';
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
           <Route path="/locations/middleburg" element={<MiddleburgPage />} />
           <Route path="/locations/purcellville" element={<PurcellvillePage />} />
           <Route path="/safety" element={<SafetyPage />} />
+          <Route path="/our-process" element={<OurProcessPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/terms" element={<TermsPage />} />
