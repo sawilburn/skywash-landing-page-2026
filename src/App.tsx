@@ -30,6 +30,7 @@ import { TermsPage } from './pages/TermsPage';
 import CareersPage from './pages/CareersPage';
 import { OurProcessPage } from './pages/OurProcessPage';
 import { RoofingPartnersPage } from './pages/RoofingPartnersPage';
+import { PestWildlifePartnersPage } from './pages/PestWildlifePartnersPage';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
           <Route path="/residential/solar-washing" element={<SolarWashingPage />} />
           <Route path="/residential/who-we-serve/realtor" element={<RealtorPage />} />
           <Route path="/partners/roofing-experts" element={<RoofingPartnersPage />} />
+          <Route path="/partners/pest-and-wildlife-control" element={<PestWildlifePartnersPage />} />
           <Route path="/locations/ashburn" element={<AshburnPage />} />
           <Route path="/locations/greatfalls" element={<GreatFallsPage />} />
           <Route path="/locations/reston" element={<RestonPage />} />
