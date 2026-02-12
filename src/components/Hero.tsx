@@ -1,4 +1,4 @@
-import { Building2, Home } from 'lucide-react';
+import { Building2, Home, ShieldCheck, FileCheck, Award } from 'lucide-react';
 
 export function Hero() {
   const scrollToSection = (id: string) => {
@@ -24,6 +24,21 @@ export function Hero() {
           <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto">
             Revolutionary drone-powered washing technology for commercial data centers and residential properties
           </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
+            <div className="flex items-center gap-2 px-4 py-2 bg-slate-800/50 rounded-lg border border-slate-700/50">
+              <ShieldCheck className="text-blue-400" size={20} />
+              <span className="text-slate-200 font-medium">Licensed</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-slate-800/50 rounded-lg border border-slate-700/50">
+              <FileCheck className="text-blue-400" size={20} />
+              <span className="text-slate-200 font-medium">Insured</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-slate-800/50 rounded-lg border border-slate-700/50">
+              <Award className="text-blue-400" size={20} />
+              <span className="text-slate-200 font-medium">Certified</span>
+            </div>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mt-16">
