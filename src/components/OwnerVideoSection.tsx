@@ -52,7 +52,7 @@ export function OwnerVideoSection() {
             )}
           </div>
 
-          <div className="relative max-w-4xl mx-auto group cursor-pointer" onClick={() => setIsModalOpen(true)}>
+          <div className="relative max-w-2xl mx-auto group cursor-pointer" onClick={() => setIsModalOpen(true)}>
             <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl">
               {video.thumbnail_path ? (
                 <img
