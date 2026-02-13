@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Upload, CheckCircle, AlertCircle, ImageIcon, Trash2, Eye, EyeOff, RefreshCw, Info } from 'lucide-react';
+import { Upload, CheckCircle, AlertCircle, ImageIcon, Trash2, Eye, EyeOff, RefreshCw, Info, Video } from 'lucide-react';
 import {
   uploadSiteImage,
   uploadBeforeAfterImages,
@@ -9,10 +9,18 @@ import {
   getImageUrl,
   BeforeAfterImage
 } from '../lib/siteImages';
+import {
+  uploadVideo,
+  getAllVideos,
+  updateVideoStatus,
+  deleteVideo,
+  getVideoUrl,
+  SiteVideo
+} from '../lib/siteVideos';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import { PAGE_SECTION_MAPPINGS, getPagesByCategory, getCategoryDisplayName, getSectionsForPage, ImageSection } from '../lib/pageSectionMapping';
 
-type UploadMode = 'section' | 'before-after';
+type UploadMode = 'section' | 'before-after' | 'video';
 
 export function ImageUploadPage() {
   const [mode, setMode] = useState<UploadMode>('section');
@@ -36,6 +44,15 @@ export function ImageUploadPage() {
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
   const [allImages, setAllImages] = useState<BeforeAfterImage[]>([]);
   const [loadingImages, setLoadingImages] = useState(false);
+
+  const [videoFile, setVideoFile] = useState<File | null>(null);
+  const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
+  const [thumbnailPreview, setThumbnailPreview] = useState<string>('');
+  const [videoTitle, setVideoTitle] = useState('Meet the Owner');
+  const [videoDescription, setVideoDescription] = useState('Learn more about our company and team');
+  const [videoType, setVideoType] = useState('owner-intro');
+  const [allVideos, setAllVideos] = useState<SiteVideo[]>([]);
+  const [loadingVideos, setLoadingVideos] = useState(false);
 
   const pagesByCategory = getPagesByCategory();
 
@@ -80,9 +97,18 @@ export function ImageUploadPage() {
     setLoadingImages(false);
   };
 
+  const loadAllVideos = async () => {
+    setLoadingVideos(true);
+    const videos = await getAllVideos();
+    setAllVideos(videos);
+    setLoadingVideos(false);
+  };
+
   useEffect(() => {
     if (mode === 'before-after') {
       loadAllImages();
+    } else if (mode === 'video') {
+      loadAllVideos();
     }
   }, [mode]);
 
@@ -119,6 +145,26 @@ export function ImageUploadPage() {
     }
   };
 
+  const handleVideoFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setVideoFile(e.target.files[0]);
+      setResult(null);
+    }
+  };
+
+  const handleThumbnailFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setThumbnailFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setThumbnailPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+      setResult(null);
+    }
+  };
+
   const handleModeChange = (newMode: UploadMode) => {
     setMode(newMode);
     setResult(null);
@@ -127,6 +173,9 @@ export function ImageUploadPage() {
     setAfterFile(null);
     setBeforePreview('');
     setAfterPreview('');
+    setVideoFile(null);
+    setThumbnailFile(null);
+    setThumbnailPreview('');
   };
 
   const handleUpload = async (e: React.FormEvent) => {
@@ -153,7 +202,7 @@ export function ImageUploadPage() {
       } else {
         setResult({ success: false, message: response.error || 'Upload failed' });
       }
-    } else {
+    } else if (mode === 'before-after') {
       if (!beforeFile || !afterFile) {
         setResult({ success: false, message: 'Please select both before and after images' });
         return;
@@ -189,6 +238,41 @@ export function ImageUploadPage() {
       } else {
         setResult({ success: false, message: response.error || 'Upload failed' });
       }
+    } else if (mode === 'video') {
+      if (!videoFile) {
+        setResult({ success: false, message: 'Please select a video file' });
+        return;
+      }
+
+      setUploading(true);
+      setResult(null);
+
+      const response = await uploadVideo(
+        videoFile,
+        thumbnailFile,
+        videoTitle,
+        videoDescription,
+        videoType
+      );
+
+      setUploading(false);
+
+      if (response.success && response.data) {
+        setResult({
+          success: true,
+          message: `Video uploaded successfully! File: ${response.data.video_path}`,
+        });
+        setVideoFile(null);
+        setThumbnailFile(null);
+        setThumbnailPreview('');
+        const videoInput = document.getElementById('video-input') as HTMLInputElement;
+        const thumbnailInput = document.getElementById('thumbnail-input') as HTMLInputElement;
+        if (videoInput) videoInput.value = '';
+        if (thumbnailInput) thumbnailInput.value = '';
+        loadAllVideos();
+      } else {
+        setResult({ success: false, message: response.error || 'Upload failed' });
+      }
     }
   };
 
@@ -201,11 +285,11 @@ export function ImageUploadPage() {
           <h1 className="text-3xl font-bold text-slate-900 mb-2">Upload Site Images</h1>
           <p className="text-slate-600 mb-6">Select a page and section to upload images for your website</p>
 
-          <div className="mb-6 flex gap-4">
+          <div className="mb-6 grid grid-cols-3 gap-4">
             <button
               type="button"
               onClick={() => handleModeChange('section')}
-              className={`flex-1 px-4 py-3 rounded-lg font-semibold transition-all ${
+              className={`px-4 py-3 rounded-lg font-semibold transition-all ${
                 mode === 'section'
                   ? 'bg-blue-600 text-white shadow-lg'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -217,7 +301,7 @@ export function ImageUploadPage() {
             <button
               type="button"
               onClick={() => handleModeChange('before-after')}
-              className={`flex-1 px-4 py-3 rounded-lg font-semibold transition-all ${
+              className={`px-4 py-3 rounded-lg font-semibold transition-all ${
                 mode === 'before-after'
                   ? 'bg-blue-600 text-white shadow-lg'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -225,6 +309,18 @@ export function ImageUploadPage() {
             >
               <ImageIcon className="inline-block mr-2" size={20} />
               Before/After Images
+            </button>
+            <button
+              type="button"
+              onClick={() => handleModeChange('video')}
+              className={`px-4 py-3 rounded-lg font-semibold transition-all ${
+                mode === 'video'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
+            >
+              <Video className="inline-block mr-2" size={20} />
+              Video
             </button>
           </div>
 
@@ -348,7 +444,7 @@ export function ImageUploadPage() {
                   </div>
                 </div>
               </>
-            ) : (
+            ) : mode === 'before-after' ? (
               <>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">
@@ -462,7 +558,111 @@ export function ImageUploadPage() {
                   </div>
                 )}
               </>
-            )}
+            ) : mode === 'video' ? (
+              <>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Video Type
+                  </label>
+                  <select
+                    value={videoType}
+                    onChange={(e) => setVideoType(e.target.value)}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="owner-intro">Owner Introduction</option>
+                    <option value="testimonial">Customer Testimonial</option>
+                    <option value="service-demo">Service Demonstration</option>
+                    <option value="behind-scenes">Behind the Scenes</option>
+                    <option value="general">General</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Video Title
+                  </label>
+                  <input
+                    type="text"
+                    value={videoTitle}
+                    onChange={(e) => setVideoTitle(e.target.value)}
+                    required
+                    placeholder="Meet the Owner"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Description (Optional)
+                  </label>
+                  <textarea
+                    value={videoDescription}
+                    onChange={(e) => setVideoDescription(e.target.value)}
+                    placeholder="Learn more about our company and team"
+                    rows={3}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Video File
+                  </label>
+                  <div className="flex items-center justify-center w-full">
+                    <label className="w-full flex flex-col items-center px-4 py-6 bg-slate-50 text-slate-500 rounded-lg border-2 border-slate-300 border-dashed cursor-pointer hover:bg-slate-100 transition-colors">
+                      <Video size={40} className="mb-2" />
+                      <span className="text-sm font-medium text-center">
+                        {videoFile ? videoFile.name : 'Click to select video'}
+                      </span>
+                      <span className="text-xs text-slate-400 mt-1">
+                        MP4, WebM, MOV up to 500MB
+                      </span>
+                      <input
+                        id="video-input"
+                        type="file"
+                        accept="video/*"
+                        onChange={handleVideoFileChange}
+                        className="hidden"
+                        required
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Thumbnail Image (Optional)
+                  </label>
+                  <div className="flex items-center justify-center w-full">
+                    <label className="w-full flex flex-col items-center px-4 py-6 bg-slate-50 text-slate-500 rounded-lg border-2 border-slate-300 border-dashed cursor-pointer hover:bg-slate-100 transition-colors">
+                      <ImageIcon size={40} className="mb-2" />
+                      <span className="text-sm font-medium text-center">
+                        {thumbnailFile ? thumbnailFile.name : 'Click to select thumbnail'}
+                      </span>
+                      <span className="text-xs text-slate-400 mt-1">
+                        PNG, JPG, WEBP up to 10MB
+                      </span>
+                      <input
+                        id="thumbnail-input"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleThumbnailFileChange}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                  {thumbnailPreview && (
+                    <div className="mt-4">
+                      <img
+                        src={thumbnailPreview}
+                        alt="Thumbnail preview"
+                        className="w-full max-w-md mx-auto rounded-lg shadow-md"
+                      />
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : null}
 
             {result && (
               <div
@@ -483,7 +683,7 @@ export function ImageUploadPage() {
 
             <button
               type="submit"
-              disabled={uploading || (mode === 'section' ? !file : !beforeFile || !afterFile)}
+              disabled={uploading || (mode === 'section' ? !file : mode === 'before-after' ? (!beforeFile || !afterFile) : !videoFile)}
               className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors shadow-lg hover:shadow-xl"
             >
               {uploading ? (
@@ -492,7 +692,7 @@ export function ImageUploadPage() {
                   Uploading...
                 </span>
               ) : (
-                mode === 'section' ? 'Upload Image' : 'Upload Before/After Images'
+                mode === 'section' ? 'Upload Image' : mode === 'before-after' ? 'Upload Before/After Images' : 'Upload Video'
               )}
             </button>
           </form>
@@ -539,6 +739,57 @@ export function ImageUploadPage() {
                         if (confirm('Are you sure you want to delete this image pair?')) {
                           await deleteBeforeAfterImage(image.id);
                           loadAllImages();
+                        }
+                      }}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {mode === 'video' && (
+            <div className="mt-12 pt-12 border-t border-slate-200">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-slate-900">Manage Videos</h2>
+                <button
+                  onClick={loadAllVideos}
+                  disabled={loadingVideos}
+                  className="flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors disabled:opacity-50"
+                >
+                  <RefreshCw size={18} className={loadingVideos ? 'animate-spin' : ''} />
+                  Refresh
+                </button>
+              </div>
+
+              {loadingVideos ? (
+                <div className="text-center py-12">
+                  <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                  <p className="mt-4 text-slate-600">Loading videos...</p>
+                </div>
+              ) : allVideos.length === 0 ? (
+                <div className="text-center py-12 bg-slate-50 rounded-lg">
+                  <Video className="mx-auto mb-4 text-slate-400" size={48} />
+                  <p className="text-slate-600">No videos uploaded yet</p>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {allVideos.map((video) => (
+                    <VideoManagementCard
+                      key={video.id}
+                      video={video}
+                      onToggleActive={async () => {
+                        await updateVideoStatus(
+                          video.id,
+                          !video.is_active,
+                          video.video_type
+                        );
+                        loadAllVideos();
+                      }}
+                      onDelete={async () => {
+                        if (confirm('Are you sure you want to delete this video?')) {
+                          await deleteVideo(video.id);
+                          loadAllVideos();
                         }
                       }}
                     />
@@ -681,6 +932,90 @@ function BeforeAfterSliderPreview({ beforeImage, afterImage }: { beforeImage: st
       </div>
       <div className="absolute top-2 right-2 bg-black/60 text-white px-3 py-1 rounded text-xs font-semibold">
         After
+      </div>
+    </div>
+  );
+}
+
+function VideoManagementCard({
+  video,
+  onToggleActive,
+  onDelete,
+}: {
+  video: SiteVideo;
+  onToggleActive: () => void;
+  onDelete: () => void;
+}) {
+  return (
+    <div
+      className={`bg-slate-50 rounded-xl p-6 border-2 transition-all ${
+        video.is_active ? 'border-green-500 bg-green-50' : 'border-slate-200'
+      }`}
+    >
+      <div className="flex items-start justify-between mb-4">
+        <div>
+          <h3 className="text-lg font-bold text-slate-900">{video.title}</h3>
+          <p className="text-sm text-slate-600 capitalize">{video.video_type.replace('-', ' ')}</p>
+          <p className="text-sm text-slate-500">
+            {new Date(video.created_at).toLocaleDateString()}
+          </p>
+          {video.is_active && (
+            <span className="inline-block mt-2 px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded-full">
+              Active
+            </span>
+          )}
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={onToggleActive}
+            className={`p-2 rounded-lg transition-colors ${
+              video.is_active
+                ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200'
+                : 'bg-green-100 text-green-700 hover:bg-green-200'
+            }`}
+            title={video.is_active ? 'Deactivate' : 'Activate'}
+          >
+            {video.is_active ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+          <button
+            onClick={onDelete}
+            className="p-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors"
+            title="Delete"
+          >
+            <Trash2 size={20} />
+          </button>
+        </div>
+      </div>
+
+      {video.description && (
+        <p className="text-sm text-slate-600 mb-4">{video.description}</p>
+      )}
+
+      <div className="grid md:grid-cols-2 gap-4">
+        <div>
+          <p className="text-sm font-semibold text-slate-700 mb-2">Video</p>
+          <div className="bg-white rounded-lg overflow-hidden border border-slate-200">
+            <video
+              src={getVideoUrl(video.video_path)}
+              controls
+              className="w-full h-48"
+            />
+          </div>
+          <p className="text-xs text-slate-500 mt-2 break-all">{video.video_path}</p>
+        </div>
+        {video.thumbnail_path && (
+          <div>
+            <p className="text-sm font-semibold text-slate-700 mb-2">Thumbnail</p>
+            <div className="bg-white rounded-lg overflow-hidden border border-slate-200">
+              <img
+                src={getVideoUrl(video.thumbnail_path)}
+                alt="Video thumbnail"
+                className="w-full h-48 object-cover"
+              />
+            </div>
+            <p className="text-xs text-slate-500 mt-2 break-all">{video.thumbnail_path}</p>
+          </div>
+        )}
       </div>
     </div>
   );
