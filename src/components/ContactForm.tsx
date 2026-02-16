@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { trackConversion } from '../utils/tracking';
 
 type LeadType = 'commercial' | 'residential';
 
@@ -30,6 +31,7 @@ export function ContactForm() {
 
       if (error) throw error;
 
+      trackConversion();
       setSubmitStatus('success');
       setFormData({
         contact_name: '',
