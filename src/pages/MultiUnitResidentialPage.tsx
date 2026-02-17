@@ -516,69 +516,6 @@ export function MultiUnitResidentialPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-gradient-to-br from-slate-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              What Property Managers Say
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-200">
-              <div className="flex items-center mb-4">
-                <div className="flex text-yellow-500">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-              <p className="text-slate-700 mb-4 italic">
-                "Finally found a company that understands multi-family properties. Their team handled all 12 buildings efficiently with minimal resident complaints."
-              </p>
-              <div className="font-semibold text-slate-900">Jennifer Martinez</div>
-              <div className="text-sm text-slate-600">Property Manager, Ashburn Highlands</div>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-200">
-              <div className="flex items-center mb-4">
-                <div className="flex text-yellow-500">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-              <p className="text-slate-700 mb-4 italic">
-                "The difference in our property's appearance is remarkable. Residents have commented on how clean everything looks. Worth every penny."
-              </p>
-              <div className="font-semibold text-slate-900">David Thompson</div>
-              <div className="text-sm text-slate-600">HOA Board President, Reston Commons</div>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-200">
-              <div className="flex items-center mb-4">
-                <div className="flex text-yellow-500">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-              <p className="text-slate-700 mb-4 italic">
-                "Professional from start to finish. They coordinated everything, communicated clearly, and delivered exactly what they promised."
-              </p>
-              <div className="font-semibold text-slate-900">Sarah Chen</div>
-              <div className="text-sm text-slate-600">Regional Manager, Fairfax Properties</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="py-16 bg-gradient-to-r from-emerald-900 via-teal-800 to-emerald-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 text-center text-white">
