@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
-import { CheckCircle, Send, Sparkles, Droplets, Home, Crown } from 'lucide-react';
+import { CheckCircle, Send, Sparkles, Droplets, Home, Crown, Shield, Award, Clock } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { DynamicBeforeAfterSlider } from '../components/DynamicBeforeAfterSlider';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { supabase } from '../lib/supabase';
 import { trackConversion } from '../utils/tracking';
 
@@ -217,76 +220,177 @@ export function ResidentialSpring2026Page() {
     setSelectedPackage(packageId);
   };
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-emerald-50">
+    <div className="min-h-screen bg-white">
       <Header />
 
       <main>
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-green-100/20 to-blue-100/20" />
+        <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1a3c75] via-[#2a4c85] to-[#3a5c95] text-white overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="https://lvsyooxctvdydwbnwvou.supabase.co/storage/v1/object/public/Videos/realtor_drone_footage.mp4" type="video/mp4" />
+          </video>
 
-          <div className="max-w-7xl mx-auto relative">
-            <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white py-3 px-6 rounded-full inline-block mb-8 shadow-lg animate-pulse">
-              <p className="text-sm font-semibold flex items-center gap-2">
-                <Sparkles size={16} />
-                Limited Time Offer - Early Bird Pricing
-              </p>
-            </div>
+          <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px]"></div>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6">
-              Spring 2026 <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Residential Refresh</span>
-            </h1>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.div
+              initial="initial"
+              animate="animate"
+              variants={staggerContainer}
+              className="text-center max-w-4xl mx-auto"
+            >
+              <motion.div variants={fadeInUp} className="bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 px-6 rounded-full inline-flex items-center gap-2 mb-8 shadow-lg">
+                <Sparkles size={20} />
+                <span className="text-sm font-bold">Limited Time Offer - Early Bird Pricing</span>
+              </motion.div>
 
-            <p className="text-xl md:text-2xl text-slate-600 mb-12 max-w-3xl">
-              Premium exterior cleaning packages to get your home ready for the season. Professional service, guaranteed results.
-            </p>
+              <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Spring 2026 Residential Refresh
+              </motion.h1>
 
-            <div className="bg-white rounded-2xl shadow-2xl p-8 border-4 border-green-500 mb-12">
-              <div className="text-center">
-                <p className="text-lg font-semibold text-slate-700 mb-4">
+              <motion.p variants={fadeInUp} className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">
+                Premium exterior cleaning packages to get your home ready for the season. Professional service, guaranteed results.
+              </motion.p>
+
+              <motion.div variants={fadeInUp} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border-2 border-green-400 mb-8">
+                <p className="text-lg md:text-xl font-semibold mb-6">
                   Book before April 15th, 2026 to lock in these rates!
                 </p>
 
-                <div className="grid grid-cols-4 gap-4 max-w-2xl mx-auto">
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
-                    <div className="text-4xl font-bold text-green-700">{timeRemaining.days}</div>
-                    <div className="text-sm text-slate-600 font-medium">Days</div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">
+                    <div className="text-4xl font-bold text-white">{timeRemaining.days}</div>
+                    <div className="text-sm text-white/80 font-medium">Days</div>
                   </div>
-                  <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4 border border-blue-200">
-                    <div className="text-4xl font-bold text-blue-700">{timeRemaining.hours}</div>
-                    <div className="text-sm text-slate-600 font-medium">Hours</div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">
+                    <div className="text-4xl font-bold text-white">{timeRemaining.hours}</div>
+                    <div className="text-sm text-white/80 font-medium">Hours</div>
                   </div>
-                  <div className="bg-gradient-to-br from-teal-50 to-emerald-50 rounded-xl p-4 border border-teal-200">
-                    <div className="text-4xl font-bold text-teal-700">{timeRemaining.minutes}</div>
-                    <div className="text-sm text-slate-600 font-medium">Minutes</div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">
+                    <div className="text-4xl font-bold text-white">{timeRemaining.minutes}</div>
+                    <div className="text-sm text-white/80 font-medium">Minutes</div>
                   </div>
-                  <div className="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-xl p-4 border border-cyan-200">
-                    <div className="text-4xl font-bold text-cyan-700">{timeRemaining.seconds}</div>
-                    <div className="text-sm text-slate-600 font-medium">Seconds</div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">
+                    <div className="text-4xl font-bold text-white">{timeRemaining.seconds}</div>
+                    <div className="text-sm text-white/80 font-medium">Seconds</div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
 
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <section className="py-16 bg-slate-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="grid md:grid-cols-3 gap-8"
+            >
+              <motion.div variants={fadeInUp} className="bg-white rounded-xl p-8 shadow-lg text-center">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="text-green-600" size={32} />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Fully Insured</h3>
+                <p className="text-slate-600">Complete protection for your peace of mind</p>
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="bg-white rounded-xl p-8 shadow-lg text-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="text-blue-600" size={32} />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">OSHA Certified</h3>
+                <p className="text-slate-600">Safety-first operations on every property</p>
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="bg-white rounded-xl p-8 shadow-lg text-center">
+                <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="text-slate-700" size={32} />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Same Week Service</h3>
+                <p className="text-slate-600">Book your spring cleaning before slots fill up</p>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+                See the Transformation
+              </h2>
+              <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+                Drag the slider to see real results from our soft wash cleaning process
+              </p>
+            </motion.div>
+
+            <DynamicBeforeAfterSlider
+              serviceType="residential"
+              fallbackBefore="roof-dirty.jpg"
+              fallbackAfter="roof-clean.jpg"
+            />
+          </div>
+        </section>
+
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="text-center mb-16"
+            >
               <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
                 Choose Your Package
               </h2>
               <p className="text-xl text-slate-600">
                 Select the perfect cleaning solution for your home
               </p>
-            </div>
+            </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            >
               {packages.map((pkg) => {
                 const Icon = pkg.icon;
                 return (
-                  <div
+                  <motion.div
                     key={pkg.id}
+                    variants={fadeInUp}
                     className={`relative bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl border-2 ${
                       pkg.popular ? 'border-green-500' : 'border-transparent'
                     }`}
@@ -322,25 +426,95 @@ export function ResidentialSpring2026Page() {
                         Book Now
                       </button>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-gradient-to-br from-slate-900 to-[#1a3c75] text-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+              >
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                  Why Choose Our Spring Package?
+                </h2>
+                <p className="text-xl text-white/90 mb-8 leading-relaxed">
+                  Spring is the perfect time to remove winter buildup and prepare your home for the warmer months. Our specialized packages are designed to tackle seasonal challenges while protecting your investment.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <CheckCircle className="text-green-400 mr-3 flex-shrink-0 mt-1" size={24} />
+                    <div>
+                      <h4 className="font-bold text-lg mb-1">Remove Winter Damage</h4>
+                      <p className="text-white/80">Eliminate mold, mildew, and algae that grew during cold months</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="text-green-400 mr-3 flex-shrink-0 mt-1" size={24} />
+                    <div>
+                      <h4 className="font-bold text-lg mb-1">Boost Curb Appeal</h4>
+                      <p className="text-white/80">Make your home shine for spring gatherings and outdoor living</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="text-green-400 mr-3 flex-shrink-0 mt-1" size={24} />
+                    <div>
+                      <h4 className="font-bold text-lg mb-1">Extend Roof Life</h4>
+                      <p className="text-white/80">Prevent damage that could cost thousands in repairs</p>
+                    </div>
+                  </li>
+                </ul>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="bg-slate-200 rounded-2xl shadow-2xl overflow-hidden min-h-[400px] flex items-center justify-center"
+              >
+                <DynamicSectionImage
+                  section="residential-hero"
+                  alt="Beautiful spring home exterior"
+                  className="w-full h-full object-cover"
+                  fallback="Spring Home Cleaning"
+                />
+              </motion.div>
             </div>
           </div>
         </section>
 
         <section id="booking-form" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="text-center mb-12"
+            >
               <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
                 Book Your Spring Service
               </h2>
               <p className="text-xl text-slate-600">
                 Secure your early bird pricing today
               </p>
-            </div>
+            </motion.div>
 
-            <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl shadow-xl p-8 md:p-12 border-2 border-green-200">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl shadow-xl p-8 md:p-12 border-2 border-green-200"
+            >
               {submitStatus === 'success' ? (
                 <div className="text-center py-12">
                   <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -470,7 +644,7 @@ export function ResidentialSpring2026Page() {
                   </p>
                 </form>
               )}
-            </div>
+            </motion.div>
           </div>
         </section>
       </main>
