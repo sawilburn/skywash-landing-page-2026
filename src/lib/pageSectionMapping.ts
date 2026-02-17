@@ -179,6 +179,19 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
     ]
   },
   {
+    pageName: 'Multi-Unit Residential',
+    category: 'commercial-services',
+    sections: [
+      {
+        id: 'multiunit/apartment-complex',
+        displayName: 'Hero Image - Apartment Complex',
+        suggestedAltText: 'Multi-unit residential apartment complex exterior',
+        fallbackImage: 'Apartment Complex',
+        description: 'Main hero image for multi-unit residential page'
+      }
+    ]
+  },
+  {
     pageName: 'Commercial Services Overview',
     category: 'commercial-services',
     sections: [

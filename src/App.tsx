@@ -12,6 +12,7 @@ import { SchoolsUniversityCleaningPage } from './pages/SchoolsUniversityCleaning
 import { MedicalCleaningPage } from './pages/MedicalCleaningPage';
 import { LargeRetailCleaningPage } from './pages/LargeRetailCleaningPage';
 import { ConvenienceStoreCleaningPage } from './pages/ConvenienceStoreCleaningPage';
+import { MultiUnitResidentialPage } from './pages/MultiUnitResidentialPage';
 import { HouseWashingPage } from './pages/HouseWashingPage';
 import { RoofWashingPage } from './pages/RoofWashingPage';
 import { SolarWashingPage } from './pages/SolarWashingPage';
@@ -49,6 +50,7 @@ function App() {
           <Route path="/commercial/medical-cleaning" element={<MedicalCleaningPage />} />
           <Route path="/commercial/large-retail" element={<LargeRetailCleaningPage />} />
           <Route path="/commercial/convenience" element={<ConvenienceStoreCleaningPage />} />
+          <Route path="/commercial/multi-unit-residential" element={<MultiUnitResidentialPage />} />
           <Route path="/residential" element={<ResidentialPage />} />
           <Route path="/residential/house-washing" element={<HouseWashingPage />} />
           <Route path="/residential/roof-washing" element={<RoofWashingPage />} />
