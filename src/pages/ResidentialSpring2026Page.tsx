@@ -45,9 +45,7 @@ const packages = [
       'Everything in Silver',
       'Interior window cleaning',
       'Exterior window cleaning',
-      'Track and frame deep cleaning',
-      'Streak-free crystal shine guarantee',
-      'Priority scheduling'
+      'Streak-free crystal shine guarantee'
     ]
   },
   {
@@ -662,6 +660,12 @@ export function ResidentialSpring2026Page() {
                       </div>
                     </div>
                   )}
+
+                  <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-5">
+                    <p className="text-sm text-amber-900 leading-relaxed">
+                      <strong className="font-semibold">Important Notice:</strong> Additional charges may apply for homes larger than 3,500 square feet, properties located within 7 nautical miles of Reagan National Airport (DCA), or properties with heavy tree canopy or other obstacles that may affect service delivery.
+                    </p>
+                  </div>
 
                   {submitStatus === 'error' && (
                     <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
