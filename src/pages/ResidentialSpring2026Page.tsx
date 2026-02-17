@@ -18,8 +18,6 @@ const packages = [
     features: [
       'Complete exterior house wash',
       'Professional soft wash technique',
-      'Deck and patio cleaning',
-      'Driveway and walkway rinse',
       'Basic algae and mildew removal'
     ]
   },
@@ -33,8 +31,6 @@ const packages = [
     features: [
       'Everything in Bronze',
       'Professional exterior window cleaning',
-      'Window frame and sill cleaning',
-      'Screen cleaning and inspection',
       'Enhanced spot treatment'
     ]
   },
@@ -64,22 +60,21 @@ const packages = [
       'Everything in Gold',
       'Professional roof cleaning',
       'Basic gutter cleaning',
-      'Rust and oxidation removal',
-      'Concrete sealing treatment',
-      'VIP same-week scheduling',
-      '90-day clean guarantee'
+      'VIP same-week scheduling'
     ]
   }
 ];
 
 export function ResidentialSpring2026Page() {
   const [selectedPackage, setSelectedPackage] = useState('');
+  const [droneInspection, setDroneInspection] = useState(false);
   const [formData, setFormData] = useState({
     contact_name: '',
     email: '',
     phone: '',
     address: '',
-    package: ''
+    package: '',
+    drone_inspection: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -130,13 +125,16 @@ export function ResidentialSpring2026Page() {
 
     try {
       const selectedPkg = packages.find(pkg => pkg.id === formData.package);
+      const droneAddon = formData.drone_inspection ? '\nAdd-on: Full Home Drone Inspection & Report (+$99.00)' : '';
+      const totalPrice = selectedPkg ? selectedPkg.price + (formData.drone_inspection ? 99 : 0) : 0;
+
       const leadData = {
         type: 'residential',
         contact_name: formData.contact_name,
         email: formData.email,
         phone: formData.phone,
         address: formData.address,
-        details: `Spring 2026 Promotion - ${selectedPkg?.name} Package ($${selectedPkg?.price})\n\nAddress: ${formData.address}\n\nPromotion: Early Bird Pricing (Book before April 15, 2026)`
+        details: `Spring 2026 Promotion - ${selectedPkg?.name} Package ($${selectedPkg?.price})${droneAddon}\nTotal Price: $${totalPrice}\n\nAddress: ${formData.address}\n\nPromotion: Early Bird Pricing (Book before April 15, 2026)`
       };
 
       const { error } = await supabase.from('leads').insert([leadData]);
@@ -194,9 +192,11 @@ export function ResidentialSpring2026Page() {
         email: '',
         phone: '',
         address: '',
-        package: ''
+        package: '',
+        drone_inspection: false
       });
       setSelectedPackage('');
+      setDroneInspection(false);
 
       setTimeout(() => {
         setSubmitStatus('idle');
@@ -621,6 +621,47 @@ export function ResidentialSpring2026Page() {
                       placeholder="123 Main Street, City, State, ZIP"
                     />
                   </div>
+
+                  <div className="bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-xl p-6">
+                    <div className="flex items-start">
+                      <input
+                        type="checkbox"
+                        id="drone_inspection"
+                        name="drone_inspection"
+                        checked={formData.drone_inspection}
+                        onChange={(e) => {
+                          setFormData({ ...formData, drone_inspection: e.target.checked });
+                          setDroneInspection(e.target.checked);
+                        }}
+                        className="w-5 h-5 text-blue-600 border-slate-300 rounded focus:ring-2 focus:ring-blue-500 mt-1"
+                      />
+                      <div className="ml-4">
+                        <label htmlFor="drone_inspection" className="block text-base font-bold text-slate-900 cursor-pointer">
+                          Add Full Home Drone Inspection & Report
+                        </label>
+                        <p className="text-sm text-slate-600 mt-1">
+                          Professional aerial inspection with detailed photo documentation and report of your home's exterior condition. Perfect for identifying issues before they become costly problems.
+                        </p>
+                        <p className="text-lg font-bold text-blue-700 mt-2">
+                          +$99.00
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {formData.package && (
+                    <div className="bg-slate-100 border-2 border-slate-300 rounded-xl p-4">
+                      <div className="flex justify-between items-center">
+                        <span className="text-lg font-semibold text-slate-900">Estimated Total:</span>
+                        <span className="text-2xl font-bold text-green-700">
+                          ${packages.find(pkg => pkg.id === formData.package)?.price || 0}
+                          {formData.drone_inspection && ' + $99'}
+                          {' = '}
+                          ${(packages.find(pkg => pkg.id === formData.package)?.price || 0) + (formData.drone_inspection ? 99 : 0)}
+                        </span>
+                      </div>
+                    </div>
+                  )}
 
                   {submitStatus === 'error' && (
                     <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
