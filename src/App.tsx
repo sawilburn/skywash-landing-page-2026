@@ -33,6 +33,7 @@ import { OurProcessPage } from './pages/OurProcessPage';
 import { RoofingPartnersPage } from './pages/RoofingPartnersPage';
 import { PestWildlifePartnersPage } from './pages/PestWildlifePartnersPage';
 import { ResidentialSpring2026Page } from './pages/ResidentialSpring2026Page';
+import { SitemapPage } from './pages/SitemapPage';
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/terms" element={<TermsPage />} />
+          <Route path="/sitemap" element={<SitemapPage />} />
           <Route path="/admin/upload-image" element={<ImageUploadPage />} />
           <Route path="/validate" element={<ValidationPage />} />
         </Routes>

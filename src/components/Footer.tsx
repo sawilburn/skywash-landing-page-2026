@@ -162,6 +162,9 @@ export function Footer() {
               <Link to="/safety" className="hover:text-white transition-colors">
                 Safety
               </Link>
+              <Link to="/sitemap" className="hover:text-white transition-colors">
+                Sitemap
+              </Link>
               <button className="hover:text-white transition-colors">
                 About
               </button>
