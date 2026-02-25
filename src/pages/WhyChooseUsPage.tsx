@@ -59,7 +59,7 @@ export function WhyChooseUsPage() {
     },
     {
       icon: Users,
-      title: 'Customer-Focused',
+      title: 'Customer-Obsessed',
       description: 'Responsive communication, flexible scheduling, and satisfaction guaranteed on every job.'
     }
   ];
@@ -192,7 +192,7 @@ export function WhyChooseUsPage() {
           </h2>
 
           <p className="text-xl text-slate-300 mb-10">
-            Join hundreds of satisfied customers who trust Skywash Innovations for their exterior cleaning needs.
+            Join our satisfied customers who trust Skywash Innovations for their exterior cleaning needs.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
