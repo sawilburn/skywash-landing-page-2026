@@ -34,6 +34,7 @@ import { RoofingPartnersPage } from './pages/RoofingPartnersPage';
 import { PestWildlifePartnersPage } from './pages/PestWildlifePartnersPage';
 import { ResidentialSpring2026Page } from './pages/ResidentialSpring2026Page';
 import { SitemapPage } from './pages/SitemapPage';
+import { WhyChooseUsPage } from './pages/WhyChooseUsPage';
 
 function App() {
   return (
@@ -72,6 +73,7 @@ function App() {
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/sitemap" element={<SitemapPage />} />
+          <Route path="/why-choose-us" element={<WhyChooseUsPage />} />
           <Route path="/admin/upload-image" element={<ImageUploadPage />} />
           <Route path="/validate" element={<ValidationPage />} />
         </Routes>
