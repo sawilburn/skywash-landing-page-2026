@@ -1,4 +1,4 @@
-import { Shield, Users, Award, CheckCircle, Heart, Sprout, TrendingUp, Phone } from 'lucide-react';
+import { Shield, Users, Award, CheckCircle, Heart, Sprout, TrendingUp, Phone, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export function WhyChooseUsPage() {
@@ -181,6 +181,62 @@ export function WhyChooseUsPage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-12 border-2 border-amber-200 shadow-xl">
+            <div className="flex flex-col lg:flex-row gap-8 items-start">
+              <div className="flex-shrink-0">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl">
+                  <Search className="w-10 h-10 text-white" />
+                </div>
+              </div>
+
+              <div className="flex-1">
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+                  Make Sure You Get Competing Quotes
+                </h2>
+
+                <p className="text-lg text-slate-700 mb-6 leading-relaxed">
+                  We encourage you to get multiple quotes and compare providers. When evaluating exterior cleaning companies, make sure to ask important questions about their business practices:
+                </p>
+
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" />
+                    <div>
+                      <span className="font-semibold text-slate-900">Are they adequately insured?</span>
+                      <p className="text-slate-700">Verify they carry proper liability and workers' compensation insurance to protect your property and their employees.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" />
+                    <div>
+                      <span className="font-semibold text-slate-900">Do they perform rigorous background checks?</span>
+                      <p className="text-slate-700">Ensure all employees undergo comprehensive background checks by independent third parties before working on your property.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" />
+                    <div>
+                      <span className="font-semibold text-slate-900">Do they comply with all wastewater regulations?</span>
+                      <p className="text-slate-700">Confirm they follow all state and federal laws regarding the discharge of wastewater as regulated by the Clean Water Act, Virginia DEQ, and local regulations.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 p-6 bg-white rounded-xl border border-amber-200">
+                  <p className="text-slate-800 font-medium">
+                    At Skywash Innovations, we meet and exceed all of these standards. We're fully insured, conduct thorough background checks on all team members, and strictly comply with all environmental regulations to protect our waterways and community.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
