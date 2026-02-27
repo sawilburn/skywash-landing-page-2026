@@ -1,90 +1,16 @@
-import { useState } from 'react';
-import { Send, Plane, Atom, Zap, Clock, Users, Shield, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Mail, Download, Plane, Atom, Zap, Clock, Users, Shield, CheckCircle, AlertTriangle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { supabase } from '../lib/supabase';
-import { trackConversion } from '../utils/tracking';
 
 export function ArlingtonSTEMProgramPage() {
-  const [formData, setFormData] = useState({
-    contact_name: '',
-    email: '',
-    phone: '',
-    current_study: '',
-    bio: '',
-    goals: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      const leadData = {
-        type: 'stem_program',
-        contact_name: formData.contact_name,
-        email: formData.email,
-        phone: formData.phone,
-        details: `Arlington STEM Apprenticeship Application\n\nCurrent Area of Study: ${formData.current_study}\n\nBio:\n${formData.bio}\n\nWhat they hope to get out of this apprenticeship:\n${formData.goals}`
-      };
-
-      const { error } = await supabase.from('leads').insert([leadData]);
-
-      if (error) throw error;
-
-      try {
-        const emailUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-lead-email`;
-        const emailResponse = await fetch(emailUrl, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(leadData),
-        });
-
-        const emailResult = await emailResponse.json();
-
-        if (emailResult.success) {
-          console.log('Email notification sent successfully:', emailResult);
-        } else {
-          console.warn('Email notification failed (application saved to database):', emailResult);
-        }
-      } catch (emailError) {
-        console.warn('Email notification unavailable (application saved to database):', emailError);
-      }
-
-      trackConversion();
-      setSubmitStatus('success');
-      setFormData({
-        contact_name: '',
-        email: '',
-        phone: '',
-        current_study: '',
-        bio: '',
-        goals: ''
-      });
-
-      setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 8000);
-    } catch (error) {
-      console.error('Error submitting application:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleDownloadFlyer = () => {
+    const link = document.createElement('a');
+    link.href = '/STEM_Program_Flyer.pdf';
+    link.download = 'Skywash_STEM_Apprenticeship_Flyer.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const fadeInUp = {
@@ -323,7 +249,7 @@ export function ArlingtonSTEMProgramPage() {
           </div>
         </section>
 
-        <section id="application-form" className="py-20 bg-slate-800">
+        <section id="application" className="py-20 bg-slate-800">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial="initial"
@@ -336,7 +262,7 @@ export function ArlingtonSTEMProgramPage() {
                 Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Launch?</span>
               </h2>
               <p className="text-xl text-slate-300">
-                Submit your application to secure your spot in this exclusive program
+                Apply now to secure your spot in this exclusive program
               </p>
             </motion.div>
 
@@ -347,152 +273,76 @@ export function ArlingtonSTEMProgramPage() {
               transition={{ duration: 0.6 }}
               className="bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl shadow-2xl p-8 md:p-12 border-2 border-orange-500/30"
             >
-              {submitStatus === 'success' ? (
-                <div className="text-center py-12">
-                  <div className="w-20 h-20 bg-orange-500/20 border-2 border-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle className="text-orange-400" size={48} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Application Submitted!</h3>
-                  <p className="text-slate-300 text-lg mb-6 max-w-xl mx-auto">
-                    Thank you for your interest in the Arlington STEM Apprenticeship program! We've received your application and will review it carefully. You'll hear from us within 5 business days.
-                  </p>
-                  <button
-                    onClick={() => setSubmitStatus('idle')}
-                    className="text-orange-400 font-semibold hover:underline"
-                  >
-                    Submit Another Application
-                  </button>
+              <div className="text-center mb-8">
+                <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <Mail className="text-white" size={48} />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="contact_name" className="block text-sm font-semibold text-slate-200 mb-2">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="contact_name"
-                        name="contact_name"
-                        required
-                        value={formData.contact_name}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-white placeholder-slate-400"
-                        placeholder="John Smith"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-slate-200 mb-2">
-                        Email *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-white placeholder-slate-400"
-                        placeholder="john.smith@email.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-slate-200 mb-2">
-                        Phone Number *
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        required
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-white placeholder-slate-400"
-                        placeholder="(555) 123-4567"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="current_study" className="block text-sm font-semibold text-slate-200 mb-2">
-                        Current Area of Study *
-                      </label>
-                      <input
-                        type="text"
-                        id="current_study"
-                        name="current_study"
-                        required
-                        value={formData.current_study}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-white placeholder-slate-400"
-                        placeholder="e.g., Engineering, Computer Science, Aviation"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="bio" className="block text-sm font-semibold text-slate-200 mb-2">
-                      Brief Bio About Yourself *
-                    </label>
-                    <textarea
-                      id="bio"
-                      name="bio"
-                      required
-                      rows={4}
-                      value={formData.bio}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-white placeholder-slate-400 resize-none"
-                      placeholder="Tell us about yourself, your interests, and your background..."
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="goals" className="block text-sm font-semibold text-slate-200 mb-2">
-                      What Do You Hope to Get Out of This Apprenticeship? *
-                    </label>
-                    <textarea
-                      id="goals"
-                      name="goals"
-                      required
-                      rows={4}
-                      value={formData.goals}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-white placeholder-slate-400 resize-none"
-                      placeholder="Describe your goals and what you hope to learn from this experience..."
-                    />
-                  </div>
-
-                  <div className="bg-blue-900/30 border-2 border-blue-500/30 rounded-xl p-5">
-                    <p className="text-sm text-slate-300 leading-relaxed">
-                      <strong className="font-semibold text-white">Program Details:</strong> This is a 3-week intensive apprenticeship beginning in late May 2026. Selected participants will work directly with our team in Purcellville, VA. A detailed schedule will be provided to accepted applicants.
-                    </p>
-                  </div>
-
-                  {submitStatus === 'error' && (
-                    <div className="bg-red-900/30 border border-red-500/50 rounded-lg p-4 text-red-300">
-                      There was an error submitting your application. Please try again or contact us directly at info@skywashinnovations.com
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition-all flex items-center justify-center space-x-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 ${
-                      isSubmitting ? 'opacity-50 cursor-not-allowed' : 'shadow-lg hover:shadow-xl'
-                    }`}
+                <h3 className="text-3xl font-bold text-white mb-6">How to Apply</h3>
+                <p className="text-lg text-slate-300 mb-8 leading-relaxed max-w-2xl mx-auto">
+                  To apply for the Arlington STEM Apprenticeship, please send an email to{' '}
+                  <a
+                    href="mailto:apprentice@skywashinnovations.com"
+                    className="text-orange-400 hover:text-orange-300 font-semibold transition-colors underline decoration-2 decoration-orange-500/50 hover:decoration-orange-400"
                   >
-                    <span>{isSubmitting ? 'Submitting Application...' : 'Submit Application'}</span>
-                    <Send size={20} />
-                  </button>
+                    apprentice@skywashinnovations.com
+                  </a>
+                  {' '}with the following information:
+                </p>
+              </div>
 
-                  <p className="text-center text-sm text-slate-400">
-                    Your information is secure and will only be used to process your apprenticeship application.
-                  </p>
-                </form>
-              )}
+              <div className="bg-slate-800/50 rounded-xl p-6 mb-8 border border-slate-600">
+                <h4 className="text-xl font-bold text-white mb-4">Required Application Information:</h4>
+                <ul className="space-y-3 text-slate-300">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="text-orange-400 flex-shrink-0 mt-1" size={20} />
+                    <span><strong className="text-white">Your Full Name</strong></span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="text-orange-400 flex-shrink-0 mt-1" size={20} />
+                    <span><strong className="text-white">Contact Phone Number</strong></span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="text-orange-400 flex-shrink-0 mt-1" size={20} />
+                    <span><strong className="text-white">Current Area of Study</strong> (e.g., Engineering, Computer Science, Aviation)</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="text-orange-400 flex-shrink-0 mt-1" size={20} />
+                    <span><strong className="text-white">A Brief Bio About Yourself</strong> - Tell us about your interests and background</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="text-orange-400 flex-shrink-0 mt-1" size={20} />
+                    <span><strong className="text-white">What You Hope to Get Out of This Apprenticeship</strong> - Share your goals and expectations</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-blue-900/30 border-2 border-blue-500/30 rounded-xl p-6 mb-8">
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  <strong className="font-semibold text-white">Program Details:</strong> This is a 3-week intensive apprenticeship beginning in late May 2026. Selected participants will work directly with our team in Purcellville, VA. A detailed schedule will be provided to accepted applicants.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="mailto:apprentice@skywashinnovations.com"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all text-lg"
+                >
+                  <Mail size={24} />
+                  <span>Email Your Application</span>
+                </a>
+
+                <button
+                  onClick={handleDownloadFlyer}
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all text-lg"
+                >
+                  <Download size={24} />
+                  <span>Download Flyer</span>
+                </button>
+              </div>
+
+              <p className="text-center text-sm text-slate-400 mt-6">
+                Applications will be reviewed on a rolling basis. Apply early to secure your spot.
+              </p>
             </motion.div>
           </div>
         </section>
