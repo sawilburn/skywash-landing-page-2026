@@ -131,7 +131,6 @@ export function ResidentialSpring2026Page() {
         contact_name: formData.contact_name,
         email: formData.email,
         phone: formData.phone,
-        address: formData.address,
         details: `Spring 2026 Promotion - ${selectedPkg?.name} Package ($${selectedPkg?.price})${droneAddon}\nTotal Price: $${totalPrice}\n\nAddress: ${formData.address}\n\nPromotion: Early Bird Pricing (Book before April 15, 2026)`
       };
 
