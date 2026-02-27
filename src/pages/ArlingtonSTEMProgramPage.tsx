@@ -57,7 +57,7 @@ export function ArlingtonSTEMProgramPage() {
               </motion.h1>
 
               <motion.p variants={fadeInUp} className="text-xl md:text-2xl mb-10 text-slate-200 leading-relaxed max-w-4xl mx-auto">
-                Join Skywash Innovations in Purcellville, VA, to learn how we are leveraging heavy-lift drone technology to revolutionize the exterior cleaning industry.
+                Join Skywash Innovations in Purcellville, VA, to learn how we are leveraging heavy-lift drone technology to revolutionize the exterior cleaning industry. This program includes actual site work at residential or commercial properties.
               </motion.p>
 
               <motion.div variants={fadeInUp} className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
@@ -159,7 +159,7 @@ export function ArlingtonSTEMProgramPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">The Future of Service</h3>
                 <p className="text-slate-300 mb-6 leading-relaxed">
-                  Real-world application of UAS technology in the modern workforce and commercial service industry.
+                  Real-world application of UAS technology in the modern workforce through hands-on site work at actual residential and commercial properties.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2 text-slate-300">
@@ -172,7 +172,7 @@ export function ArlingtonSTEMProgramPage() {
                   </li>
                   <li className="flex items-start gap-2 text-slate-300">
                     <CheckCircle className="text-orange-400 flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-sm">Hands-on field experience</span>
+                    <span className="text-sm">Hands-on field experience at real job sites</span>
                   </li>
                 </ul>
               </motion.div>
@@ -318,7 +318,7 @@ export function ArlingtonSTEMProgramPage() {
 
               <div className="bg-blue-900/30 border-2 border-blue-500/30 rounded-xl p-6 mb-8">
                 <p className="text-sm text-slate-300 leading-relaxed">
-                  <strong className="font-semibold text-white">Program Details:</strong> This is a 3-week intensive apprenticeship beginning in late May 2026. Selected participants will work directly with our team in Purcellville, VA. A detailed schedule will be provided to accepted applicants.
+                  <strong className="font-semibold text-white">Program Details:</strong> This is a 3-week intensive apprenticeship beginning in late May 2026. Selected participants will work directly with our team in Purcellville, VA, including actual site work at residential or commercial properties for hands-on experience. A detailed schedule will be provided to accepted applicants.
                 </p>
               </div>
 
