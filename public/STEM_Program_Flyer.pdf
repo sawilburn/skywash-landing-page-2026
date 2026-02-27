@@ -29,7 +29,7 @@ endobj
 endobj
 4 0 obj
 <<
-/Length 3200
+/Length 3300
 >>
 stream
 BT
@@ -67,15 +67,17 @@ BT
 (1. Complex Airspace Operations) Tj
 0 -20 Td
 /F2 11 Tf
-(   Master UAS Safety and Flight Operations within the DC SFRA) Tj
+(   Learn how to operate UAS safely within the DC SFRA) Tj
 0 -15 Td
-(   \(Special Flight Rules Area\) and FRZ \(Flight Restricted Zone\)) Tj
+(   \(Special Flight Rules Area\) and FRZ \(Flight Restricted Zone\),) Tj
 0 -15 Td
-(   - FAA regulations and compliance) Tj
+(   and understand the certification process) Tj
 0 -15 Td
-(   - Advanced flight planning in restricted zones) Tj
+(   - FAA regulations and compliance requirements) Tj
 0 -15 Td
-(   - Risk assessment and safety protocols) Tj
+(   - Flight planning in restricted zones) Tj
+0 -15 Td
+(   - Understanding the path to certification) Tj
 0 -25 Td
 /F1 14 Tf
 (2. Chemical Science) Tj
@@ -156,14 +158,14 @@ xref
 0000000058 00000 n
 0000000115 00000 n
 0000000280 00000 n
-0000003532 00000 n
-0000003619 00000 n
-0000003702 00000 n
+0000003632 00000 n
+0000003719 00000 n
+0000003802 00000 n
 trailer
 <<
 /Size 8
 /Root 1 0 R
 >>
 startxref
-3790
+3890
 %%EOF

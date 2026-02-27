@@ -111,20 +111,20 @@ export function ArlingtonSTEMProgramPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Complex Airspace Ops</h3>
                 <p className="text-slate-300 mb-6 leading-relaxed">
-                  Master UAS Safety and Flight Operations within the DC SFRA (Special Flight Rules Area) and the FRZ (Flight Restricted Zone).
+                  Learn how to operate UAS safely within the DC SFRA (Special Flight Rules Area) and FRZ (Flight Restricted Zone), and understand the certification process.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2 text-slate-300">
                     <CheckCircle className="text-orange-400 flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-sm">FAA regulations and compliance</span>
+                    <span className="text-sm">FAA regulations and compliance requirements</span>
                   </li>
                   <li className="flex items-start gap-2 text-slate-300">
                     <CheckCircle className="text-orange-400 flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-sm">Advanced flight planning in restricted zones</span>
+                    <span className="text-sm">Flight planning in restricted zones</span>
                   </li>
                   <li className="flex items-start gap-2 text-slate-300">
                     <CheckCircle className="text-orange-400 flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-sm">Risk assessment and safety protocols</span>
+                    <span className="text-sm">Understanding the path to certification</span>
                   </li>
                 </ul>
               </motion.div>
@@ -191,7 +191,7 @@ export function ArlingtonSTEMProgramPage() {
             >
               <div className="inline-flex items-center gap-2 bg-orange-500/20 border-2 border-orange-500 rounded-full px-6 py-3 mb-8">
                 <Shield className="text-orange-400" size={24} />
-                <span className="text-orange-400 font-bold text-lg">DC SFRA & FRZ Certified Training</span>
+                <span className="text-orange-400 font-bold text-lg">DC SFRA & FRZ Training</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Why This Apprenticeship?
