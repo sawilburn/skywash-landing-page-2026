@@ -2,15 +2,37 @@ import { Mail, Download, Plane, Atom, Zap, Clock, Users, Shield, CheckCircle, Al
 import { motion } from 'framer-motion';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { supabase } from '../lib/supabase';
 
 export function ArlingtonSTEMProgramPage() {
-  const handleDownloadFlyer = () => {
-    const link = document.createElement('a');
-    link.href = '/SkywashInnovationsSTEMFlyer.pdf';
-    link.download = 'Skywash_STEM_Apprenticeship_Flyer.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleDownloadFlyer = async () => {
+    try {
+      const { data: flyer } = await supabase
+        .from('program_flyers')
+        .select('file_path')
+        .eq('program_name', 'Arlington STEM Apprenticeship')
+        .eq('is_active', true)
+        .maybeSingle();
+
+      if (!flyer) {
+        console.error('Flyer not found');
+        return;
+      }
+
+      const { data: urlData } = supabase.storage
+        .from('website-assets')
+        .getPublicUrl(flyer.file_path);
+
+      const link = document.createElement('a');
+      link.href = urlData.publicUrl;
+      link.download = 'Skywash_STEM_Apprenticeship_Flyer.pdf';
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading flyer:', error);
+    }
   };
 
   const fadeInUp = {
