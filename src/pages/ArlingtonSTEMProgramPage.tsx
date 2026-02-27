@@ -6,7 +6,7 @@ import { Footer } from '../components/Footer';
 export function ArlingtonSTEMProgramPage() {
   const handleDownloadFlyer = () => {
     const link = document.createElement('a');
-    link.href = '/STEM_Program_Flyer.pdf';
+    link.href = '/SkywashInnovationsSTEMFlyer.pdf';
     link.download = 'Skywash_STEM_Apprenticeship_Flyer.pdf';
     document.body.appendChild(link);
     link.click();
