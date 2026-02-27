@@ -33,6 +33,7 @@ import { OurProcessPage } from './pages/OurProcessPage';
 import { RoofingPartnersPage } from './pages/RoofingPartnersPage';
 import { PestWildlifePartnersPage } from './pages/PestWildlifePartnersPage';
 import { ResidentialSpring2026Page } from './pages/ResidentialSpring2026Page';
+import { ArlingtonSTEMProgramPage } from './pages/ArlingtonSTEMProgramPage';
 import { SitemapPage } from './pages/SitemapPage';
 import { WhyChooseUsPage } from './pages/WhyChooseUsPage';
 
@@ -59,6 +60,7 @@ function App() {
           <Route path="/residential/solar-washing" element={<SolarWashingPage />} />
           <Route path="/residential/who-we-serve/realtor" element={<RealtorPage />} />
           <Route path="/specials/residential-spring-2026" element={<ResidentialSpring2026Page />} />
+          <Route path="/schools/arlington-stem-program" element={<ArlingtonSTEMProgramPage />} />
           <Route path="/partners/roofing-experts" element={<RoofingPartnersPage />} />
           <Route path="/partners/pest-and-wildlife-control" element={<PestWildlifePartnersPage />} />
           <Route path="/locations/ashburn" element={<AshburnPage />} />
