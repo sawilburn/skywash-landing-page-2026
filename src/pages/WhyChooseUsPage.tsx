@@ -1,11 +1,13 @@
 import { Shield, Users, Award, CheckCircle, Heart, Sprout, TrendingUp, Phone, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 
 export function WhyChooseUsPage() {
   const features = [
     {
       icon: Shield,
       title: 'Unmatched Safety & Risk Mitigation',
+      sectionId: 'why-choose-us-safety',
       description: 'We prioritize the safety of people, plants, and property through rigorous standards, continuous certification, and performance-based safety incentive programs.',
       benefits: [
         'Zero ladder-related incidents with drone technology',
@@ -18,6 +20,7 @@ export function WhyChooseUsPage() {
     {
       icon: Heart,
       title: 'Community Engagement',
+      sectionId: 'why-choose-us-community',
       description: 'Responsible stewards of the environment, foster local leadership through local hiring, engagement to inspire future leaders, and eco-friendly practices that protect our region.',
       benefits: [
         'Local hiring supports Northern Virginia families',
@@ -30,6 +33,7 @@ export function WhyChooseUsPage() {
     {
       icon: Award,
       title: 'Experienced Team',
+      sectionId: 'why-choose-us-experienced',
       description: 'Active leadership within premier industry groups to ensure our team remains the safest and most skilled technicians in the field, backed by the latest standards.',
       benefits: [
         'FAA-certified drone pilots',
@@ -127,19 +131,11 @@ export function WhyChooseUsPage() {
                   </div>
 
                   <div className="flex-1 w-full">
-                    <div className={`relative h-96 rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br ${
-                      index === 0 ? 'from-cyan-100 to-blue-100' :
-                      index === 1 ? 'from-green-100 to-emerald-100' :
-                      'from-blue-100 to-indigo-100'
-                    }`}>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <Icon className={`w-32 h-32 ${
-                          index === 0 ? 'text-cyan-400' :
-                          index === 1 ? 'text-green-400' :
-                          'text-blue-400'
-                        } opacity-50`} />
-                      </div>
-                    </div>
+                    <DynamicSectionImage
+                      section={feature.sectionId}
+                      alt={feature.title}
+                      className="h-96 rounded-2xl overflow-hidden shadow-2xl object-cover"
+                    />
                   </div>
                 </div>
               );
