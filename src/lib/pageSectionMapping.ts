@@ -298,6 +298,12 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
         displayName: 'Reston Hero Image',
         suggestedAltText: 'Professional cleaning services in Reston, VA',
         description: 'Main hero image for Reston location page'
+      },
+      {
+        id: 'locations/reston-local',
+        displayName: 'Reston Local Service Area',
+        suggestedAltText: 'Professional power washing and cleaning services in Reston, VA',
+        description: 'Local Reston area image showing townhomes, clusters, and communities'
       }
     ]
   },

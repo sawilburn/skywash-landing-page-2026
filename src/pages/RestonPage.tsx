@@ -1,4 +1,6 @@
-import { Plane, Building2, Home, TreeDeciduous, Zap, Shield, CheckCircle2, Users } from 'lucide-react';
+import { Plane, Building2, Home, TreeDeciduous, Zap, Shield, CheckCircle2, Users, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 
 export function RestonPage() {
   const scrollToContact = () => {
@@ -25,28 +27,39 @@ export function RestonPage() {
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight tracking-tight">
-              Reston's Premier
+              Power Washing &
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
-                Drone Exterior
+                Roof Cleaning for
               </span>
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-300">
-                Cleaning Service
+                Reston Properties
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto mb-12 leading-relaxed">
-              Safe, effective soft washing for Reston's townhomes, clusters, and business parks. No ladders required.
+            <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto mb-8 leading-relaxed">
+              Professional exterior house cleaning with soft wash technology. Remove algae from vinyl siding, roofs, and windows. Window cleaning for townhomes and clusters.
             </p>
 
-            <button
-              onClick={scrollToContact}
-              className="inline-flex items-center gap-3 bg-white text-slate-900 px-10 py-5 rounded-lg text-lg font-semibold hover:bg-slate-50 transform transition-all duration-300 hover:scale-105 shadow-2xl"
+            <Link
+              to="/specials/residential-spring-2026"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg text-base font-bold hover:from-green-600 hover:to-emerald-700 transform transition-all duration-300 hover:scale-105 shadow-lg mb-8 border-2 border-white/20"
             >
-              Get a Quote for Your Property
-              <span className="text-xl">→</span>
-            </button>
+              <Sparkles size={20} />
+              Spring 2026 Special Pricing Available
+              <span className="text-lg">→</span>
+            </Link>
+
+            <div className="mb-8">
+              <button
+                onClick={scrollToContact}
+                className="inline-flex items-center gap-3 bg-white text-slate-900 px-10 py-5 rounded-lg text-lg font-semibold hover:bg-slate-50 transform transition-all duration-300 hover:scale-105 shadow-2xl"
+              >
+                Get a Quote for Your Property
+                <span className="text-xl">→</span>
+              </button>
+            </div>
 
             <div className="mt-16 flex flex-wrap justify-center gap-12 text-white text-sm">
               <div className="flex items-center gap-3">
@@ -81,7 +94,7 @@ export function RestonPage() {
 
             <div className="space-y-8 text-slate-700 leading-relaxed">
               <p className="text-xl md:text-2xl font-light leading-relaxed">
-                Reston's beautiful tree canopy is a defining feature of the community—but it also creates the perfect conditions for algae, moss, and mildew growth on roofs and siding. Heavy shade and moisture retention mean your home's exterior needs regular professional cleaning to stay in top condition.
+                Reston's beautiful tree canopy is a defining feature of the community—but it also creates the perfect conditions for algae, moss, and mildew growth on roofs and vinyl siding. Heavy shade and moisture retention mean your home's exterior house cleaning needs are critical. Professional roof cleaning and power washing keep your property in top condition.
               </p>
 
               <div className="bg-blue-50 rounded-2xl p-8 md:p-10 border border-blue-200">
@@ -90,10 +103,10 @@ export function RestonPage() {
                 </h3>
                 <div className="space-y-4 text-lg">
                   <p>
-                    Many of Reston's clusters feature 3-story townhomes with steep rooflines and tall facades. Traditional ladder-based cleaning is not only time-consuming but extremely dangerous at these heights. Crews need to navigate decks, landscaping, and tight spaces to set up equipment—adding hours to the job and increasing liability.
+                    Many of Reston's clusters feature 3-story townhomes with steep rooflines and tall facades. Traditional ladder-based power washing and roof cleaning is not only time-consuming but extremely dangerous at these heights. Crews need to navigate decks, landscaping, and tight spaces to set up equipment—adding hours to the job and increasing liability.
                   </p>
                   <p>
-                    Our drone soft washing system solves this completely. We can clean the entire exterior of a 3-story townhome in a fraction of the time, with zero fall risk and no heavy equipment touching your property.
+                    Our drone soft wash system solves this completely. We provide safe exterior house cleaning for 3-story townhomes in a fraction of the time, with zero fall risk. Our soft wash technology removes algae from vinyl siding and roofs without heavy equipment touching your property. Window cleaning is also included for complete exterior care.
                   </p>
                 </div>
               </div>
@@ -179,10 +192,10 @@ export function RestonPage() {
                 <Home className="text-white" size={32} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                Townhome & Cluster Cleaning
+                Townhome & Cluster Exterior House Cleaning
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Efficient cleaning for Reston's tall, multi-story residential units. Perfect for 3-4 story townhomes that are difficult to reach with traditional methods.
+                Efficient power washing and roof cleaning for Reston's tall, multi-story residential units. Soft wash vinyl siding cleaning removes algae. Perfect for 3-4 story townhomes that are difficult to reach with traditional methods. Includes window cleaning.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start text-slate-700">
@@ -209,10 +222,10 @@ export function RestonPage() {
                 <TreeDeciduous className="text-white" size={32} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                Moss & Algae Removal
+                Remove Algae & Moss
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Specialized soft wash treatment to remove growth caused by Reston's heavy tree canopy and shade conditions.
+                Specialized soft wash treatment for roof cleaning and vinyl siding cleaning to remove algae growth caused by Reston's heavy tree canopy and shade conditions. Safe power washing alternative.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start text-slate-700">
@@ -239,10 +252,10 @@ export function RestonPage() {
                 <Building2 className="text-white" size={32} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                Commercial Building Wash
+                Commercial Power Washing
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Gentle exterior cleaning for Reston's office buildings and retail spaces. Keep your business looking professional year-round.
+                Gentle exterior house cleaning for Reston's office buildings and retail spaces. Soft wash technology for roof cleaning, vinyl siding cleaning, and window cleaning. Keep your business looking professional year-round.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start text-slate-700">
@@ -263,6 +276,28 @@ export function RestonPage() {
                 </li>
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              Serving Reston Communities
+            </h2>
+            <p className="text-xl text-slate-600">
+              Professional power washing throughout Fairfax County
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <DynamicSectionImage
+              section="locations/reston-local"
+              title="Reston Local Service Area"
+              altText="Professional power washing and cleaning services in Reston, VA"
+              className="w-full rounded-2xl shadow-2xl"
+            />
           </div>
         </div>
       </section>
