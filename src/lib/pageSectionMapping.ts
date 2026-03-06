@@ -404,6 +404,24 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
     ]
   },
   {
+    pageName: 'McLean',
+    category: 'locations',
+    sections: [
+      {
+        id: 'locations/mclean-hero',
+        displayName: 'McLean Hero Image',
+        suggestedAltText: 'Premium power washing and cleaning services for McLean estates in Virginia',
+        description: 'Main hero image for McLean location page'
+      },
+      {
+        id: 'locations/mclean-local',
+        displayName: 'McLean Local Service Area',
+        suggestedAltText: 'Premium power washing and exterior cleaning services in McLean, VA',
+        description: 'Local McLean area image showing luxury estates, Chain Bridge, Langley, and Potomac neighborhoods'
+      }
+    ]
+  },
+  {
     pageName: 'Partners & Memberships',
     category: 'partners-memberships',
     sections: [
