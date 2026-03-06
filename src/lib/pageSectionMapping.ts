@@ -286,6 +286,12 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
         displayName: 'Leesburg Hero Image',
         suggestedAltText: 'Professional cleaning services in Leesburg, VA',
         description: 'Main hero image for Leesburg location page'
+      },
+      {
+        id: 'locations/leesburg-local',
+        displayName: 'Leesburg Local Service Area',
+        suggestedAltText: 'Professional power washing and cleaning services in Leesburg, VA',
+        description: 'Local Leesburg area image showing historic downtown, estates, and neighborhoods'
       }
     ]
   },

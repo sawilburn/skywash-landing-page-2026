@@ -1,4 +1,6 @@
-import { Home, Building2, Landmark, Shield, CheckCircle2, MapPin, Plane, Heart } from 'lucide-react';
+import { Home, Building2, Landmark, Shield, CheckCircle2, MapPin, Plane, Heart, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 
 export function LeesburgPage() {
   const scrollToContact = () => {
@@ -25,30 +27,41 @@ export function LeesburgPage() {
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight tracking-tight">
-              Modern Cleaning
+              Power Washing &
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-200">
-                Technology for
+                Roof Cleaning for
               </span>
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-200">
-                Historic & New
+                Historic & Estate
               </span>
               <br />
-              Leesburg
+              Leesburg Homes
             </h1>
 
-            <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto mb-12 leading-relaxed">
-              From the Historic District to Lansdowne, we provide safe drone soft washing for Leesburg's finest properties.
+            <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto mb-8 leading-relaxed">
+              Professional exterior house cleaning with soft wash technology. Remove algae from vinyl siding, roofs, and windows. Safe window cleaning for historic and modern properties.
             </p>
 
-            <button
-              onClick={scrollToContact}
-              className="inline-flex items-center gap-3 bg-white text-slate-900 px-10 py-5 rounded-lg text-lg font-semibold hover:bg-slate-50 transform transition-all duration-300 hover:scale-105 shadow-2xl"
+            <Link
+              to="/specials/residential-spring-2026"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg text-base font-bold hover:from-green-600 hover:to-emerald-700 transform transition-all duration-300 hover:scale-105 shadow-lg mb-8 border-2 border-white/20"
             >
-              Get a Local Quote
-              <span className="text-xl">→</span>
-            </button>
+              <Sparkles size={20} />
+              Spring 2026 Special Pricing Available
+              <span className="text-lg">→</span>
+            </Link>
+
+            <div className="mb-8">
+              <button
+                onClick={scrollToContact}
+                className="inline-flex items-center gap-3 bg-white text-slate-900 px-10 py-5 rounded-lg text-lg font-semibold hover:bg-slate-50 transform transition-all duration-300 hover:scale-105 shadow-2xl"
+              >
+                Get a Local Quote
+                <span className="text-xl">→</span>
+              </button>
+            </div>
 
             <div className="mt-16 flex flex-wrap justify-center gap-12 text-white text-sm">
               <div className="flex items-center gap-3">
@@ -91,13 +104,13 @@ export function LeesburgPage() {
                 </div>
                 <div className="space-y-4 text-lg text-slate-700 leading-relaxed">
                   <p>
-                    Downtown Leesburg is home to some of Virginia's most beautiful historic architecture—brick townhomes, stone facades, and delicate painted siding that date back centuries. These materials require specialized care that traditional pressure washing simply cannot provide.
+                    Downtown Leesburg is home to some of Virginia's most beautiful historic architecture—brick townhomes, stone facades, and delicate painted vinyl siding that date back centuries. These materials require specialized exterior house cleaning that traditional power washing simply cannot provide.
                   </p>
                   <p>
-                    Our <span className="font-semibold text-amber-800">soft wash technology</span> is the perfect solution for historic preservation. Instead of blasting surfaces with high pressure that can crack mortar, strip paint, or damage aging materials, we apply biodegradable cleaning solutions at low pressure. The solution does the work—killing algae, moss, and biological growth at the root—while the gentle rinse leaves historic surfaces clean and intact.
+                    Our <span className="font-semibold text-amber-800">soft wash technology</span> is the perfect solution for historic preservation and roof cleaning. Instead of blasting surfaces with high pressure that can crack mortar, strip paint, or damage aging materials, we apply biodegradable cleaning solutions at low pressure. The solution does the work—we remove algae, moss, and biological growth at the root—while the gentle rinse leaves historic surfaces clean and intact. Safe vinyl siding cleaning and window cleaning are included.
                   </p>
                   <p className="font-semibold text-amber-900">
-                    Zero pressure means zero damage. Your historic home stays beautiful for generations to come.
+                    Zero pressure means zero damage. Your historic home stays beautiful for generations to come with our professional power washing alternative.
                   </p>
                 </div>
               </div>
@@ -111,10 +124,10 @@ export function LeesburgPage() {
                     </h3>
                   </div>
                   <p className="text-slate-700 text-lg leading-relaxed mb-4">
-                    Neighborhoods like <span className="font-semibold">Lansdowne, River Creek, and Beacon Hill</span> feature stunning estate homes with expansive roofs, tall peaks, and complex architectural details. Traditional cleaning methods require expensive boom lifts or dangerous ladder work that can take days to complete.
+                    Neighborhoods like <span className="font-semibold">Lansdowne, River Creek, and Beacon Hill</span> feature stunning estate homes with expansive roofs, tall peaks, and complex architectural details. Traditional power washing and roof cleaning methods require expensive boom lifts or dangerous ladder work that can take days to complete.
                   </p>
                   <p className="text-slate-700 text-lg leading-relaxed">
-                    Our drone technology accesses every peak, dormer, and roofline safely from the ground. We clean massive roofs and multi-story facades in hours, not days—with precision coverage that manual crews can't match.
+                    Our drone soft wash technology accesses every peak, dormer, and roofline safely from the ground for complete exterior house cleaning. We remove algae from massive roofs and multi-story facades in hours, not days—with precision vinyl siding cleaning and window cleaning coverage that manual crews can't match.
                   </p>
                 </div>
 
@@ -188,10 +201,10 @@ export function LeesburgPage() {
                 <Landmark className="text-white" size={32} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                Historic Brick & Stone Cleaning
+                Historic Exterior House Cleaning
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Gentle biological cleaning that kills algae, moss, and mildew without eroding mortar or damaging historic materials. Perfect for downtown Leesburg's treasured architecture.
+                Gentle soft wash treatment that removes algae, moss, and mildew without eroding mortar or damaging historic materials. Safe power washing alternative for roof cleaning, vinyl siding cleaning, and window cleaning. Perfect for downtown Leesburg's treasured architecture.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start text-slate-700">
@@ -218,10 +231,10 @@ export function LeesburgPage() {
                 <Home className="text-white" size={32} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                Estate Roof Washing
+                Estate Roof Cleaning & Power Washing
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Professional cleaning for large homes with complex rooflines. We safely clean slate, architectural shingles, and metal roofs on estates throughout Lansdowne, River Creek, and Beacon Hill.
+                Professional soft wash roof cleaning and exterior house cleaning for large homes with complex rooflines. We safely remove algae from slate, architectural shingles, and metal roofs. Complete vinyl siding cleaning and window cleaning on estates throughout Lansdowne, River Creek, and Beacon Hill.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start text-slate-700">
@@ -248,10 +261,10 @@ export function LeesburgPage() {
                 <Building2 className="text-white" size={32} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                Commercial & Storefront
+                Commercial Power Washing & Window Cleaning
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Keep Leesburg's businesses and offices looking professional with regular exterior maintenance. Perfect for historic storefronts and modern commercial buildings alike.
+                Keep Leesburg's businesses and offices looking professional with regular exterior house cleaning. Soft wash roof cleaning, vinyl siding cleaning, and window cleaning to remove algae. Perfect for historic storefronts and modern commercial buildings alike.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start text-slate-700">
@@ -272,6 +285,28 @@ export function LeesburgPage() {
                 </li>
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              Serving Historic & Modern Leesburg
+            </h2>
+            <p className="text-xl text-slate-600">
+              Professional power washing throughout Loudoun County
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <DynamicSectionImage
+              section="locations/leesburg-local"
+              title="Leesburg Local Service Area"
+              altText="Professional power washing and cleaning services in Leesburg, VA"
+              className="w-full rounded-2xl shadow-2xl"
+            />
           </div>
         </div>
       </section>
