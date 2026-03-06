@@ -310,6 +310,12 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
         displayName: 'Ashburn Hero Image',
         suggestedAltText: 'Professional cleaning services in Ashburn, VA',
         description: 'Main hero image for Ashburn location page'
+      },
+      {
+        id: 'locations/ashburn-local',
+        displayName: 'Ashburn Local Service Area',
+        suggestedAltText: 'Professional cleaning services in Ashburn, Virginia communities',
+        description: 'Local Ashburn area image showing service communities like Ashburn Village, Brambleton, and Broadlands'
       }
     ]
   },

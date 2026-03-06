@@ -1,4 +1,6 @@
-import { Plane, Home, Droplets, Shield, MapPin, CheckCircle2 } from 'lucide-react';
+import { Plane, Home, Droplets, Shield, MapPin, CheckCircle2, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 
 export function AshburnPage() {
   const scrollToContact = () => {
@@ -25,24 +27,35 @@ export function AshburnPage() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              Expert Drone Exterior
+              Expert Power Washing &
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
-                Cleaning in Ashburn, VA
+                Roof Cleaning in Ashburn, VA
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8">
-              The safest way to clean your roof and siding. HOA-compliant soft washing for Ashburn Village, Brambleton, and Broadlands.
+            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-6">
+              Professional exterior house cleaning with soft wash technology. Remove algae from vinyl siding and roofs. Serving Ashburn Village, Brambleton, and Broadlands.
             </p>
 
-            <button
-              onClick={scrollToContact}
-              className="inline-flex items-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transform transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl"
+            <Link
+              to="/specials/residential-spring-2026"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg text-base font-bold hover:from-green-600 hover:to-emerald-700 transform transition-all duration-300 hover:scale-105 shadow-lg mb-6 border-2 border-white/20"
             >
-              Get My Free Quote
-              <span className="text-xl">→</span>
-            </button>
+              <Sparkles size={20} />
+              Spring 2026 Special Pricing Available
+              <span className="text-lg">→</span>
+            </Link>
+
+            <div className="mb-8">
+              <button
+                onClick={scrollToContact}
+                className="inline-flex items-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transform transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl"
+              >
+                Get My Free Quote
+                <span className="text-xl">→</span>
+              </button>
+            </div>
 
             <div className="mt-12 flex flex-wrap justify-center gap-8 text-white">
               <div className="flex items-center gap-2">
@@ -74,17 +87,17 @@ export function AshburnPage() {
 
             <div className="prose prose-lg max-w-none">
               <p className="text-slate-700 leading-relaxed text-lg mb-6">
-                Ashburn's high-density neighborhoods and townhome communities present unique challenges for traditional exterior cleaning. Properties in Ashburn Village, Brambleton, and Broadlands often feature multi-story buildings with limited yard access, making ladder work dangerous, time-consuming, and a significant liability concern for homeowners.
+                Ashburn's high-density neighborhoods and townhome communities present unique challenges for traditional power washing and exterior house cleaning. Properties in Ashburn Village, Brambleton, and Broadlands often feature multi-story buildings with limited yard access, making ladder work dangerous, time-consuming, and a significant liability concern for homeowners.
               </p>
 
               <p className="text-slate-700 leading-relaxed text-lg mb-6">
-                Our drone-based soft washing technology solves these problems completely. We can safely reach any height without ever setting foot on your property with ladders. This means zero risk of falls, no damage to landscaping, and no liability for you as the homeowner.
+                Our drone-based soft wash technology solves these problems completely. We can safely reach any height for roof cleaning, vinyl siding cleaning, and window cleaning without ever setting foot on your property with ladders. This means zero risk of falls, no damage to landscaping, and no liability for you as the homeowner.
               </p>
 
               <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
                 <h3 className="text-2xl font-bold text-blue-900 mb-3">HOA Compliance Made Easy</h3>
                 <p className="text-slate-700 leading-relaxed text-lg">
-                  Many Ashburn homeowners receive HOA violation letters for green algae on vinyl siding and black streaks on roofs caused by Gloeocapsa magma. These issues are not just cosmetic—they can lead to fines and decreased property value. Our drone soft washing quickly removes these organic growths, restoring your home's appearance and keeping you compliant with HOA standards. We specialize in the gentle, effective cleaning that Ashburn's vinyl siding and architectural shingles require.
+                  Many Ashburn homeowners receive HOA violation letters for green algae on vinyl siding and black streaks on roofs caused by Gloeocapsa magma. These issues are not just cosmetic—they can lead to fines and decreased property value. Our professional power washing and soft wash services quickly remove algae and these organic growths, restoring your home's appearance and keeping you compliant with HOA standards. We specialize in the gentle, effective exterior house cleaning that Ashburn's vinyl siding and architectural shingles require.
                 </p>
               </div>
             </div>
@@ -108,14 +121,14 @@ export function AshburnPage() {
               <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Home className="text-white" size={32} />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Roof Washing</h3>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Roof Cleaning</h3>
               <p className="text-slate-700 leading-relaxed mb-4">
-                Safely remove black streaks caused by Gloeocapsa magma algae. Our soft wash method extends your roof's lifespan without damaging shingles—perfect for Ashburn's common architectural roofing.
+                Safely remove algae and black streaks caused by Gloeocapsa magma bacteria. Our soft wash method extends your roof's lifespan without damaging shingles—perfect for Ashburn's common architectural roofing.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start text-slate-700">
                   <CheckCircle2 size={18} className="text-blue-600 mr-2 mt-1 flex-shrink-0" />
-                  <span>Removes algae & black streaks</span>
+                  <span>Remove algae & black streaks</span>
                 </li>
                 <li className="flex items-start text-slate-700">
                   <CheckCircle2 size={18} className="text-blue-600 mr-2 mt-1 flex-shrink-0" />
@@ -132,9 +145,9 @@ export function AshburnPage() {
               <div className="w-16 h-16 bg-cyan-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Droplets className="text-white" size={32} />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Soft Wash Siding</h3>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Vinyl Siding Cleaning</h3>
               <p className="text-slate-700 leading-relaxed mb-4">
-                Gentle, effective cleaning for vinyl and Hardie board siding—the most common materials in Ashburn. Remove green algae, mold, and dirt without high-pressure damage.
+                Gentle, effective vinyl siding cleaning and soft wash for Hardie board—the most common materials in Ashburn. Remove algae, green mold, and dirt without high-pressure damage from power washing.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start text-slate-700">
@@ -143,7 +156,7 @@ export function AshburnPage() {
                 </li>
                 <li className="flex items-start text-slate-700">
                   <CheckCircle2 size={18} className="text-cyan-600 mr-2 mt-1 flex-shrink-0" />
-                  <span>Removes green algae completely</span>
+                  <span>Remove algae completely</span>
                 </li>
                 <li className="flex items-start text-slate-700">
                   <CheckCircle2 size={18} className="text-cyan-600 mr-2 mt-1 flex-shrink-0" />
@@ -175,6 +188,28 @@ export function AshburnPage() {
                 </li>
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              Serving Ashburn Communities
+            </h2>
+            <p className="text-xl text-slate-600">
+              See why Ashburn residents trust our professional cleaning services
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <DynamicSectionImage
+              section="locations/ashburn-local"
+              title="Ashburn Local Service Area"
+              altText="Professional cleaning services in Ashburn, Virginia"
+              className="w-full rounded-2xl shadow-2xl"
+            />
           </div>
         </div>
       </section>
