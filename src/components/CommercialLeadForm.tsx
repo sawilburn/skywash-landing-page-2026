@@ -9,6 +9,7 @@ export function CommercialLeadForm() {
     email: '',
     phone: '',
     company_name: '',
+    job_title: '',
     facility_type: 'data-center',
     details: ''
   });
@@ -27,7 +28,7 @@ export function CommercialLeadForm() {
         email: formData.email,
         phone: formData.phone,
         company_name: formData.company_name,
-        details: `Company: ${formData.company_name}\nFacility Type: ${formData.facility_type}\n\n${formData.details}`
+        details: `Company: ${formData.company_name}\nJob Title: ${formData.job_title}\nFacility Type: ${formData.facility_type}\n\n${formData.details}`
       };
 
       const { error } = await supabase.from('leads').insert([leadData]);
@@ -85,6 +86,7 @@ export function CommercialLeadForm() {
         email: '',
         phone: '',
         company_name: '',
+        job_title: '',
         facility_type: 'data-center',
         details: ''
       });
@@ -156,20 +158,36 @@ export function CommercialLeadForm() {
                 </div>
 
                 <div>
-                  <label htmlFor="company_name" className="block text-sm font-semibold text-slate-700 mb-2">
-                    Company Name *
+                  <label htmlFor="job_title" className="block text-sm font-semibold text-slate-700 mb-2">
+                    Job Title *
                   </label>
                   <input
                     type="text"
-                    id="company_name"
-                    name="company_name"
+                    id="job_title"
+                    name="job_title"
                     required
-                    value={formData.company_name}
+                    value={formData.job_title}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#1a3c75] focus:border-transparent transition-all"
-                    placeholder="Acme Corporation"
+                    placeholder="Facilities Manager"
                   />
                 </div>
+              </div>
+
+              <div>
+                <label htmlFor="company_name" className="block text-sm font-semibold text-slate-700 mb-2">
+                  Company Name *
+                </label>
+                <input
+                  type="text"
+                  id="company_name"
+                  name="company_name"
+                  required
+                  value={formData.company_name}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#1a3c75] focus:border-transparent transition-all"
+                  placeholder="Acme Corporation"
+                />
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">

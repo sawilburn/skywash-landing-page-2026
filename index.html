@@ -2,12 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/skywash-favicon.png" />
+    <link rel="apple-touch-icon" href="/skywash-icon-192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Skywash Innovations Service Site</title>
-    <meta property="og:image" content="https://bolt.new/static/og_default.png" />
+
+    <!-- Default meta tags - will be updated dynamically by React -->
+    <title>Skywash Innovations - Professional Power Washing & Drone Facade Cleaning | Virginia</title>
+    <meta name="description" content="FAA Part 107 certified drone facade cleaning and professional power washing services in Virginia. OSHA compliant, eco-friendly solutions for residential and commercial properties." />
+    <link rel="canonical" href="https://skywashinnovations.com" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://skywashinnovations.com" />
+    <meta property="og:title" content="Skywash Innovations - Professional Power Washing & Drone Cleaning" />
+    <meta property="og:description" content="FAA Part 107 certified drone facade cleaning and professional power washing services. OSHA compliant, eco-friendly solutions." />
+    <meta property="og:image" content="https://skywashinnovations.com/skywash-og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://bolt.new/static/og_default.png" />
+    <meta name="twitter:url" content="https://skywashinnovations.com" />
+    <meta name="twitter:title" content="Skywash Innovations - Professional Power Washing & Drone Cleaning" />
+    <meta name="twitter:description" content="FAA Part 107 certified drone facade cleaning and professional power washing services." />
+    <meta name="twitter:image" content="https://skywashinnovations.com/skywash-og-image.png" />
+
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Skywash Innovations" />
+    <meta name="theme-color" content="#0284c7" />
 
     <!-- Google Tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17355421094"></script>
@@ -16,11 +39,14 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'AW-17355421094');
+
+      // Make gtag available globally for route change tracking
+      window.gtag = gtag;
     </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <img src="https://tracker.metricool.com/c3po.jpg?hash=10ed92ffdb34203b3ca294b60096f66e"/>
+    <img src="https://tracker.metricool.com/c3po.jpg?hash=10ed92ffdb34203b3ca294b60096f66e" alt="" style="position:absolute;left:-9999px;" />
   </body>
 </html>

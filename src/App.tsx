@@ -39,15 +39,17 @@ import { ResidentialSpring2026Page } from './pages/ResidentialSpring2026Page';
 import { ArlingtonSTEMProgramPage } from './pages/ArlingtonSTEMProgramPage';
 import { SitemapPage } from './pages/SitemapPage';
 import { WhyChooseUsPage } from './pages/WhyChooseUsPage';
+import { useSEO } from './hooks/useSEO';
 
-function App() {
+function AppContent() {
+  useSEO();
+
   return (
-    <BrowserRouter>
-      <div className="min-h-screen">
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/commercial" element={<CommercialPage />} />
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/commercial" element={<CommercialPage />} />
           <Route path="/commercial/window-cleaning" element={<CommercialWindowCleaningPage />} />
           <Route path="/commercial/hotel-cleaning" element={<HotelCleaningPage />} />
           <Route path="/commercial/data-center-cleaning" element={<DataCenterCleaningPage />} />
@@ -85,7 +87,16 @@ function App() {
           <Route path="/admin/upload-image" element={<ImageUploadPage />} />
           <Route path="/validate" element={<ValidationPage />} />
         </Routes>
-        <Footer />
+      <Footer />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="min-h-screen">
+        <AppContent />
       </div>
     </BrowserRouter>
   );
