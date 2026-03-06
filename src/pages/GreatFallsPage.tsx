@@ -1,4 +1,6 @@
 import { Plane, Crown, Shield, Sparkles, MapPin, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 
 export function GreatFallsPage() {
   const scrollToContact = () => {
@@ -25,28 +27,39 @@ export function GreatFallsPage() {
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight tracking-tight">
-              Preserving Great Falls
+              Power Washing &
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-300 to-blue-200">
-                Estates with Precision
+                Roof Cleaning for
               </span>
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
-                Drone Technology
+                Great Falls Estates
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto mb-12 leading-relaxed">
-              The safest, most effective exterior cleaning for large estates. Specialized care for slate, cedar, and custom architecture.
+            <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto mb-8 leading-relaxed">
+              Professional exterior house cleaning with soft wash technology. Remove algae from vinyl siding, roofs, and custom architecture. Window cleaning for multi-story estates.
             </p>
 
-            <button
-              onClick={scrollToContact}
-              className="inline-flex items-center gap-3 bg-white text-slate-900 px-10 py-5 rounded-lg text-lg font-semibold hover:bg-slate-50 transform transition-all duration-300 hover:scale-105 shadow-2xl"
+            <Link
+              to="/specials/residential-spring-2026"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg text-base font-bold hover:from-green-600 hover:to-emerald-700 transform transition-all duration-300 hover:scale-105 shadow-lg mb-8 border-2 border-white/20"
             >
-              Request a Private Consultation
-              <span className="text-xl">→</span>
-            </button>
+              <Sparkles size={20} />
+              Spring 2026 Special Pricing Available
+              <span className="text-lg">→</span>
+            </Link>
+
+            <div className="mb-8">
+              <button
+                onClick={scrollToContact}
+                className="inline-flex items-center gap-3 bg-white text-slate-900 px-10 py-5 rounded-lg text-lg font-semibold hover:bg-slate-50 transform transition-all duration-300 hover:scale-105 shadow-2xl"
+              >
+                Request a Private Consultation
+                <span className="text-xl">→</span>
+              </button>
+            </div>
 
             <div className="mt-16 flex flex-wrap justify-center gap-12 text-white text-sm">
               <div className="flex items-center gap-3">
@@ -81,19 +94,19 @@ export function GreatFallsPage() {
 
             <div className="space-y-8 text-slate-700 leading-relaxed">
               <p className="text-xl md:text-2xl font-light leading-relaxed">
-                Great Falls estates feature some of the finest architectural materials in the region—slate roofing, cedar shake, clay tile, and custom stonework. These premium surfaces require specialized care that traditional pressure washing and ladder-based cleaning simply cannot provide without risk of damage.
+                Great Falls estates feature some of the finest architectural materials in the region—slate roofing, cedar shake, clay tile, and custom stonework. These premium surfaces require specialized exterior house cleaning and power washing that traditional pressure washing and ladder-based cleaning simply cannot provide without risk of damage.
               </p>
 
               <div className="bg-slate-50 rounded-2xl p-8 md:p-12 border border-slate-200">
                 <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
-                  Why Traditional Methods Fail Premium Materials
+                  Why Traditional Power Washing Fails Premium Materials
                 </h3>
                 <div className="space-y-4 text-lg">
                   <p>
                     Walking on slate, tile, or cedar shake roofs causes micro-fractures and dislodges fasteners—damage that may not be visible immediately but compromises the roof's integrity and lifespan. A single misplaced step can crack a slate tile worth hundreds of dollars.
                   </p>
                   <p>
-                    High-pressure washing strips protective coatings from stone facades, damages wood grain in cedar, and forces water behind siding systems, leading to costly moisture intrusion and rot.
+                    High-pressure power washing strips protective coatings from stone facades, damages wood grain in cedar, and forces water behind vinyl siding systems, leading to costly moisture intrusion and rot. Traditional roof cleaning methods can remove algae but damage the surface.
                   </p>
                 </div>
               </div>
@@ -102,15 +115,15 @@ export function GreatFallsPage() {
                 <div className="flex items-start gap-4 mb-6">
                   <Sparkles className="text-blue-600 flex-shrink-0 mt-1" size={32} />
                   <h3 className="text-2xl md:text-3xl font-bold text-slate-900">
-                    Touchless Drone Technology: The Solution
+                    Soft Wash Technology: The Safe Solution
                   </h3>
                 </div>
                 <div className="space-y-4 text-lg text-slate-700">
                   <p>
-                    Our advanced drone soft washing system cleans delicate surfaces without anyone ever stepping foot on your roof or touching your exterior materials. Using precisely calibrated low-pressure application and professional-grade cleaning solutions, we remove organic growth, pollution stains, and environmental buildup safely and effectively.
+                    Our advanced drone soft wash system provides gentle exterior house cleaning for delicate surfaces without anyone ever stepping foot on your roof or touching your exterior materials. Using precisely calibrated low-pressure application and professional-grade cleaning solutions, we remove algae, organic growth, pollution stains, and environmental buildup safely and effectively from vinyl siding, roofs, and windows.
                   </p>
                   <p className="font-semibold text-slate-900">
-                    This is true estate maintenance—protecting your investment while preserving the beauty and integrity of premium materials.
+                    This is true estate maintenance—protecting your investment while preserving the beauty and integrity of premium materials through proper roof cleaning and vinyl siding cleaning.
                   </p>
                 </div>
               </div>
@@ -152,10 +165,10 @@ export function GreatFallsPage() {
                 <Crown className="text-white" size={36} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
-                Delicate Roof Washing
+                Delicate Roof Cleaning
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Specialized soft wash treatment for slate, cedar shake, and tile roofs. Our touchless system removes algae, lichen, and moss without foot traffic or high pressure.
+                Specialized soft wash roof cleaning treatment for slate, cedar shake, and tile roofs. Our touchless system removes algae, lichen, and moss without foot traffic or high-pressure power washing.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start text-slate-700">
@@ -182,10 +195,10 @@ export function GreatFallsPage() {
                 <Shield className="text-white" size={36} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
-                Estate Exterior Cleaning
+                Estate Exterior House Cleaning
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Gentle cleaning for large surface areas, stone facades, and stucco exteriors. No high pressure damage to mortar, wood grain, or protective coatings.
+                Gentle vinyl siding cleaning for large surface areas, stone facades, and stucco exteriors. Soft wash technology removes algae without high-pressure power washing damage to mortar, wood grain, or protective coatings.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start text-slate-700">
@@ -212,10 +225,10 @@ export function GreatFallsPage() {
                 <Sparkles className="text-white" size={36} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
-                High-Access Windows
+                High-Access Window Cleaning
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Crystal-clear cleaning for hard-to-reach windows on multi-story foyers, grand entryways, and architectural features without scaffolding.
+                Professional window cleaning for hard-to-reach windows on multi-story foyers, grand entryways, and architectural features without scaffolding. Crystal-clear results using soft wash techniques.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start text-slate-700">
@@ -236,6 +249,28 @@ export function GreatFallsPage() {
                 </li>
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              Serving Great Falls Estates
+            </h2>
+            <p className="text-xl text-slate-600">
+              Trusted by Northern Virginia's finest properties
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <DynamicSectionImage
+              section="locations/greatfalls-local"
+              title="Great Falls Local Service Area"
+              altText="Professional cleaning services for Great Falls estates in Virginia"
+              className="w-full rounded-2xl shadow-2xl"
+            />
           </div>
         </div>
       </section>

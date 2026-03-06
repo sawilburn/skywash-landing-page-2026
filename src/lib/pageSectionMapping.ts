@@ -352,6 +352,12 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
         displayName: 'Great Falls Hero Image',
         suggestedAltText: 'Professional cleaning services in Great Falls, VA',
         description: 'Main hero image for Great Falls location page'
+      },
+      {
+        id: 'locations/greatfalls-local',
+        displayName: 'Great Falls Local Service Area',
+        suggestedAltText: 'Professional cleaning services for Great Falls estates in Virginia',
+        description: 'Local Great Falls area image showing premium estates and properties'
       }
     ]
   },
