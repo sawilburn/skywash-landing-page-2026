@@ -422,6 +422,24 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
     ]
   },
   {
+    pageName: 'Oakton',
+    category: 'locations',
+    sections: [
+      {
+        id: 'locations/oakton-hero',
+        displayName: 'Oakton Hero Image',
+        suggestedAltText: 'Professional power washing and cleaning services in Oakton, VA',
+        description: 'Main hero image for Oakton location page'
+      },
+      {
+        id: 'locations/oakton-local',
+        displayName: 'Oakton Local Service Area',
+        suggestedAltText: 'Professional power washing and exterior cleaning services in Oakton, VA',
+        description: 'Local Oakton area image showing Vale, Waples Mill, and surrounding neighborhoods'
+      }
+    ]
+  },
+  {
     pageName: 'Partners & Memberships',
     category: 'partners-memberships',
     sections: [
