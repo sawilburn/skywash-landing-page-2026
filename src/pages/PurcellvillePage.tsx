@@ -1,4 +1,6 @@
 import { Home, Building2, Sparkles, MapPin, Heart, Users, Plane, Shield, CheckCircle2, Star, Award, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 
 export function PurcellvillePage() {
   const scrollToContact = () => {
@@ -26,25 +28,38 @@ export function PurcellvillePage() {
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight tracking-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">
-                Purcellville's Own
+                Power Washing &
               </span>
               <br />
-              Drone Exterior
+              Roof Cleaning
               <br />
-              Cleaning Experts
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-blue-200">
+                Purcellville Experts
+              </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed">
-              Locally owned, high-tech cleaning for Western Loudoun. Safe soft washing for your roof and siding, right from your neighbors.
+            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8 leading-relaxed">
+              Professional exterior house cleaning with soft wash technology. Remove algae from vinyl siding and roofs. Safe window cleaning for Western Loudoun homes, right from your neighbors.
             </p>
 
-            <button
-              onClick={scrollToContact}
-              className="inline-flex items-center gap-3 bg-white text-blue-900 px-10 py-5 rounded-lg text-lg font-semibold hover:bg-blue-50 transform transition-all duration-300 hover:scale-105 shadow-2xl"
+            <Link
+              to="/specials/residential-spring-2026"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg text-base font-bold hover:from-green-600 hover:to-emerald-700 transform transition-all duration-300 hover:scale-105 shadow-lg mb-8 border-2 border-white/20"
             >
-              Get a Local Quote
-              <span className="text-xl">→</span>
-            </button>
+              <Sparkles size={20} />
+              Spring 2026 Special Pricing Available
+              <span className="text-lg">→</span>
+            </Link>
+
+            <div className="mb-8">
+              <button
+                onClick={scrollToContact}
+                className="inline-flex items-center gap-3 bg-white text-blue-900 px-10 py-5 rounded-lg text-lg font-semibold hover:bg-blue-50 transform transition-all duration-300 hover:scale-105 shadow-2xl"
+              >
+                Get a Local Quote
+                <span className="text-xl">→</span>
+              </button>
+            </div>
 
             <div className="mt-16 flex flex-wrap justify-center gap-12 text-white text-sm">
               <div className="flex items-center gap-3">
@@ -87,13 +102,13 @@ export function PurcellvillePage() {
                 </div>
                 <div className="space-y-4 text-lg text-slate-700 leading-relaxed">
                   <p>
-                    Skywash Innovations isn't a national franchise or a remote operation. We're <span className="font-semibold text-blue-800">headquartered right here in Purcellville</span>, and this is the community we call home.
+                    Skywash Innovations isn't a national franchise or a remote operation. We're <span className="font-semibold text-blue-800">headquartered right here in Purcellville</span>, providing professional power washing, roof cleaning, and exterior house cleaning services to the community we call home.
                   </p>
                   <p>
-                    Whether you live in <span className="font-semibold">The Villages of Purcellville</span>, <span className="font-semibold">Hirst Farm</span>, <span className="font-semibold">Wright Farm</span>, or out on a rural lot on the edge of town, we treat your home with the care of a neighbor—because that's exactly what we are.
+                    Whether you live in <span className="font-semibold">The Villages of Purcellville</span>, <span className="font-semibold">Hirst Farm</span>, <span className="font-semibold">Wright Farm</span>, or out on a rural lot on the edge of town, we remove algae from vinyl siding cleaning with soft wash technology and provide safe window cleaning—treating your home with the care of a neighbor.
                   </p>
                   <p>
-                    When you hire Skywash, you're supporting a local business that invests back into Western Loudoun. We understand the unique character of our homes, from historic farmhouses to modern developments, and we deliver cleaning solutions tailored to our local architecture and climate.
+                    When you hire Skywash, you're supporting a local business that invests back into Western Loudoun. We understand the unique character of our homes, from historic farmhouses to modern developments, and deliver power washing and roof cleaning solutions tailored to our local architecture and climate.
                   </p>
                 </div>
               </div>
@@ -184,10 +199,10 @@ export function PurcellvillePage() {
                 <Home className="text-white" size={32} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                Residential House Washing
+                Power Washing & Exterior House Cleaning
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Keep your Purcellville home looking fresh and clean. Our gentle soft wash removes algae and road grime from vinyl, Hardie, and brick siding without damage.
+                Keep your Purcellville home looking fresh with professional exterior house cleaning. Our gentle soft wash power washing removes algae and road grime from vinyl siding and brick without damage. Complete window cleaning included.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start text-slate-700">
@@ -214,10 +229,10 @@ export function PurcellvillePage() {
                 <Sparkles className="text-white" size={32} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                Roof Stain Removal
+                Roof Cleaning & Stain Removal
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Those black streaks on your roof aren't just unsightly—they reduce your home's value. We safely remove algae stains to improve curb appeal in our local neighborhoods.
+                Those black streaks on your roof aren't just unsightly—they reduce your home's value. Our soft wash roof cleaning safely removes algae stains with power washing methods to improve curb appeal in our local neighborhoods. Safe exterior house cleaning for all roof types.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start text-slate-700">
@@ -244,10 +259,10 @@ export function PurcellvillePage() {
                 <Building2 className="text-white" size={32} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                Main Street Commercial
+                Commercial Power Washing
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Purcellville's Main Street businesses deserve to shine. We keep storefronts, signage, and commercial buildings clean and welcoming for our community.
+                Purcellville's Main Street businesses deserve professional exterior house cleaning. Soft wash power washing for storefronts, signage, and commercial buildings. We remove algae from vinyl siding, provide window cleaning, and roof cleaning to keep your business welcoming.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start text-slate-700">
@@ -268,6 +283,28 @@ export function PurcellvillePage() {
                 </li>
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              Serving Purcellville & Western Loudoun
+            </h2>
+            <p className="text-xl text-slate-600">
+              Your hometown power washing and roof cleaning experts
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <DynamicSectionImage
+              section="locations/purcellville-local"
+              title="Purcellville Local Service Area"
+              altText="Professional power washing and exterior cleaning services in Purcellville, VA"
+              className="w-full rounded-2xl shadow-2xl"
+            />
           </div>
         </div>
       </section>

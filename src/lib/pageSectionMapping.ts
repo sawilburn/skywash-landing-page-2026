@@ -340,6 +340,12 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
         displayName: 'Purcellville Hero Image',
         suggestedAltText: 'Professional cleaning services in Purcellville, VA',
         description: 'Main hero image for Purcellville location page'
+      },
+      {
+        id: 'locations/purcellville-local',
+        displayName: 'Purcellville Local Service Area',
+        suggestedAltText: 'Professional power washing and exterior cleaning services in Purcellville, VA',
+        description: 'Local Purcellville area image showing neighborhoods, Main Street, and community'
       }
     ]
   },
