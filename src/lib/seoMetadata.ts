@@ -8,82 +8,82 @@ const baseUrl = 'https://skywashinnovations.com';
 
 export const pageMetadata: Record<string, PageMetadata> = {
   '/': {
-    title: 'Skywash Innovations - Professional Power Washing & Drone Facade Cleaning | Virginia',
+    title: 'Skywash Innovations | Drone & Power Washing Virginia',
     description: 'FAA Part 107 certified drone facade cleaning and professional power washing services in Virginia. OSHA compliant, eco-friendly solutions for residential and commercial properties.',
     canonical: baseUrl
   },
   '/residential': {
-    title: 'Residential Power Washing Services | House Washing & Roof Cleaning Virginia',
+    title: 'Residential Power Washing VA | House & Roof Cleaning',
     description: 'Expert residential power washing, house washing, roof cleaning, and soft wash services. Remove algae, restore siding, and protect your home with professional exterior cleaning.',
     canonical: `${baseUrl}/residential`
   },
   '/commercial': {
-    title: 'Commercial Power Washing & Drone Facade Cleaning | Skywash Innovations',
+    title: 'Commercial Power Washing VA | Drone Facade Cleaning',
     description: 'Professional commercial power washing and UAS drone facade cleaning. Free building analysis, OSHA compliant, minimal downtime. Serving hotels, data centers, retail, and more.',
     canonical: `${baseUrl}/commercial`
   },
   '/services/house-washing': {
-    title: 'Professional House Washing Services | Soft Wash & Power Washing Virginia',
+    title: 'House Washing VA | Soft Wash & Power Washing Services',
     description: 'Expert house washing with safe soft wash technology. Remove algae, dirt, and stains from vinyl siding, brick, stucco, and all exterior surfaces. Protect your home investment.',
     canonical: `${baseUrl}/services/house-washing`
   },
   '/services/roof-washing': {
-    title: 'Safe Roof Cleaning & Washing Services | Algae Removal Virginia',
+    title: 'Roof Cleaning VA | Safe Algae Removal & Soft Wash',
     description: 'Professional roof cleaning using gentle soft wash methods. Safely remove algae, black streaks, and organic growth. Extend roof lifespan without damaging shingles.',
     canonical: `${baseUrl}/services/roof-washing`
   },
   '/services/solar-washing': {
-    title: 'Solar Panel Cleaning & Washing Services | Drone Technology Virginia',
+    title: 'Solar Panel Cleaning VA | Drone Technology Services',
     description: 'Professional solar panel cleaning using advanced drone technology. Maximize energy efficiency with safe, effective cleaning. No roof access required.',
     canonical: `${baseUrl}/services/solar-washing`
   },
   '/services/commercial-window-cleaning': {
-    title: 'Commercial Window Cleaning Services | High-Rise & Storefront Virginia',
+    title: 'Commercial Window Cleaning VA | High-Rise Services',
     description: 'Professional commercial window cleaning for high-rise buildings, retail storefronts, and offices. Rope access and drone technology available. Crystal clear results.',
     canonical: `${baseUrl}/services/commercial-window-cleaning`
   },
   '/commercial/data-center-cleaning': {
-    title: 'Data Center Exterior Cleaning Services | OSHA Compliant Virginia',
+    title: 'Data Center Cleaning VA | OSHA Compliant Services',
     description: 'Specialized data center exterior cleaning with zero downtime. OSHA compliant, security-conscious protocols. Power washing and facade maintenance for mission-critical facilities.',
     canonical: `${baseUrl}/commercial/data-center-cleaning`
   },
   '/commercial/hotel-cleaning': {
-    title: 'Hotel Exterior Cleaning Services | Power Washing & Facade Restoration',
+    title: 'Hotel Exterior Cleaning VA | Power Wash & Facade',
     description: 'Professional hotel exterior cleaning services. Enhance curb appeal with power washing, window cleaning, and facade restoration. Flexible scheduling to minimize guest disruption.',
     canonical: `${baseUrl}/commercial/hotel-cleaning`
   },
   '/commercial/large-retail-cleaning': {
-    title: 'Large Retail Store Cleaning | Exterior Power Washing Virginia',
+    title: 'Retail Store Cleaning VA | Exterior Power Washing',
     description: 'Professional retail exterior cleaning for shopping centers and big-box stores. Power washing, window cleaning, and storefront restoration. Maintain brand image.',
     canonical: `${baseUrl}/commercial/large-retail-cleaning`
   },
   '/commercial/medical-cleaning': {
-    title: 'Medical Facility Exterior Cleaning | OSHA & HIPAA Compliant Virginia',
+    title: 'Medical Facility Cleaning VA | OSHA & HIPAA Compliant',
     description: 'Professional medical facility exterior cleaning with strict compliance protocols. OSHA certified, HIPAA-aware procedures. Safe, hygienic power washing services.',
     canonical: `${baseUrl}/commercial/medical-cleaning`
   },
   '/commercial/schools-university-cleaning': {
-    title: 'School & University Cleaning Services | Educational Facility Maintenance',
+    title: 'School & University Cleaning VA | Facility Services',
     description: 'Professional exterior cleaning for schools and universities. Safe, eco-friendly power washing during breaks. Maintain educational facility appearance year-round.',
     canonical: `${baseUrl}/commercial/schools-university-cleaning`
   },
   '/commercial/church-cleaning': {
-    title: 'Church Exterior Cleaning Services | Steeple & Facade Restoration Virginia',
+    title: 'Church Cleaning VA | Steeple & Facade Restoration',
     description: 'Professional church exterior cleaning and restoration. Gentle soft wash for historic buildings. Steeple cleaning, facade restoration, and protective treatments.',
     canonical: `${baseUrl}/commercial/church-cleaning`
   },
   '/commercial/convenience-store-cleaning': {
-    title: 'Convenience Store Cleaning | Gas Station Power Washing Virginia',
+    title: 'Convenience Store Cleaning VA | Gas Station Washing',
     description: 'Professional convenience store and gas station exterior cleaning. 24/7 scheduling, quick turnaround. Power washing, window cleaning, and canopy maintenance.',
     canonical: `${baseUrl}/commercial/convenience-store-cleaning`
   },
   '/commercial/multi-unit-residential': {
-    title: 'Multi-Unit Residential Cleaning | Apartment & Condo Power Washing',
+    title: 'Multi-Unit Residential VA | Apartment Power Washing',
     description: 'Professional exterior cleaning for apartments, condos, and HOAs. Building washing, walkway cleaning, and common area maintenance. Increase property value.',
     canonical: `${baseUrl}/commercial/multi-unit-residential`
   },
   '/locations/arlington-stem': {
-    title: 'Arlington STEM Education Program | Drone Technology & Aviation Skywash',
+    title: 'Arlington STEM Program | Drone Technology Education',
     description: 'Free STEM education program in Arlington, VA. Learn about drone technology, aviation, and UAS applications. FAA Part 107 pilot instruction for students.',
     canonical: `${baseUrl}/locations/arlington-stem`
   },

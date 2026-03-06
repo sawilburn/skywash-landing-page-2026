@@ -7,9 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Default meta tags - will be updated dynamically by React -->
-    <title>Skywash Innovations - Professional Power Washing & Drone Facade Cleaning | Virginia</title>
+    <title>Skywash Innovations | Drone & Power Washing Virginia</title>
     <meta name="description" content="FAA Part 107 certified drone facade cleaning and professional power washing services in Virginia. OSHA compliant, eco-friendly solutions for residential and commercial properties." />
     <link rel="canonical" href="https://skywashinnovations.com" />
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -32,13 +35,21 @@
     <meta name="author" content="Skywash Innovations" />
     <meta name="theme-color" content="#0284c7" />
 
-    <!-- Google Tag (gtag.js) -->
+    <!-- Google Tag (gtag.js) - Google Ads & GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17355421094"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+
+      // Google Ads configuration
       gtag('config', 'AW-17355421094');
+
+      // Google Analytics 4 configuration
+      // Replace G-XXXXXXXXXX with your actual GA4 Measurement ID
+      gtag('config', 'G-XXXXXXXXXX', {
+        send_page_view: false // We'll handle page views manually in React
+      });
 
       // Make gtag available globally for route change tracking
       window.gtag = gtag;

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getPageMetadata } from '../lib/seoMetadata';
+import { trackPageView } from '../utils/tracking';
 
 declare global {
   interface Window {
@@ -47,13 +48,7 @@ export function useSEO() {
     updateOrCreateMetaTag('meta[name="twitter:description"]', 'name', metadata.description);
     updateOrCreateMetaTag('meta[name="twitter:url"]', 'name', metadata.canonical);
 
-    if (window.gtag) {
-      window.gtag('event', 'page_view', {
-        page_path: location.pathname + location.search,
-        page_title: metadata.title,
-        page_location: window.location.href
-      });
-    }
+    trackPageView(metadata.title, window.location.href);
 
     window.scrollTo(0, 0);
   }, [location]);

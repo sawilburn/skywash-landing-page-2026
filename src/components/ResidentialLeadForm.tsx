@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Send, CheckCircle, Home, Droplets, Wind, Square } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import { trackConversion } from '../utils/tracking';
+import { trackFormSubmit } from '../utils/tracking';
 
 export function ResidentialLeadForm() {
   const [formData, setFormData] = useState({
@@ -83,7 +83,7 @@ export function ResidentialLeadForm() {
         console.info('Zoho CRM sync not available in preview (will work in production)');
       }
 
-      trackConversion();
+      trackFormSubmit('residential-lead-form', 'residential-services');
       setSubmitStatus('success');
       setFormData({
         contact_name: '',

@@ -6,7 +6,7 @@ import { Footer } from '../components/Footer';
 import { DynamicBeforeAfterSlider } from '../components/DynamicBeforeAfterSlider';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { supabase } from '../lib/supabase';
-import { trackConversion } from '../utils/tracking';
+import { trackFormSubmit } from '../utils/tracking';
 
 const packages = [
   {
@@ -182,7 +182,7 @@ export function ResidentialSpring2026Page() {
         console.info('Zoho CRM sync not available in preview (will work in production)');
       }
 
-      trackConversion();
+      trackFormSubmit('spring-2026-special', selectedPackage);
       setSubmitStatus('success');
       setFormData({
         contact_name: '',

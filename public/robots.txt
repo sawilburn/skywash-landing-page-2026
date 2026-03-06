@@ -1,0 +1,14 @@
+# Skywash Innovations - robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow admin and internal pages
+Disallow: /admin/
+Disallow: /validate
+
+# Sitemap location
+Sitemap: https://skywashinnovations.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

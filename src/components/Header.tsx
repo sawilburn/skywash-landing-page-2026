@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MessageSquare } from 'lucide-react';
 import { TrustBar } from './TrustBar';
 import { PromotionalBanner } from './PromotionalBanner';
+import { trackPhoneClick } from '../utils/tracking';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -101,6 +102,7 @@ export function Header() {
                 </Link>
                 <a
                   href="tel:+17037550865"
+                  onClick={() => trackPhoneClick('+17037550865', 'header-desktop')}
                   className="flex items-center space-x-2 text-slate-700 hover:text-[#1a3c75] font-medium transition-colors"
                 >
                   <Phone size={18} />
@@ -163,7 +165,10 @@ export function Header() {
               <a
                 href="tel:+17037550865"
                 className="flex items-center space-x-2 bg-cyan-500 text-white px-6 py-3 rounded-lg hover:bg-cyan-600 transition-colors font-medium text-center justify-center"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  trackPhoneClick('+17037550865', 'header-mobile-menu');
+                  setIsMobileMenuOpen(false);
+                }}
               >
                 <Phone size={18} />
                 <span>Call Now</span>
@@ -181,6 +186,7 @@ export function Header() {
 
       <a
         href="tel:+17037550865"
+        onClick={() => trackPhoneClick('+17037550865', 'sticky-button-mobile')}
         className="fixed bottom-24 right-4 z-40 bg-cyan-600 text-white p-4 rounded-full shadow-2xl hover:bg-cyan-700 transition-all duration-300 hover:scale-110 flex items-center justify-center group lg:hidden"
         aria-label="Click to Call"
       >
@@ -204,6 +210,7 @@ export function Header() {
       <div className="hidden lg:flex fixed bottom-6 right-6 z-40 gap-3">
         <a
           href="tel:+17037550865"
+          onClick={() => trackPhoneClick('+17037550865', 'sticky-button-desktop')}
           className="bg-cyan-600 text-white px-6 py-3 rounded-full shadow-2xl hover:bg-cyan-700 transition-all duration-300 hover:scale-105 flex items-center gap-2 font-semibold"
         >
           <Phone size={20} />
