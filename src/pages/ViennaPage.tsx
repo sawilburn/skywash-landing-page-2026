@@ -1,4 +1,4 @@
-import { Home, Building2, Sparkles, MapPin, Heart, Users, Shield, CheckCircle2, Star, Award, Clock, Train } from 'lucide-react';
+import { Home, Building2, Sparkles, MapPin, Heart, Users, Shield, CheckCircle2, Star, Award, Clock, Brain as Train } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
 
