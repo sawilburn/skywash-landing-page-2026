@@ -1,4 +1,6 @@
-import { Home, Warehouse, Grid3x3, Shield, CheckCircle2, MapPin, Plane, Leaf, Mountain, Award, Clock } from 'lucide-react';
+import { Home, Warehouse, Grid3x3, Shield, CheckCircle2, MapPin, Plane, Leaf, Mountain, Award, Clock, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { DynamicSectionImage } from '../components/DynamicSectionImage';
 
 export function MiddleburgPage() {
   const scrollToContact = () => {
@@ -25,30 +27,41 @@ export function MiddleburgPage() {
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight tracking-tight">
-              Premier Exterior
+              Power Washing &
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-green-200">
-                Cleaning for
+                Roof Cleaning for
               </span>
               <br />
               Middleburg Estates
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-stone-300 to-amber-200">
-                & Farms
+                & Horse Farms
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto mb-12 leading-relaxed">
-              Preserving the beauty of Virginia's Horse Country. Specialized drone cleaning for manor houses, barns, and riding arenas.
+            <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto mb-8 leading-relaxed">
+              Professional exterior house cleaning with soft wash technology. Remove algae from vinyl siding, roofs, barns, and manor houses. Safe window cleaning and roof cleaning for Virginia's Horse Country.
             </p>
 
-            <button
-              onClick={scrollToContact}
-              className="inline-flex items-center gap-3 bg-white text-slate-900 px-10 py-5 rounded-lg text-lg font-semibold hover:bg-slate-50 transform transition-all duration-300 hover:scale-105 shadow-2xl"
+            <Link
+              to="/specials/residential-spring-2026"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg text-base font-bold hover:from-green-600 hover:to-emerald-700 transform transition-all duration-300 hover:scale-105 shadow-lg mb-8 border-2 border-white/20"
             >
-              Schedule an Estate Consultation
-              <span className="text-xl">→</span>
-            </button>
+              <Sparkles size={20} />
+              Spring 2026 Special Pricing Available
+              <span className="text-lg">→</span>
+            </Link>
+
+            <div className="mb-8">
+              <button
+                onClick={scrollToContact}
+                className="inline-flex items-center gap-3 bg-white text-slate-900 px-10 py-5 rounded-lg text-lg font-semibold hover:bg-slate-50 transform transition-all duration-300 hover:scale-105 shadow-2xl"
+              >
+                Schedule an Estate Consultation
+                <span className="text-xl">→</span>
+              </button>
+            </div>
 
             <div className="mt-16 flex flex-wrap justify-center gap-12 text-white text-sm">
               <div className="flex items-center gap-3">
@@ -91,13 +104,13 @@ export function MiddleburgPage() {
                 </div>
                 <div className="space-y-4 text-lg text-slate-700 leading-relaxed">
                   <p>
-                    Middleburg's equestrian properties feature impressive agricultural buildings—from traditional timber barns to modern indoor riding arenas with soaring metal roofs. Traditional cleaning methods require heavy boom lifts that tear up turf, compact soil, and stress livestock with noise and movement.
+                    Middleburg's equestrian properties feature impressive agricultural buildings—from traditional timber barns to modern indoor riding arenas with soaring metal roofs. Traditional power washing methods require heavy boom lifts that tear up turf, compact soil, and stress livestock with noise and movement.
                   </p>
                   <p>
-                    Our <span className="font-semibold text-emerald-800">drone soft washing system</span> eliminates these concerns entirely. We clean high peaks, cupolas, and expansive metal roofs from a distance, with zero equipment weight on your fields. No tracks across paddocks. No machinery near horses. No damage to your carefully maintained grounds.
+                    Our <span className="font-semibold text-emerald-800">drone soft wash system</span> eliminates these concerns entirely for complete exterior house cleaning. We provide roof cleaning for high peaks, cupolas, and expansive metal roofs from a distance, with zero equipment weight on your fields. No tracks across paddocks. No machinery near horses. No damage to your carefully maintained grounds. Vinyl siding cleaning and window cleaning included.
                   </p>
                   <p>
-                    The gentle soft wash method removes oxidation, algae, and biological growth that dull metal surfaces—restoring the professional appearance your property deserves. Whether it's a historic timber barn or a modern training facility, we deliver exceptional results while respecting your land and livestock.
+                    The gentle soft wash method removes oxidation and algae and biological growth that dull metal surfaces—restoring the professional appearance your property deserves. Whether it's a historic timber barn or a modern training facility, we deliver exceptional power washing results while respecting your land and livestock.
                   </p>
                 </div>
               </div>
@@ -111,10 +124,10 @@ export function MiddleburgPage() {
                     </h3>
                   </div>
                   <p className="text-slate-700 text-lg leading-relaxed mb-4">
-                    Miles of pristine white board fencing define Virginia horse country. Over time, mold, mildew, and algae turn that brilliant white into dull gray. Traditional pressure washing can damage wood fibers and create splintering that injures horses.
+                    Miles of pristine white board fencing define Virginia horse country. Over time, mold, mildew, and algae turn that brilliant white into dull gray. Traditional power washing can damage wood fibers and create splintering that injures horses.
                   </p>
                   <p className="text-slate-700 text-lg leading-relaxed">
-                    Our efficient drone soft wash system restores fencing to its original brilliance quickly and safely. We can treat extensive perimeters in a fraction of the time required by manual crews—minimizing disruption to your farm operations while delivering consistently beautiful results.
+                    Our efficient drone soft wash system provides exterior house cleaning that restores fencing to its original brilliance quickly and safely. We remove algae and can treat extensive perimeters in a fraction of the time required by manual crews—minimizing disruption to your farm operations while delivering consistently beautiful vinyl siding cleaning and window cleaning results.
                   </p>
                 </div>
 
@@ -188,10 +201,10 @@ export function MiddleburgPage() {
                 <Home className="text-white" size={32} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                Manor House Washing
+                Manor House Power Washing & Roof Cleaning
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Gentle, precision cleaning for historic stone, brick, and stucco manor homes. Our soft wash technology preserves architectural integrity while removing years of biological growth.
+                Gentle exterior house cleaning for historic stone, brick, and stucco manor homes. Our soft wash technology preserves architectural integrity while we remove algae and years of biological growth. Complete vinyl siding cleaning, window cleaning, and roof cleaning included.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start text-slate-700">
@@ -218,10 +231,10 @@ export function MiddleburgPage() {
                 <Warehouse className="text-white" size={32} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                Barn & Outbuilding Cleaning
+                Barn & Arena Roof Cleaning
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Restore the professional appearance of agricultural buildings. We remove oxidation and algae from metal roofs and siding without heavy equipment on your property.
+                Professional exterior house cleaning for agricultural buildings. Soft wash power washing to remove algae and oxidation from metal roofs and vinyl siding without heavy equipment on your property. Complete barn window cleaning and roof cleaning included.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start text-slate-700">
@@ -248,10 +261,10 @@ export function MiddleburgPage() {
                 <Grid3x3 className="text-white" size={32} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                Fence & Hardscape Cleaning
+                Fence Soft Wash & Hardscape Cleaning
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                Restore brilliant white board fencing and stone walls. Fast, efficient treatment of extensive perimeters without the time requirements of manual crews.
+                Restore brilliant white board fencing and stone walls with soft wash technology. Fast, efficient power washing to remove algae from extensive perimeters without the time requirements of manual crews. Safe vinyl siding cleaning for all fence materials.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start text-slate-700">
@@ -272,6 +285,28 @@ export function MiddleburgPage() {
                 </li>
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gradient-to-b from-white to-stone-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              Serving Virginia's Horse Country
+            </h2>
+            <p className="text-xl text-slate-600">
+              Professional power washing throughout the Piedmont Region
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <DynamicSectionImage
+              section="locations/middleburg-local"
+              title="Middleburg Local Service Area"
+              altText="Professional power washing and cleaning services in Middleburg, VA horse country"
+              className="w-full rounded-2xl shadow-2xl"
+            />
           </div>
         </div>
       </section>

@@ -352,6 +352,12 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
         displayName: 'Middleburg Hero Image',
         suggestedAltText: 'Professional cleaning services in Middleburg, VA',
         description: 'Main hero image for Middleburg location page'
+      },
+      {
+        id: 'locations/middleburg-local',
+        displayName: 'Middleburg Local Service Area',
+        suggestedAltText: 'Professional power washing and cleaning services in Middleburg, VA horse country',
+        description: 'Local Middleburg area image showing estates, horse farms, and equestrian properties'
       }
     ]
   },
