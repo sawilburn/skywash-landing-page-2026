@@ -386,6 +386,24 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
     ]
   },
   {
+    pageName: 'Vienna',
+    category: 'locations',
+    sections: [
+      {
+        id: 'locations/vienna-hero',
+        displayName: 'Vienna Hero Image',
+        suggestedAltText: 'Professional power washing and cleaning services in Vienna, VA',
+        description: 'Main hero image for Vienna location page'
+      },
+      {
+        id: 'locations/vienna-local',
+        displayName: 'Vienna Local Service Area',
+        suggestedAltText: 'Professional power washing and exterior cleaning services in Vienna, VA',
+        description: 'Local Vienna area image showing neighborhoods near Metro, Tysons Corner, and downtown'
+      }
+    ]
+  },
+  {
     pageName: 'Partners & Memberships',
     category: 'partners-memberships',
     sections: [
