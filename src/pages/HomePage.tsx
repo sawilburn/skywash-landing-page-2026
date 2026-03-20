@@ -19,21 +19,6 @@ export function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <div className="bg-gradient-to-r from-green-500 via-emerald-600 to-green-500 py-4 px-4 shadow-lg sticky top-20 z-40">
-        <div className="max-w-7xl mx-auto">
-          <Link
-            to="/specials/residential-spring-2026"
-            className="flex items-center justify-center gap-3 text-white hover:scale-105 transition-transform duration-300"
-          >
-            <Sparkles size={28} className="animate-pulse" />
-            <span className="text-xl md:text-2xl font-bold text-center">
-              Residential Spring Specials - Save Big on Exterior Cleaning!
-            </span>
-            <Sparkles size={28} className="animate-pulse" />
-          </Link>
-        </div>
-      </div>
-
       <section className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-900 via-[#1a3c75] to-slate-800 text-white pt-20">
         <div className="absolute inset-0 overflow-hidden opacity-20">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-3xl"></div>
@@ -41,6 +26,22 @@ export function HomePage() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <Link
+            to="/specials/residential-spring-2026"
+            className="block mb-8 bg-gradient-to-r from-green-500 via-emerald-600 to-green-500 rounded-2xl p-6 shadow-2xl hover:shadow-green-500/50 hover:scale-[1.02] transition-all duration-300"
+          >
+            <div className="flex items-center justify-center gap-3 text-white">
+              <Sparkles size={32} className="animate-pulse" />
+              <span className="text-2xl md:text-4xl font-bold text-center">
+                🌸 Residential Spring Specials - Limited Time Offers! 🌸
+              </span>
+              <Sparkles size={32} className="animate-pulse" />
+            </div>
+            <p className="text-center text-white/90 mt-2 text-lg font-semibold">
+              Click here to save big on exterior cleaning services!
+            </p>
+          </Link>
+
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-cyan-300 text-sm font-semibold mb-6">
               Unmanned Aerial Systems Technology
