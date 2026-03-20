@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen, MapPin, Phone, Mail, Play } from 'lucide-react';
+import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen, MapPin, Phone, Mail, Play, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SupabaseImage } from '../components/SupabaseImage';
 import { PartnersAndMemberships } from '../components/PartnersAndMemberships';
@@ -19,6 +19,21 @@ export function HomePage() {
 
   return (
     <div className="min-h-screen">
+      <div className="bg-gradient-to-r from-green-500 via-emerald-600 to-green-500 py-4 px-4 shadow-lg sticky top-20 z-40">
+        <div className="max-w-7xl mx-auto">
+          <Link
+            to="/specials/residential-spring-2026"
+            className="flex items-center justify-center gap-3 text-white hover:scale-105 transition-transform duration-300"
+          >
+            <Sparkles size={28} className="animate-pulse" />
+            <span className="text-xl md:text-2xl font-bold text-center">
+              Residential Spring Specials - Save Big on Exterior Cleaning!
+            </span>
+            <Sparkles size={28} className="animate-pulse" />
+          </Link>
+        </div>
+      </div>
+
       <section className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-900 via-[#1a3c75] to-slate-800 text-white pt-20">
         <div className="absolute inset-0 overflow-hidden opacity-20">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-3xl"></div>
