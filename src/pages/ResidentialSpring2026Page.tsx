@@ -20,8 +20,7 @@ const packages = [
       'Complete exterior house wash',
       'Professional soft wash technique',
       'Basic algae and mildew removal',
-      'Professional exterior window cleaning',
-      'Enhanced spot treatment'
+      'Basic exterior window washing'
     ]
   },
   {
@@ -33,7 +32,8 @@ const packages = [
     popular: true,
     features: [
       'Everything in Silver',
-      'Interior window cleaning',
+      'Interior window cleaning (up to 20 windows)',
+      'Enhanced spot treatment',
       'Streak-free crystal shine guarantee'
     ]
   },
