@@ -10,26 +10,16 @@ import { trackFormSubmit } from '../utils/tracking';
 
 const packages = [
   {
-    id: 'bronze',
-    name: 'Bronze',
-    price: 599,
-    icon: Droplets,
-    color: 'from-amber-600 to-amber-700',
-    features: [
-      'Complete exterior house wash',
-      'Professional soft wash technique',
-      'Basic algae and mildew removal'
-    ]
-  },
-  {
     id: 'silver',
     name: 'Silver',
-    price: 699,
+    price: 499,
     icon: Home,
     color: 'from-slate-400 to-slate-500',
     popular: false,
     features: [
-      'Everything in Bronze',
+      'Complete exterior house wash',
+      'Professional soft wash technique',
+      'Basic algae and mildew removal',
       'Professional exterior window cleaning',
       'Enhanced spot treatment'
     ]
@@ -37,21 +27,20 @@ const packages = [
   {
     id: 'gold',
     name: 'Gold',
-    price: 899,
+    price: 699,
     icon: Sparkles,
     color: 'from-yellow-500 to-yellow-600',
     popular: true,
     features: [
       'Everything in Silver',
       'Interior window cleaning',
-      'Exterior window cleaning',
       'Streak-free crystal shine guarantee'
     ]
   },
   {
     id: 'platinum',
     name: 'Platinum',
-    price: 1299,
+    price: 1099,
     icon: Crown,
     color: 'from-blue-600 to-blue-700',
     features: [
@@ -333,6 +322,28 @@ export function ResidentialSpring2026Page() {
           </div>
         </section>
 
+        <section className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 md:p-12 border-2 border-blue-200 text-center"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+                Proudly Local, Professionally Trained
+              </h2>
+              <p className="text-lg text-slate-700 leading-relaxed mb-4">
+                Unlike many cleaning companies that use subcontractors, we're a <strong>local Northern Virginia business</strong> that employs <strong>W-2 team members</strong>. Every person who arrives at your home is a fully trained, background-checked employee of Skywash Innovations.
+              </p>
+              <p className="text-lg text-slate-700 leading-relaxed">
+                This means you get consistent quality, reliable service, and accountability you can trust. When you choose us, you're supporting local jobs and getting the peace of mind that comes with professional, insured employees—not independent contractors.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
         <section className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -380,7 +391,7 @@ export function ResidentialSpring2026Page() {
               whileInView="animate"
               viewport={{ once: true }}
               variants={staggerContainer}
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {packages.map((pkg) => {
                 const Icon = pkg.icon;
