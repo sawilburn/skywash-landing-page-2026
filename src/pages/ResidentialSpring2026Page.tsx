@@ -12,7 +12,7 @@ const packages = [
   {
     id: 'silver',
     name: 'Silver',
-    price: 499,
+    price: 549,
     icon: Home,
     color: 'from-slate-400 to-slate-500',
     popular: false,
@@ -26,7 +26,7 @@ const packages = [
   {
     id: 'gold',
     name: 'Gold',
-    price: 699,
+    price: 749,
     icon: Sparkles,
     color: 'from-yellow-500 to-yellow-600',
     popular: true,
@@ -40,7 +40,7 @@ const packages = [
   {
     id: 'platinum',
     name: 'Platinum',
-    price: 1099,
+    price: 1199,
     icon: Crown,
     color: 'from-blue-600 to-blue-700',
     features: [
