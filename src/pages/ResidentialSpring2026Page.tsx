@@ -40,7 +40,7 @@ const packages = [
   {
     id: 'platinum',
     name: 'Platinum',
-    price: 1199,
+    price: 1249,
     icon: Crown,
     color: 'from-blue-600 to-blue-700',
     features: [
