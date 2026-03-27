@@ -10,15 +10,15 @@ export function RealtorLeadForm() {
     phone: '',
     brokerage: '',
     address: '',
-    bundles: [] as string[]
+    package: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const bundles = [
-    { id: 'skywash', label: 'SkyWash (Drone Cleaning)', icon: Home },
-    { id: 'skyshot', label: 'SkyShot (Aerial Photography)', icon: Camera },
-    { id: 'skyscan', label: 'SkyScan (Drone Inspection)', icon: Search }
+  const packages = [
+    { id: 'silver', label: 'Silver Package', price: '$549', icon: Home },
+    { id: 'gold', label: 'Gold Package', price: '$749', icon: Camera },
+    { id: 'platinum', label: 'Platinum Package', price: '$1,249', icon: Search }
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,7 +32,7 @@ export function RealtorLeadForm() {
         contact_name: formData.contact_name,
         email: formData.email,
         phone: formData.phone,
-        details: `Brokerage: ${formData.brokerage}\nProperty Address: ${formData.address}\nBundles Requested: ${formData.bundles.join(', ')}`
+        details: `Brokerage: ${formData.brokerage}\nProperty Address: ${formData.address}\nPackage Selected: ${formData.package}`
       };
 
       const { error } = await supabase.from('leads').insert([leadData]);
@@ -91,7 +91,7 @@ export function RealtorLeadForm() {
         phone: '',
         brokerage: '',
         address: '',
-        bundles: []
+        package: ''
       });
 
       setTimeout(() => {
@@ -112,12 +112,10 @@ export function RealtorLeadForm() {
     });
   };
 
-  const handleBundleToggle = (bundleId: string) => {
+  const handlePackageSelect = (packageId: string) => {
     setFormData({
       ...formData,
-      bundles: formData.bundles.includes(bundleId)
-        ? formData.bundles.filter(s => s !== bundleId)
-        : [...formData.bundles, bundleId]
+      package: packageId
     });
   };
 
@@ -126,10 +124,10 @@ export function RealtorLeadForm() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Get Your Realtor Bundle Quote
+            Schedule Your Home Soft Washing
           </h2>
           <p className="text-xl text-slate-600">
-            Exclusive pricing for real estate professionals. Fast turnaround to meet your listing deadlines.
+            Choose your package and get your property sparkling clean
           </p>
         </div>
 
@@ -139,9 +137,9 @@ export function RealtorLeadForm() {
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="text-green-600" size={48} />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">We'll Send Your Quote Within 4 Hours!</h3>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Request Submitted Successfully!</h3>
               <p className="text-slate-600 text-lg mb-6">
-                Thank you for choosing Skywash Innovations. Our realtor team will prioritize your request and send you a detailed quote quickly.
+                Thank you for choosing Skywash Innovations. We'll contact you shortly to schedule your service.
               </p>
               <button
                 onClick={() => setSubmitStatus('idle')}
@@ -236,36 +234,43 @@ export function RealtorLeadForm() {
 
               <div>
                 <label className="block text-sm font-semibold text-slate-700 mb-4">
-                  Bundles Needed * (Select all that apply)
+                  Select Your Package *
                 </label>
                 <div className="grid md:grid-cols-3 gap-4">
-                  {bundles.map((bundle) => (
+                  {packages.map((pkg) => (
                     <button
-                      key={bundle.id}
+                      key={pkg.id}
                       type="button"
-                      onClick={() => handleBundleToggle(bundle.id)}
+                      onClick={() => handlePackageSelect(pkg.id)}
                       className={`p-4 rounded-xl border-2 transition-all text-left ${
-                        formData.bundles.includes(bundle.id)
+                        formData.package === pkg.id
                           ? 'border-[#1a3c75] bg-blue-50'
                           : 'border-slate-200 hover:border-slate-300'
                       }`}
                     >
                       <div className="flex flex-col items-center text-center space-y-3">
                         <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                          formData.bundles.includes(bundle.id)
+                          formData.package === pkg.id
                             ? 'bg-[#1a3c75]'
                             : 'bg-slate-100'
                         }`}>
-                          <bundle.icon
-                            className={formData.bundles.includes(bundle.id) ? 'text-white' : 'text-slate-600'}
+                          <pkg.icon
+                            className={formData.package === pkg.id ? 'text-white' : 'text-slate-600'}
                             size={24}
                           />
                         </div>
-                        <span className={`font-medium text-sm ${
-                          formData.bundles.includes(bundle.id) ? 'text-[#1a3c75]' : 'text-slate-700'
-                        }`}>
-                          {bundle.label}
-                        </span>
+                        <div>
+                          <span className={`font-medium text-sm block ${
+                            formData.package === pkg.id ? 'text-[#1a3c75]' : 'text-slate-700'
+                          }`}>
+                            {pkg.label}
+                          </span>
+                          <span className={`font-bold text-lg block ${
+                            formData.package === pkg.id ? 'text-[#1a3c75]' : 'text-slate-900'
+                          }`}>
+                            {pkg.price}
+                          </span>
+                        </div>
                       </div>
                     </button>
                   ))}
@@ -280,17 +285,17 @@ export function RealtorLeadForm() {
 
               <button
                 type="submit"
-                disabled={isSubmitting || formData.bundles.length === 0}
+                disabled={isSubmitting || !formData.package}
                 className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition-all flex items-center justify-center space-x-2 bg-[#1a3c75] hover:bg-[#2a4c85] ${
-                  isSubmitting || formData.bundles.length === 0 ? 'opacity-50 cursor-not-allowed' : 'shadow-lg hover:shadow-xl'
+                  isSubmitting || !formData.package ? 'opacity-50 cursor-not-allowed' : 'shadow-lg hover:shadow-xl'
                 }`}
               >
-                <span>{isSubmitting ? 'Submitting...' : 'Get My Realtor Bundle Quote'}</span>
+                <span>{isSubmitting ? 'Submitting...' : 'Schedule My Service'}</span>
                 <Send size={20} />
               </button>
 
               <p className="text-center text-sm text-slate-500">
-                Priority response for real estate professionals. We typically respond within 4 hours during business days.
+                We'll contact you within 24 hours to confirm your appointment
               </p>
             </form>
           )}
