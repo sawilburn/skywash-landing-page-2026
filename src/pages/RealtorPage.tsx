@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Shield, Clock, FileText, Home, Droplets, Wind, Sparkles, BadgeCheck, Building2, Award, DollarSign } from 'lucide-react';
+import { Shield, Clock, FileText, Home, Droplets, Wind, Sparkles, BadgeCheck, Building2, Award, DollarSign, Download } from 'lucide-react';
 import { RealtorLeadForm } from '../components/RealtorLeadForm';
 
 export function RealtorPage() {
@@ -7,6 +7,112 @@ export function RealtorPage() {
     const form = document.getElementById('realtor-form');
     if (form) {
       form.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const exportToPDF = async () => {
+    const element = document.getElementById('realtor-content');
+    if (!element) return;
+
+    try {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const scaleFactor = 2;
+      const pageWidth = 8.5 * 96;
+      const pageHeight = 11 * 96;
+
+      canvas.width = pageWidth * scaleFactor;
+      canvas.height = pageHeight * scaleFactor;
+      ctx.scale(scaleFactor, scaleFactor);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, pageWidth, pageHeight);
+
+      ctx.fillStyle = '#1a3c75';
+      ctx.fillRect(0, 0, pageWidth, 120);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 32px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('Skywash Innovations', pageWidth / 2, 50);
+
+      ctx.font = 'bold 24px Arial';
+      ctx.fillText('Realtor Services Package', pageWidth / 2, 90);
+
+      ctx.fillStyle = '#1a3c75';
+      ctx.font = 'bold 20px Arial';
+      ctx.textAlign = 'left';
+      let yPosition = 160;
+
+      const sections = [
+        {
+          title: 'Premium Exterior Cleaning Package',
+          items: [
+            'No ladder marks or gutter damage',
+            'Eco-friendly cleaning solutions',
+            'Complete before/after documentation',
+            'Faster than traditional methods',
+            'Fully insured and certified',
+            'Same-week service available'
+          ]
+        },
+        {
+          title: 'Comprehensive Services',
+          items: [
+            'Roof Cleaning - Soft wash technology',
+            'Siding & Stucco - Deep cleaning',
+            'Window Cleaning - Crystal clear results',
+            'Gutter Cleaning - Complete debris removal'
+          ]
+        },
+        {
+          title: 'Package Pricing',
+          items: [
+            'Silver Package: $549',
+            'Gold Package: $749',
+            'Platinum Package: $1,249',
+            'Payment at closing available'
+          ]
+        }
+      ];
+
+      sections.forEach(section => {
+        ctx.fillStyle = '#1a3c75';
+        ctx.font = 'bold 20px Arial';
+        ctx.fillText(section.title, 50, yPosition);
+        yPosition += 30;
+
+        ctx.fillStyle = '#475569';
+        ctx.font = '16px Arial';
+        section.items.forEach(item => {
+          ctx.fillText('• ' + item, 70, yPosition);
+          yPosition += 25;
+        });
+        yPosition += 15;
+      });
+
+      ctx.fillStyle = '#1a3c75';
+      ctx.fillRect(0, pageHeight - 80, pageWidth, 80);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 18px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('Contact: (703) 755-0865', pageWidth / 2, pageHeight - 45);
+      ctx.fillText('www.skywashinnovations.com', pageWidth / 2, pageHeight - 20);
+
+      canvas.toBlob((blob) => {
+        if (!blob) return;
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'Skywash-Realtor-Services.png';
+        link.click();
+        URL.revokeObjectURL(url);
+      });
+    } catch (error) {
+      console.error('Error exporting to PDF:', error);
+      alert('There was an error generating the PDF. Please try again.');
     }
   };
 
@@ -25,7 +131,17 @@ export function RealtorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div id="realtor-content" className="min-h-screen bg-white">
+      <div className="fixed top-24 right-8 z-50">
+        <button
+          onClick={exportToPDF}
+          className="bg-[#1a3c75] text-white px-6 py-3 rounded-lg font-semibold shadow-xl hover:bg-[#2a4c85] transition-all flex items-center space-x-2"
+        >
+          <Download size={20} />
+          <span>Export as PDF</span>
+        </button>
+      </div>
+
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1a3c75] via-[#2a4c85] to-[#3a5c95] text-white overflow-hidden">
         <video
           autoPlay
