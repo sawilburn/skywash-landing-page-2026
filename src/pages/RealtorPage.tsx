@@ -435,7 +435,7 @@ export function RealtorPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              Realtor Service Packages
+              Home Soft Washing Packages
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Choose the perfect package for your listing needs
@@ -452,30 +452,29 @@ export function RealtorPage() {
               <table className="w-full">
                 <thead>
                   <tr className="bg-gradient-to-r from-[#1a3c75] to-[#2a4c85]">
-                    <th className="px-6 py-4 text-left text-white font-bold text-lg">Service</th>
-                    <th className="px-6 py-4 text-center text-white font-bold text-lg">Essential</th>
-                    <th className="px-6 py-4 text-center text-white font-bold text-lg">Premium</th>
-                    <th className="px-6 py-4 text-center text-white font-bold text-lg">Elite</th>
+                    <th className="px-6 py-4 text-left text-white font-bold text-lg">Home Soft Washing Packages</th>
+                    <th className="px-6 py-4 text-center text-white font-bold text-lg">Silver</th>
+                    <th className="px-6 py-4 text-center text-white font-bold text-lg">Gold</th>
+                    <th className="px-6 py-4 text-center text-white font-bold text-lg">Platinum</th>
                   </tr>
                 </thead>
                 <tbody>
                   {[
-                    { service: 'Complete Exterior House Wash', essential: true, premium: true, elite: true },
-                    { service: 'Professional Soft Wash Technique', essential: true, premium: true, elite: true },
-                    { service: 'Basic Algae and Mildew Removal', essential: true, premium: true, elite: true },
-                    { service: 'Basic Exterior Window Washing', essential: true, premium: true, elite: true },
-                    { service: 'Interior Window Cleaning (up to 20 windows)', essential: false, premium: true, elite: true },
-                    { service: 'Enhanced Spot Treatment', essential: false, premium: true, elite: true },
-                    { service: 'Streak-Free Crystal Shine Guarantee', essential: false, premium: true, elite: true },
-                    { service: 'Professional Roof Cleaning', essential: false, premium: false, elite: true },
-                    { service: 'Basic Gutter Cleaning', essential: false, premium: false, elite: true },
-                    { service: 'Before & After Documentation', essential: false, premium: true, elite: true },
-                    { service: 'Same-Week Scheduling Priority', essential: false, premium: true, elite: true },
+                    { service: 'Complete Exterior House Wash', silver: true, gold: true, platinum: true },
+                    { service: 'Professional Soft Wash Technique', silver: true, gold: true, platinum: true },
+                    { service: 'Basic Algae and Mildew Removal', silver: true, gold: true, platinum: true },
+                    { service: 'Basic Exterior Window Washing', silver: true, gold: true, platinum: true },
+                    { service: 'Interior Window Cleaning (up to 20 windows)', silver: false, gold: true, platinum: true },
+                    { service: 'Enhanced Spot Treatment', silver: false, gold: true, platinum: true },
+                    { service: 'Streak-Free Crystal Shine Guarantee', silver: false, gold: true, platinum: true },
+                    { service: 'Professional Roof Cleaning', silver: false, gold: false, platinum: true },
+                    { service: 'Basic Gutter Cleaning', silver: false, gold: false, platinum: true },
+                    { service: 'VIP Same-Week Scheduling', silver: false, gold: false, platinum: true },
                   ].map((row, index) => (
                     <tr key={index} className={index % 2 === 0 ? 'bg-slate-50' : 'bg-white'}>
                       <td className="px-6 py-4 text-slate-900 font-medium">{row.service}</td>
                       <td className="px-6 py-4 text-center">
-                        {row.essential ? (
+                        {row.silver ? (
                           <div className="flex justify-center">
                             <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
                               <span className="text-white font-bold text-lg">✓</span>
@@ -490,7 +489,7 @@ export function RealtorPage() {
                         )}
                       </td>
                       <td className="px-6 py-4 text-center">
-                        {row.premium ? (
+                        {row.gold ? (
                           <div className="flex justify-center">
                             <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
                               <span className="text-white font-bold text-lg">✓</span>
@@ -505,7 +504,7 @@ export function RealtorPage() {
                         )}
                       </td>
                       <td className="px-6 py-4 text-center">
-                        {row.elite ? (
+                        {row.platinum ? (
                           <div className="flex justify-center">
                             <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
                               <span className="text-white font-bold text-lg">✓</span>
@@ -522,10 +521,10 @@ export function RealtorPage() {
                     </tr>
                   ))}
                   <tr className="bg-[#1a3c75] text-white font-bold">
-                    <td className="px-6 py-4 text-lg">Starting Price</td>
-                    <td className="px-6 py-4 text-center text-lg">Contact for Quote</td>
-                    <td className="px-6 py-4 text-center text-lg">Contact for Quote</td>
-                    <td className="px-6 py-4 text-center text-lg">Contact for Quote</td>
+                    <td className="px-6 py-4 text-lg">Price</td>
+                    <td className="px-6 py-4 text-center text-lg">$549</td>
+                    <td className="px-6 py-4 text-center text-lg">$749</td>
+                    <td className="px-6 py-4 text-center text-lg">$1,249</td>
                   </tr>
                 </tbody>
               </table>
