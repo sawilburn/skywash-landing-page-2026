@@ -375,7 +375,7 @@ export function RealtorPage() {
                 </thead>
                 <tbody>
                   {[
-                    { feature: 'Trained & Certified Technicians', us: true, them: false },
+                    { feature: 'Trained & Certified Technicians (OSHA-10/30)', us: true, them: false },
                     { feature: 'Background Checked, Drug Tested & Vetted Staff', us: true, them: false },
                     { feature: 'Convenient, Paperless, Flexible Scheduling', us: true, them: false },
                     { feature: 'Industry-Best Insurance with Up-to-Date Certificates', us: true, them: false },
