@@ -341,6 +341,219 @@ export function RealtorPage() {
         </div>
       </section>
 
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+              The Skywash Innovations Difference
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              See how we compare to traditional pressure washing companies
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-2xl shadow-xl overflow-hidden"
+          >
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-gradient-to-r from-[#1a3c75] to-[#2a4c85]">
+                    <th className="px-6 py-4 text-left text-white font-bold text-lg"></th>
+                    <th className="px-6 py-4 text-center text-white font-bold text-lg">Skywash Innovations</th>
+                    <th className="px-6 py-4 text-center text-white font-bold text-lg">Other Guys</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { feature: 'Trained & Certified Technicians', us: true, them: false },
+                    { feature: 'Background Checked, Drug Tested & Vetted Staff', us: true, them: false },
+                    { feature: 'Convenient, Paperless, Flexible Scheduling', us: true, them: false },
+                    { feature: 'Industry-Best Insurance with Up-to-Date Certificates', us: true, them: false },
+                    { feature: 'Verified 5-Star Reviews', us: true, them: false },
+                    { feature: 'Real Happiness Guarantee – We Make it Right', us: true, them: false },
+                    { feature: 'Drone-Powered Technology', us: true, them: false },
+                    { feature: 'Payment at Closing Available', us: true, them: false },
+                  ].map((row, index) => (
+                    <tr key={index} className={index % 2 === 0 ? 'bg-slate-50' : 'bg-white'}>
+                      <td className="px-6 py-4 text-slate-900 font-medium">{row.feature}</td>
+                      <td className="px-6 py-4 text-center">
+                        {row.us ? (
+                          <div className="flex justify-center">
+                            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                              <span className="text-white font-bold text-lg">✓</span>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex justify-center">
+                            <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                              <span className="text-white font-bold text-lg">✗</span>
+                            </div>
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        {row.them ? (
+                          <div className="flex justify-center">
+                            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                              <span className="text-white font-bold text-lg">✓</span>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex justify-center">
+                            <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                              <span className="text-white font-bold text-lg">✗</span>
+                            </div>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+              Realtor Service Packages
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Choose the perfect package for your listing needs
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200"
+          >
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-gradient-to-r from-[#1a3c75] to-[#2a4c85]">
+                    <th className="px-6 py-4 text-left text-white font-bold text-lg">Service</th>
+                    <th className="px-6 py-4 text-center text-white font-bold text-lg">Essential</th>
+                    <th className="px-6 py-4 text-center text-white font-bold text-lg">Premium</th>
+                    <th className="px-6 py-4 text-center text-white font-bold text-lg">Elite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { service: 'Complete Exterior House Wash', essential: true, premium: true, elite: true },
+                    { service: 'Professional Soft Wash Technique', essential: true, premium: true, elite: true },
+                    { service: 'Basic Algae and Mildew Removal', essential: true, premium: true, elite: true },
+                    { service: 'Basic Exterior Window Washing', essential: true, premium: true, elite: true },
+                    { service: 'Interior Window Cleaning (up to 20 windows)', essential: false, premium: true, elite: true },
+                    { service: 'Enhanced Spot Treatment', essential: false, premium: true, elite: true },
+                    { service: 'Streak-Free Crystal Shine Guarantee', essential: false, premium: true, elite: true },
+                    { service: 'Professional Roof Cleaning', essential: false, premium: false, elite: true },
+                    { service: 'Basic Gutter Cleaning', essential: false, premium: false, elite: true },
+                    { service: 'Before & After Documentation', essential: false, premium: true, elite: true },
+                    { service: 'Same-Week Scheduling Priority', essential: false, premium: true, elite: true },
+                  ].map((row, index) => (
+                    <tr key={index} className={index % 2 === 0 ? 'bg-slate-50' : 'bg-white'}>
+                      <td className="px-6 py-4 text-slate-900 font-medium">{row.service}</td>
+                      <td className="px-6 py-4 text-center">
+                        {row.essential ? (
+                          <div className="flex justify-center">
+                            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                              <span className="text-white font-bold text-lg">✓</span>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex justify-center">
+                            <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                              <span className="text-white font-bold text-lg">✗</span>
+                            </div>
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        {row.premium ? (
+                          <div className="flex justify-center">
+                            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                              <span className="text-white font-bold text-lg">✓</span>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex justify-center">
+                            <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                              <span className="text-white font-bold text-lg">✗</span>
+                            </div>
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        {row.elite ? (
+                          <div className="flex justify-center">
+                            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                              <span className="text-white font-bold text-lg">✓</span>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex justify-center">
+                            <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                              <span className="text-white font-bold text-lg">✗</span>
+                            </div>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                  <tr className="bg-[#1a3c75] text-white font-bold">
+                    <td className="px-6 py-4 text-lg">Starting Price</td>
+                    <td className="px-6 py-4 text-center text-lg">Contact for Quote</td>
+                    <td className="px-6 py-4 text-center text-lg">Contact for Quote</td>
+                    <td className="px-6 py-4 text-center text-lg">Contact for Quote</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="bg-slate-100 px-6 py-4 border-t border-slate-200">
+              <p className="text-slate-700 text-center">
+                <span className="font-bold">Payment at closing available</span> - No money down for your clients through our realtor partner program
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="text-center mt-12"
+          >
+            <button
+              onClick={scrollToForm}
+              className="bg-[#1a3c75] text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-[#2a4c85] transition-all shadow-xl hover:shadow-2xl"
+            >
+              Get Your Custom Quote
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
       <RealtorLeadForm />
 
       <section className="py-16 bg-gradient-to-r from-[#1a3c75] to-[#2a4c85] text-white">
