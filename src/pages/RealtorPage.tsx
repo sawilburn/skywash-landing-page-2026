@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Shield, Clock, FileText, Home, Droplets, Wind, Sparkles, Camera, Search, BadgeCheck, Building2, Award } from 'lucide-react';
+import { Shield, Clock, FileText, Home, Droplets, Wind, Sparkles, BadgeCheck, Building2, Award, DollarSign } from 'lucide-react';
 import { RealtorLeadForm } from '../components/RealtorLeadForm';
 
 export function RealtorPage() {
@@ -56,7 +56,7 @@ export function RealtorPage() {
             </motion.h1>
 
             <motion.p variants={fadeInUp} className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">
-              We don't just wash; we analyze and document. Elevate your property's curb appeal and closing confidence with drone-integrated cleaning, photography, and inspections.
+              Elevate your property's curb appeal with professional drone-integrated cleaning. Payment at closing available - no money down for your clients.
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -190,10 +190,10 @@ export function RealtorPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              The "Triple Threat" Realtor Bundles
+              Professional Drone Cleaning Services
             </h2>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Our proprietary drone services give you the competitive edge. Document the 'Before' and 'After' for full transparency with buyers.
+              Our signature drone-powered soft washing service gives you the competitive edge. Document the 'Before' and 'After' for full transparency with buyers.
             </p>
           </motion.div>
 
@@ -202,96 +202,58 @@ export function RealtorPage() {
             whileInView="animate"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-8"
+            className="max-w-4xl mx-auto"
           >
-            <motion.div variants={fadeInUp} className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all">
-              <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mb-6">
-                <Home className="text-[#1a3c75]" size={32} />
+            <motion.div variants={fadeInUp} className="bg-white/10 backdrop-blur-sm rounded-2xl p-10 border border-white/20 hover:bg-white/15 transition-all">
+              <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-6">
+                <Home className="text-[#1a3c75]" size={40} />
               </div>
-              <h3 className="text-2xl font-bold mb-4">SkyWash</h3>
-              <p className="text-lg text-white/90 mb-6">
-                Our signature drone-powered soft washing. Reach areas traditional methods can't, with zero risk to the property.
+              <h3 className="text-3xl font-bold mb-6 text-center">Premium Exterior Cleaning Package</h3>
+              <p className="text-xl text-white/90 mb-8 text-center leading-relaxed">
+                Our signature drone-powered soft washing service. Reach areas traditional methods can't, with zero risk to the property.
               </p>
-              <ul className="space-y-3">
-                <li className="flex items-start space-x-3">
-                  <div className="w-5 h-5 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-xs text-white">✓</span>
-                  </div>
-                  <span className="text-white/90">No ladder marks or gutter damage</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-5 h-5 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-xs text-white">✓</span>
-                  </div>
-                  <span className="text-white/90">Eco-friendly cleaning solutions</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-5 h-5 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-xs text-white">✓</span>
-                  </div>
-                  <span className="text-white/90">Complete before/after documentation</span>
-                </li>
-              </ul>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all">
-              <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mb-6">
-                <Camera className="text-[#1a3c75]" size={32} />
+              <div className="grid md:grid-cols-2 gap-6">
+                <ul className="space-y-4">
+                  <li className="flex items-start space-x-3">
+                    <div className="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-sm text-white font-bold">✓</span>
+                    </div>
+                    <span className="text-white/90 text-lg">No ladder marks or gutter damage</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-sm text-white font-bold">✓</span>
+                    </div>
+                    <span className="text-white/90 text-lg">Eco-friendly cleaning solutions</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-sm text-white font-bold">✓</span>
+                    </div>
+                    <span className="text-white/90 text-lg">Complete before/after documentation</span>
+                  </li>
+                </ul>
+                <ul className="space-y-4">
+                  <li className="flex items-start space-x-3">
+                    <div className="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-sm text-white font-bold">✓</span>
+                    </div>
+                    <span className="text-white/90 text-lg">Faster than traditional methods</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-sm text-white font-bold">✓</span>
+                    </div>
+                    <span className="text-white/90 text-lg">Fully insured and certified</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-sm text-white font-bold">✓</span>
+                    </div>
+                    <span className="text-white/90 text-lg">Same-week service available</span>
+                  </li>
+                </ul>
               </div>
-              <h3 className="text-2xl font-bold mb-4">SkyShot</h3>
-              <p className="text-lg text-white/90 mb-6">
-                Professional aerial media to make listings pop. Stunning photography and video that captures buyers' attention.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start space-x-3">
-                  <div className="w-5 h-5 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-xs text-white">✓</span>
-                  </div>
-                  <span className="text-white/90">4K aerial photography & video</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-5 h-5 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-xs text-white">✓</span>
-                  </div>
-                  <span className="text-white/90">Neighborhood and property context</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-5 h-5 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-xs text-white">✓</span>
-                  </div>
-                  <span className="text-white/90">MLS-ready high-res images</span>
-                </li>
-              </ul>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all">
-              <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mb-6">
-                <Search className="text-[#1a3c75]" size={32} />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">SkyScan</h3>
-              <p className="text-lg text-white/90 mb-6">
-                Drone-based structural and roof health analysis. Identify issues before they become deal-breakers.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start space-x-3">
-                  <div className="w-5 h-5 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-xs text-white">✓</span>
-                  </div>
-                  <span className="text-white/90">Thermal imaging for leak detection</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-5 h-5 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-xs text-white">✓</span>
-                  </div>
-                  <span className="text-white/90">Detailed roof condition report</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-5 h-5 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-xs text-white">✓</span>
-                  </div>
-                  <span className="text-white/90">Pre-inspection confidence for buyers</span>
-                </li>
-              </ul>
             </motion.div>
           </motion.div>
 
@@ -306,7 +268,7 @@ export function RealtorPage() {
               onClick={scrollToForm}
               className="bg-white text-[#1a3c75] px-10 py-4 rounded-lg font-bold text-lg hover:bg-slate-100 transition-all shadow-xl hover:shadow-2xl"
             >
-              Bundle All Three & Save
+              Get Your Quote Now
             </button>
           </motion.div>
         </div>
@@ -334,7 +296,7 @@ export function RealtorPage() {
             whileInView="animate"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-12"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
             <motion.div variants={fadeInUp} className="text-center">
               <div className="w-20 h-20 bg-gradient-to-br from-[#1a3c75] to-[#2a4c85] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
@@ -365,6 +327,16 @@ export function RealtorPage() {
                 High-res aerial reports to justify your listing price. Before and after evidence that shows the property's true condition and value.
               </p>
             </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-center">
+              <div className="w-20 h-20 bg-gradient-to-br from-green-600 to-green-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <DollarSign className="text-white" size={36} />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Payment Flexibility</h3>
+              <p className="text-lg text-slate-600 leading-relaxed">
+                Payment at closing available through our realtor partners. No money down for your clients - simple and hassle-free.
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -376,15 +348,18 @@ export function RealtorPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Make Your Next Listing Shine?
           </h2>
-          <p className="text-xl text-white/90 mb-8">
+          <p className="text-xl text-white/90 mb-4">
             Join hundreds of realtors who trust Skywash Innovations for their listing preparation
+          </p>
+          <p className="text-lg text-white/80 mb-8">
+            Payment at closing available - no money down for your clients
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={scrollToForm}
               className="bg-white text-[#1a3c75] px-8 py-4 rounded-lg font-bold text-lg hover:bg-slate-100 transition-all shadow-xl"
             >
-              Get Your Bundle Quote
+              Get Your Quote
             </button>
             <a
               href="tel:+17037550865"
