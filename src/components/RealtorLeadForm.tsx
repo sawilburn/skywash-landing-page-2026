@@ -124,10 +124,10 @@ export function RealtorLeadForm() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Schedule Your Home Soft Washing
+            Get More Information
           </h2>
           <p className="text-xl text-slate-600">
-            Choose your package and get your property sparkling clean
+            Talk with one of our team members about the right package for your property
           </p>
         </div>
 
@@ -139,7 +139,7 @@ export function RealtorLeadForm() {
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">Request Submitted Successfully!</h3>
               <p className="text-slate-600 text-lg mb-6">
-                Thank you for choosing Skywash Innovations. We'll contact you shortly to schedule your service.
+                Thank you for your interest in Skywash Innovations. One of our team members will contact you within 24 hours to discuss your needs and answer any questions.
               </p>
               <button
                 onClick={() => setSubmitStatus('idle')}
@@ -290,12 +290,12 @@ export function RealtorLeadForm() {
                   isSubmitting || !formData.package ? 'opacity-50 cursor-not-allowed' : 'shadow-lg hover:shadow-xl'
                 }`}
               >
-                <span>{isSubmitting ? 'Submitting...' : 'Schedule My Service'}</span>
+                <span>{isSubmitting ? 'Submitting...' : 'Request More Information'}</span>
                 <Send size={20} />
               </button>
 
               <p className="text-center text-sm text-slate-500">
-                We'll contact you within 24 hours to confirm your appointment
+                One of our team members will contact you within 24 hours to discuss your needs
               </p>
             </form>
           )}
