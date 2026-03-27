@@ -24,8 +24,9 @@ export function RealtorPage() {
     try {
       const canvas = await html2canvas(element, {
         scale: 2,
-        useCORS: true,
-        logging: false,
+        useCORS: false,
+        allowTaint: true,
+        logging: true,
         backgroundColor: '#ffffff',
         windowWidth: 1920,
         windowHeight: element.scrollHeight,
@@ -34,7 +35,11 @@ export function RealtorPage() {
           if (clonedElement) {
             const videos = clonedElement.getElementsByTagName('video');
             for (let i = 0; i < videos.length; i++) {
-              videos[i].style.display = 'none';
+              videos[i].remove();
+            }
+            const imgs = clonedElement.getElementsByTagName('img');
+            for (let i = 0; i < imgs.length; i++) {
+              imgs[i].crossOrigin = 'anonymous';
             }
           }
         }
@@ -98,7 +103,8 @@ export function RealtorPage() {
       pdf.save('Skywash-Realtor-Services.pdf');
     } catch (error) {
       console.error('Error exporting to PDF:', error);
-      alert('There was an error generating the PDF. Please try again.');
+      console.error('Error details:', error);
+      alert(`There was an error generating the PDF: ${error.message || 'Please check the console for details.'}`);
     } finally {
       if (exportButton) {
         exportButton.style.display = 'flex';
