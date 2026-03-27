@@ -24,9 +24,8 @@ export function RealtorPage() {
     try {
       const canvas = await html2canvas(element, {
         scale: 2,
-        useCORS: false,
-        allowTaint: true,
-        logging: true,
+        useCORS: true,
+        logging: false,
         backgroundColor: '#ffffff',
         windowWidth: 1920,
         windowHeight: element.scrollHeight,
@@ -34,18 +33,10 @@ export function RealtorPage() {
           const clonedElement = clonedDoc.getElementById('realtor-content');
           if (clonedElement) {
             const videos = clonedElement.getElementsByTagName('video');
-            for (let i = 0; i < videos.length; i++) {
-              videos[i].remove();
-            }
-            const imgs = clonedElement.getElementsByTagName('img');
-            for (let i = 0; i < imgs.length; i++) {
-              imgs[i].crossOrigin = 'anonymous';
-            }
+            Array.from(videos).forEach(video => video.remove());
           }
         }
       });
-
-      const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',

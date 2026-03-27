@@ -57,6 +57,7 @@ export function SupabaseImage({ path, alt, className = '', fallback }: SupabaseI
         className={`${className} ${isLoading ? 'hidden' : ''}`}
         onLoad={handleLoad}
         onError={handleError}
+        crossOrigin="anonymous"
       />
     </>
   );
