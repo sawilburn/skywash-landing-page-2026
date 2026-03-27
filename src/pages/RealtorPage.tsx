@@ -25,11 +25,19 @@ export function RealtorPage() {
       const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
-        allowTaint: true,
         logging: false,
         backgroundColor: '#ffffff',
         windowWidth: 1920,
         windowHeight: element.scrollHeight,
+        onclone: (clonedDoc) => {
+          const clonedElement = clonedDoc.getElementById('realtor-content');
+          if (clonedElement) {
+            const videos = clonedElement.getElementsByTagName('video');
+            for (let i = 0; i < videos.length; i++) {
+              videos[i].style.display = 'none';
+            }
+          }
+        }
       });
 
       const imgData = canvas.toDataURL('image/png');
