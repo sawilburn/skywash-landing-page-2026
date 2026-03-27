@@ -8,7 +8,7 @@ const baseUrl = 'https://skywashinnovations.com';
 
 export const pageMetadata: Record<string, PageMetadata> = {
   '/': {
-    title: 'Skywash Innovations | Exterior Pressure Washing, Expert Roof Washing, Professional Window Cleaning',
+    title: 'Skywash Innovations | Drone & Power Washing Virginia',
     description: 'FAA Part 107 certified drone facade cleaning and professional power washing services in Virginia. OSHA compliant, eco-friendly solutions for residential and commercial properties.',
     canonical: baseUrl
   },
