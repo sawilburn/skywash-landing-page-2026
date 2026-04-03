@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
-import { Shield, Leaf, BadgeCheck, Plane, Building2, ParkingSquare, Fence, SignpostBig, Home, Droplets, Wind, Sparkles, FileText, ClipboardCheck, Wrench, Phone, Mail, Globe } from 'lucide-react';
+import { Shield, Leaf, BadgeCheck, Plane, Building2, ParkingSquare, Fence, SignpostBig, Home, Droplets, Wind, Sparkles, FileText, ClipboardCheck, Wrench, Phone, Mail, Globe, Sparkle } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
 export function HOAServicesPage() {
@@ -248,9 +249,16 @@ export function HOAServicesPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
               Services for Your Homeowners
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-16">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-6">
               When residents ask who to trust for exterior cleaning, send them our way.
             </p>
+            <Link
+              to="/specials/residential-spring-2026"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-700 hover:to-green-800 transition-all shadow-lg hover:shadow-xl mb-12"
+            >
+              <Sparkle size={20} />
+              View Spring 2026 Residential Specials
+            </Link>
           </motion.div>
 
           <motion.div
