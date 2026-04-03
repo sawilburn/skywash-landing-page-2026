@@ -40,6 +40,7 @@ import { ResidentialSpring2026Page } from './pages/ResidentialSpring2026Page';
 import { ArlingtonSTEMProgramPage } from './pages/ArlingtonSTEMProgramPage';
 import { SitemapPage } from './pages/SitemapPage';
 import { WhyChooseUsPage } from './pages/WhyChooseUsPage';
+import { HOAServicesPage } from './pages/HOAServicesPage';
 import { useSEO } from './hooks/useSEO';
 
 function AppContent() {
@@ -61,6 +62,7 @@ function AppContent() {
           <Route path="/commercial/large-retail" element={<LargeRetailCleaningPage />} />
           <Route path="/commercial/convenience" element={<ConvenienceStoreCleaningPage />} />
           <Route path="/commercial/multi-unit-residential" element={<MultiUnitResidentialPage />} />
+          <Route path="/commercial/hoa-services" element={<HOAServicesPage />} />
           <Route path="/residential" element={<ResidentialPage />} />
           <Route path="/residential/house-washing" element={<HouseWashingPage />} />
           <Route path="/residential/roof-washing" element={<RoofWashingPage />} />
