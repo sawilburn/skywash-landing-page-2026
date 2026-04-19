@@ -8,7 +8,7 @@ export interface ImageSection {
 
 export interface PageMapping {
   pageName: string;
-  category: 'home' | 'commercial-services' | 'residential-services' | 'locations' | 'partners-memberships';
+  category: 'home' | 'commercial-services' | 'residential-services' | 'locations' | 'partners-memberships' | 'learning-center';
   sections: ImageSection[];
 }
 
@@ -498,6 +498,47 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
         description: 'Window Cleaning Resource partnership logo'
       }
     ]
+  },
+  {
+    pageName: 'Window Cleaning Learning Center',
+    category: 'learning-center',
+    sections: [
+      {
+        id: 'learning/window-cleaning-method-1',
+        displayName: 'Method 1 - Touchless Exterior Cleaning',
+        suggestedAltText: 'Touchless exterior window cleaning service',
+        fallbackImage: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=800',
+        description: 'Image for the Touchless Exterior Cleaning method section'
+      },
+      {
+        id: 'learning/window-cleaning-method-2',
+        displayName: 'Method 2 - Water-Fed Pole Cleaning',
+        suggestedAltText: 'Water-fed pole window cleaning with deionized water',
+        fallbackImage: 'https://images.pexels.com/photos/6195130/pexels-photo-6195130.jpeg?auto=compress&cs=tinysrgb&w=800',
+        description: 'Image for the Water-Fed Pole Cleaning method section'
+      },
+      {
+        id: 'learning/window-cleaning-method-3',
+        displayName: 'Method 3 - Traditional Detail Cleaning (Interior)',
+        suggestedAltText: 'Traditional squeegee and mop interior window cleaning',
+        fallbackImage: 'https://images.pexels.com/photos/4107278/pexels-photo-4107278.jpeg?auto=compress&cs=tinysrgb&w=800',
+        description: 'Image for the Traditional Detail Cleaning (Interior) method section'
+      },
+      {
+        id: 'learning/window-cleaning-method-4',
+        displayName: 'Method 4 - Glass Restoration',
+        suggestedAltText: 'Professional glass restoration for etched or hard-water stained windows',
+        fallbackImage: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
+        description: 'Image for the Glass Restoration method section'
+      },
+      {
+        id: 'learning/window-cleaning-hero',
+        displayName: 'Hero Background',
+        suggestedAltText: 'Professional window cleaning services',
+        fallbackImage: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1920',
+        description: 'Background image for the hero section of the window cleaning learning page'
+      }
+    ]
   }
 ];
 
@@ -507,7 +548,8 @@ export function getCategoryDisplayName(category: string): string {
     'commercial-services': 'Commercial Services',
     'residential-services': 'Residential Services',
     'locations': 'Location Pages',
-    'partners-memberships': 'Partners & Memberships'
+    'partners-memberships': 'Partners & Memberships',
+    'learning-center': 'Learning Center'
   };
   return map[category] || category;
 }

@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Calendar, Sparkles, Droplets, Hand, Wrench, ChevronRight, AlertTriangle, CheckCircle, Info } from 'lucide-react';
+import { getSiteImage, getImageUrl } from '../lib/siteImages';
 
 const methods = [
   {
@@ -22,7 +24,8 @@ const methods = [
       text: 'Where it has limits: touchless cleaning won\'t fully resolve heavy mineral deposits, long-neglected buildup, or glass that has been etched or scratched. On those windows, a satisfactory result is achievable — but an excellent one requires a more intensive approach.',
     },
     bestFor: ['Regular maintenance schedules', 'Well-maintained glass', 'Quick exterior refresh'],
-    pexelsUrl: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=800',
+    sectionId: 'learning/window-cleaning-method-1',
+    fallbackUrl: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
   {
     number: '02',
@@ -41,7 +44,8 @@ const methods = [
     ],
     callout: null,
     bestFor: ['Overdue or neglected windows', 'Construction dust & pollen exposure', 'Hard-to-reach glass', 'Hard water spray exposure'],
-    pexelsUrl: 'https://images.pexels.com/photos/6195130/pexels-photo-6195130.jpeg?auto=compress&cs=tinysrgb&w=800',
+    sectionId: 'learning/window-cleaning-method-2',
+    fallbackUrl: 'https://images.pexels.com/photos/6195130/pexels-photo-6195130.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
   {
     number: '03',
@@ -62,7 +66,8 @@ const methods = [
       text: 'Interior and exterior cleaning are separate services that can be booked together or independently. Many customers opt for an interior detail once or twice a year while maintaining exterior cleaning on a more frequent schedule.',
     },
     bestFor: ['Interior window cleaning', 'Streak-free, optically clear results', 'Frame and sill detailing'],
-    pexelsUrl: 'https://images.pexels.com/photos/4107278/pexels-photo-4107278.jpeg?auto=compress&cs=tinysrgb&w=800',
+    sectionId: 'learning/window-cleaning-method-3',
+    fallbackUrl: 'https://images.pexels.com/photos/4107278/pexels-photo-4107278.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
   {
     number: '04',
@@ -84,7 +89,8 @@ const methods = [
       text: 'Signs you may need restoration rather than cleaning: white haze or mineral crust that doesn\'t respond to cleaning products, a frosted or dull appearance on glass that should be clear, visible etching or pit marks, or streaking that remains after the glass has been cleaned and dried.',
     },
     bestFor: ['Hard water staining & mineral etching', 'Oxidation haze', 'Construction debris bonded to glass', 'Scratches and pit marks'],
-    pexelsUrl: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
+    sectionId: 'learning/window-cleaning-method-4',
+    fallbackUrl: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
 ];
 
@@ -110,12 +116,31 @@ const stagger = {
 };
 
 export function WindowCleaningLearningPage() {
+  const [methodImages, setMethodImages] = useState<Record<string, string>>({});
+  const [heroBg, setHeroBg] = useState('https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1920');
+
+  useEffect(() => {
+    async function loadImages() {
+      const heroRecord = await getSiteImage('learning/window-cleaning-hero');
+      if (heroRecord) setHeroBg(getImageUrl(heroRecord.storage_path));
+
+      const entries = await Promise.all(
+        methods.map(async (m) => {
+          const record = await getSiteImage(m.sectionId);
+          return [m.sectionId, record ? getImageUrl(record.storage_path) : m.fallbackUrl] as [string, string];
+        })
+      );
+      setMethodImages(Object.fromEntries(entries));
+    }
+    loadImages();
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-slate-900 via-slate-800 to-sky-900 text-white overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-15"
-          style={{ backgroundImage: "url('https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1920')" }}
+          style={{ backgroundImage: `url('${heroBg}')` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 to-slate-900/80" />
 
@@ -234,7 +259,7 @@ export function WindowCleaningLearningPage() {
                 <motion.div variants={fadeInUp} className="lg:w-5/12 flex-shrink-0">
                   <div className="relative rounded-2xl overflow-hidden shadow-xl">
                     <img
-                      src={method.pexelsUrl}
+                      src={methodImages[method.sectionId] ?? method.fallbackUrl}
                       alt={method.title}
                       className="w-full h-64 lg:h-80 object-cover"
                     />
