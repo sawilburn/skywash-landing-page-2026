@@ -75,6 +75,7 @@ export function SectionImagesTab() {
   const [images, setImages] = useState<SiteImage[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const [selectedCategory, setSelectedCategory] = useState('home');
   const [selectedPage, setSelectedPage] = useState('Home Page');
   const [selectedSectionIndex, setSelectedSectionIndex] = useState(0);
   const [availableSections, setAvailableSections] = useState<ImageSection[]>([]);
@@ -105,6 +106,20 @@ export function SectionImagesTab() {
     setSection(s.id);
     setTitle(s.displayName);
     setAltText(s.suggestedAltText);
+  };
+
+  const handleCategoryChange = (cat: string) => {
+    setSelectedCategory(cat);
+    const pages = pagesByCategory[cat] || [];
+    if (pages.length > 0) {
+      const firstPage = pages[0].pageName;
+      setSelectedPage(firstPage);
+      const secs = getSectionsForPage(firstPage);
+      setAvailableSections(secs);
+      setSelectedSectionIndex(0);
+      if (secs.length > 0) updateFromSection(secs[0]);
+    }
+    setResult(null);
   };
 
   const handlePageChange = (p: string) => {
@@ -237,18 +252,27 @@ export function SectionImagesTab() {
       <UploadDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} title="Upload Section Image">
         <form onSubmit={handleUpload} className="space-y-5">
           <div>
+            <label className="block text-sm font-semibold text-slate-700 mb-1.5">Category</label>
+            <select
+              value={selectedCategory}
+              onChange={(e) => handleCategoryChange(e.target.value)}
+              className="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-[#1a3c75] focus:border-transparent bg-white text-sm"
+            >
+              {Object.keys(pagesByCategory).map((cat) => (
+                <option key={cat} value={cat}>{getCategoryDisplayName(cat)}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
             <label className="block text-sm font-semibold text-slate-700 mb-1.5">Page</label>
             <select
               value={selectedPage}
               onChange={(e) => handlePageChange(e.target.value)}
               className="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-[#1a3c75] focus:border-transparent bg-white text-sm"
             >
-              {Object.entries(pagesByCategory).map(([category, pages]) => (
-                <optgroup key={category} label={getCategoryDisplayName(category)}>
-                  {pages.map((page) => (
-                    <option key={page.pageName} value={page.pageName}>{page.pageName}</option>
-                  ))}
-                </optgroup>
+              {(pagesByCategory[selectedCategory] || []).map((page) => (
+                <option key={page.pageName} value={page.pageName}>{page.pageName}</option>
               ))}
             </select>
           </div>
