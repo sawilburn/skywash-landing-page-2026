@@ -51,21 +51,21 @@ const methods = [
     number: '03',
     badge: 'Standard',
     badgeColor: 'bg-slate-600',
-    title: 'Traditional Detail Cleaning (Interior)',
+    title: 'Traditional Detail Cleaning',
     icon: Hand,
     iconBg: 'bg-blue-100',
     iconColor: 'text-blue-700',
     borderColor: 'border-blue-200',
-    tagline: 'Squeegee + mop. Our interior standard. Thorough, hands-on results.',
+    tagline: 'Squeegee + mop. Our detail standard. Thorough, hands-on results.',
     body: [
-      'For interior windows, we use the time-tested method that professional window cleaners have relied on for generations: a mop to apply the cleaning solution and a squeegee to remove it cleanly from the glass. Done properly, this produces a streak-free, optically clear result that no spray-and-wipe approach can match.',
-      'This is our standard for all interior window cleaning. It\'s hands-on, methodical, and attentive to edges, corners, and sills. We also detail the frames and sills as part of the service so you\'re not left with clean glass surrounded by grimy tracks.',
+      'Traditional detail cleaning uses the time-tested method that professional window cleaners have relied on for generations: a mop to apply the cleaning solution and a squeegee to remove it cleanly from the glass. Done properly, this produces a streak-free, optically clear result that no spray-and-wipe approach can match.',
+      'This is our standard for both interior and exterior detail cleaning. It\'s hands-on, methodical, and attentive to edges, corners, and sills. We also detail the frames and sills as part of the service so you\'re not left with clean glass surrounded by grimy tracks.',
     ],
     callout: {
       type: 'info',
       text: 'Interior and exterior cleaning are separate services that can be booked together or independently. Many customers opt for an interior detail once or twice a year while maintaining exterior cleaning on a more frequent schedule.',
     },
-    bestFor: ['Interior window cleaning', 'Streak-free, optically clear results', 'Frame and sill detailing'],
+    bestFor: ['Interior and exterior window cleaning', 'Streak-free, optically clear results', 'Frame and sill detailing'],
     sectionId: 'learning/window-cleaning-method-3',
     fallbackUrl: 'https://images.pexels.com/photos/4107278/pexels-photo-4107278.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
@@ -95,7 +95,7 @@ const methods = [
 ];
 
 const comparisonRows = [
-  { feature: 'Exterior cleaning', m1: true, m2: true, m3: false, m4: true },
+  { feature: 'Exterior cleaning', m1: true, m2: true, m3: true, m4: true },
   { feature: 'Interior cleaning', m1: false, m2: false, m3: true, m4: false },
   { feature: 'Physical agitation', m1: false, m2: true, m3: true, m4: true },
   { feature: 'Removes mineral deposits', m1: false, m2: true, m3: false, m4: true },
@@ -196,7 +196,7 @@ export function WindowCleaningLearningPage() {
               {[
                 { label: 'Standard', title: 'Touchless Exterior', color: 'bg-slate-50 border-slate-200' },
                 { label: 'Upcharge', title: 'Water-Fed Pole', color: 'bg-teal-50 border-teal-200' },
-                { label: 'Standard', title: 'Traditional Detail', color: 'bg-blue-50 border-blue-200' },
+                { label: 'Standard', title: 'Traditional Detail Cleaning', color: 'bg-blue-50 border-blue-200' },
                 { label: 'Custom Quote', title: 'Glass Restoration', color: 'bg-amber-50 border-amber-200' },
               ].map((card, i) => (
                 <a
@@ -219,7 +219,7 @@ export function WindowCleaningLearningPage() {
                 {[
                   ['#method-1', '1. Touchless exterior cleaning'],
                   ['#method-2', '2. Water-fed pole cleaning'],
-                  ['#method-3', '3. Traditional detail cleaning (interior)'],
+                  ['#method-3', '3. Traditional detail cleaning'],
                   ['#method-4', '4. Glass restoration'],
                   ['#comparison', 'Method comparison table'],
                   ['#which-is-right', 'Which service is right for you?'],
