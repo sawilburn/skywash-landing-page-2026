@@ -92,6 +92,7 @@ function AppContent() {
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/sitemap" element={<SitemapPage />} />
           <Route path="/why-choose-us" element={<WhyChooseUsPage />} />
+          <Route path="/admin/upload-photos" element={<ImageUploadPage />} />
           <Route path="/admin/upload-image" element={<ImageUploadPage />} />
           <Route path="/validate" element={<ValidationPage />} />
         </Routes>
