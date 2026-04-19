@@ -42,6 +42,7 @@ import { SitemapPage } from './pages/SitemapPage';
 import { WhyChooseUsPage } from './pages/WhyChooseUsPage';
 import { HOAServicesPage } from './pages/HOAServicesPage';
 import { RoofCareGloeocapsaPage } from './pages/RoofCareGloeocapsaPage';
+import { WindowCleaningLearningPage } from './pages/WindowCleaningLearningPage';
 import { useSEO } from './hooks/useSEO';
 
 function AppContent() {
@@ -86,6 +87,7 @@ function AppContent() {
           <Route path="/our-process" element={<OurProcessPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/learning-center/roof-care/gloeocapsa-magma" element={<RoofCareGloeocapsaPage />} />
+          <Route path="/learning-center/window-cleaning" element={<WindowCleaningLearningPage />} />
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/sitemap" element={<SitemapPage />} />
