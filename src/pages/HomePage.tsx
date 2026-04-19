@@ -538,37 +538,38 @@ export function HomePage() {
             Get in touch for a free consultation and see how drone technology can transform your property maintenance.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-2xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
             <a
               href="tel:+17037550865"
-              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all cursor-pointer"
+              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all cursor-pointer flex flex-col items-center justify-center"
             >
-              <Phone className="text-cyan-400 mx-auto mb-3" size={32} />
-              <h3 className="font-bold mb-2">Click to Call</h3>
-              <p className="text-slate-300 text-sm">Instant phone consultation</p>
+              <Phone className="text-cyan-400 mb-3" size={32} />
+              <h3 className="font-bold mb-1 text-sm">Click to Call</h3>
+              <p className="text-slate-300 text-xs">Instant phone consultation</p>
             </a>
             <a
               href="mailto:info@skywashinnovations.com"
-              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all cursor-pointer"
+              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all cursor-pointer flex flex-col items-center justify-center"
             >
-              <Mail className="text-cyan-400 mx-auto mb-3" size={32} />
-              <h3 className="font-bold mb-2">Email Skywash Team</h3>
-              <p className="text-slate-300 text-sm">info@skywashinnovations.com</p>
+              <Mail className="text-cyan-400 mb-3" size={32} />
+              <h3 className="font-bold mb-1 text-sm">Email Skywash Team</h3>
+              <p className="text-slate-300 text-xs">info@skywashinnovations.com</p>
             </a>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/commercial"
-              className="px-8 py-4 bg-white text-[#1a3c75] rounded-lg font-bold hover:bg-slate-100 transition-all"
-            >
-              Commercial Quote
-            </Link>
             <Link
               to="/residential"
-              className="px-8 py-4 bg-cyan-500 text-white rounded-lg font-bold hover:bg-cyan-600 transition-all"
+              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all flex flex-col items-center justify-center"
             >
-              Residential Quote
+              <Home className="text-cyan-400 mb-3" size={32} />
+              <h3 className="font-bold mb-1 text-sm">Residential Quote</h3>
+              <p className="text-slate-300 text-xs">Get a free estimate</p>
+            </Link>
+            <Link
+              to="/commercial"
+              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all flex flex-col items-center justify-center"
+            >
+              <Building2 className="text-cyan-400 mb-3" size={32} />
+              <h3 className="font-bold mb-1 text-sm">Commercial Quote</h3>
+              <p className="text-slate-300 text-xs">Get a free estimate</p>
             </Link>
           </div>
         </div>
