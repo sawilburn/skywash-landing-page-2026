@@ -61,7 +61,7 @@ function FileDropZone({ file, onFile, id, accept, icon: Icon, label, sublabel }:
   );
 }
 
-export function VideosTab() {
+export function VideosTab({ autoOpenUpload, onAutoOpenHandled }: { autoOpenUpload?: boolean; onAutoOpenHandled?: () => void } = {}) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [videos, setVideos] = useState<SiteVideo[]>([]);
   const [loading, setLoading] = useState(true);
@@ -75,6 +75,13 @@ export function VideosTab() {
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
 
   useEffect(() => { load(); }, []);
+
+  useEffect(() => {
+    if (autoOpenUpload) {
+      setDrawerOpen(true);
+      onAutoOpenHandled?.();
+    }
+  }, [autoOpenUpload]);
 
   const load = async () => {
     setLoading(true);

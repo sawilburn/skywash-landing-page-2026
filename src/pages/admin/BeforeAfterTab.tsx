@@ -93,7 +93,7 @@ function SliderPreview({ before, after }: { before: string; after: string }) {
   );
 }
 
-export function BeforeAfterTab() {
+export function BeforeAfterTab({ autoOpenUpload, onAutoOpenHandled }: { autoOpenUpload?: boolean; onAutoOpenHandled?: () => void } = {}) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [images, setImages] = useState<BeforeAfterImage[]>([]);
   const [loading, setLoading] = useState(true);
@@ -110,6 +110,13 @@ export function BeforeAfterTab() {
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
 
   useEffect(() => { load(); }, []);
+
+  useEffect(() => {
+    if (autoOpenUpload) {
+      setDrawerOpen(true);
+      onAutoOpenHandled?.();
+    }
+  }, [autoOpenUpload]);
 
   useEffect(() => {
     if (!beforeFile) { setBeforePreview(''); return; }

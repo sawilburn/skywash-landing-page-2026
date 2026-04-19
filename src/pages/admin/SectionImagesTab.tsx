@@ -70,7 +70,7 @@ async function deleteSiteImage(id: string, storagePath: string): Promise<void> {
   await supabase.storage.from('images').remove([storagePath]);
 }
 
-export function SectionImagesTab() {
+export function SectionImagesTab({ autoOpenUpload, onAutoOpenHandled }: { autoOpenUpload?: boolean; onAutoOpenHandled?: () => void } = {}) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [images, setImages] = useState<SiteImage[]>([]);
   const [loading, setLoading] = useState(true);
@@ -87,6 +87,14 @@ export function SectionImagesTab() {
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
 
   const pagesByCategory = getPagesByCategory();
+
+  useEffect(() => {
+    if (autoOpenUpload) {
+      setDrawerOpen(true);
+      setResult(null);
+      onAutoOpenHandled?.();
+    }
+  }, [autoOpenUpload]);
 
   useEffect(() => {
     const sections = getSectionsForPage('Home Page');

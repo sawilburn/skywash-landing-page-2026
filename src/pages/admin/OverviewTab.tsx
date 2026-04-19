@@ -13,7 +13,7 @@ interface Stats {
   activeVideos: number;
 }
 
-export function OverviewTab({ onTabChange }: { onTabChange: (tab: string) => void }) {
+export function OverviewTab({ onTabChange, onQuickAction }: { onTabChange: (tab: string) => void; onQuickAction?: (tab: string) => void }) {
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -115,7 +115,7 @@ export function OverviewTab({ onTabChange }: { onTabChange: (tab: string) => voi
               ].map(item => (
                 <button
                   key={item.tab}
-                  onClick={() => onTabChange(item.tab)}
+                  onClick={() => onQuickAction ? onQuickAction(item.tab) : onTabChange(item.tab)}
                   className="text-left p-4 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors"
                 >
                   <p className="font-semibold text-slate-900 text-sm mb-1">{item.label}</p>
