@@ -33,7 +33,7 @@ export function HomePage() {
             <div className="flex items-center justify-center gap-3 text-white">
               <Sparkles size={32} className="animate-pulse" />
               <span className="text-2xl md:text-4xl font-bold text-center">
-                🌸 Residential Spring Specials - Limited Time Offers! 🌸
+                Pre-Summer Specials - Limited Time Offers!
               </span>
               <Sparkles size={32} className="animate-pulse" />
             </div>
