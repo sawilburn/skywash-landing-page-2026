@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MessageSquare } from 'lucide-react';
 import { TrustBar } from './TrustBar';
-import { PromotionalBanner } from './PromotionalBanner';
 import { trackPhoneClick } from '../utils/tracking';
 
 export function Header() {
@@ -50,8 +49,7 @@ export function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50">
-        <PromotionalBanner />
-        <TrustBar />
+<TrustBar />
         <div
           className={`transition-all duration-300 ${
             isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'
