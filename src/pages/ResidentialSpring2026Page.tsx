@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { CheckCircle, Send, Sparkles, Droplets, Home, Crown, Shield, Award, Clock } from 'lucide-react';
+import { CheckCircle, Sparkles, Droplets, Home, Crown, Shield, Award, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { DynamicBeforeAfterSlider } from '../components/DynamicBeforeAfterSlider';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
-import { supabase } from '../lib/supabase';
-import { trackFormSubmit } from '../utils/tracking';
+import { HoneyBookForm } from '../components/HoneyBookForm';
 
 const packages = [
   {
@@ -65,15 +64,6 @@ const addOns = [
 
 export function ResidentialSpring2026Page() {
   const [selectedPackage, setSelectedPackage] = useState('');
-  const [formData, setFormData] = useState({
-    contact_name: '',
-    email: '',
-    phone: '',
-    address: '',
-    package: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
     hours: 0,
@@ -106,106 +96,12 @@ export function ResidentialSpring2026Page() {
 
   useEffect(() => {
     if (selectedPackage) {
-      setFormData(prev => ({ ...prev, package: selectedPackage }));
       const formElement = document.getElementById('booking-form');
       if (formElement) {
         formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
   }, [selectedPackage]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      const selectedPkg = packages.find(pkg => pkg.id === formData.package);
-
-      const leadData = {
-        type: 'residential',
-        contact_name: formData.contact_name,
-        email: formData.email,
-        phone: formData.phone,
-        details: `Pre-Summer 2026 Promotion - ${selectedPkg?.name} Package\n\nAddress: ${formData.address}\n\nPromotion: Pre-Summer Special (Book before May 31, 2026)`
-      };
-
-      const { error } = await supabase.from('leads').insert([leadData]);
-
-      if (error) throw error;
-
-      try {
-        const emailUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-lead-email`;
-        const emailResponse = await fetch(emailUrl, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(leadData),
-        });
-
-        const emailResult = await emailResponse.json();
-
-        if (emailResult.success) {
-          console.log('Email notification sent successfully:', emailResult);
-        } else {
-          console.warn('Email notification failed (lead saved to database):', emailResult);
-        }
-      } catch (emailError) {
-        console.warn('Email notification unavailable (lead saved to database):', emailError);
-      }
-
-      try {
-        const zohoUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/zoho-crm-sync`;
-        const zohoResponse = await fetch(zohoUrl, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(leadData),
-        });
-
-        const zohoResult = await zohoResponse.json();
-
-        if (zohoResult.success) {
-          console.log('Zoho CRM sync successful:', zohoResult);
-        } else {
-          console.info('Zoho CRM sync not available in preview (will work in production)');
-        }
-      } catch (zohoError) {
-        console.info('Zoho CRM sync not available in preview (will work in production)');
-      }
-
-      trackFormSubmit('spring-2026-special', selectedPackage);
-      setSubmitStatus('success');
-      setFormData({
-        contact_name: '',
-        email: '',
-        phone: '',
-        address: '',
-        package: ''
-      });
-      setSelectedPackage('');
-
-      setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 5000);
-    } catch (error) {
-      console.error('Error submitting lead:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
 
   const handlePackageSelect = (packageId: string) => {
     setSelectedPackage(packageId);
@@ -586,141 +482,13 @@ export function ResidentialSpring2026Page() {
               transition={{ duration: 0.6 }}
               className="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl shadow-xl p-8 md:p-12 border-2 border-green-200"
             >
-              {submitStatus === 'success' ? (
-                <div className="text-center py-12">
-                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle className="text-green-600" size={48} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Booking Received!</h3>
-                  <p className="text-slate-600 text-lg mb-6">
-                    Thank you for choosing Skywash Innovations! Your pre-summer pricing has been secured. We'll contact you within 24 hours to schedule your service.
-                  </p>
-                  <button
-                    onClick={() => setSubmitStatus('idle')}
-                    className="text-green-700 font-semibold hover:underline"
-                  >
-                    Book Another Service
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="contact_name" className="block text-sm font-semibold text-slate-700 mb-2">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="contact_name"
-                        name="contact_name"
-                        required
-                        value={formData.contact_name}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-                        placeholder="John Smith"
-                      />
-                    </div>
+              <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-5 mb-8">
+                <p className="text-sm text-amber-900 leading-relaxed">
+                  <strong className="font-semibold">Important Notice:</strong> Additional charges may apply for homes larger than 3,500 square feet, properties located within 7 nautical miles of Reagan National Airport (DCA), or properties with heavy tree canopy or other obstacles that may affect service delivery.
+                </p>
+              </div>
 
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-2">
-                        Email *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-                        placeholder="john.smith@email.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-slate-700 mb-2">
-                        Phone Number *
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        required
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-                        placeholder="(555) 123-4567"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="package" className="block text-sm font-semibold text-slate-700 mb-2">
-                        Select Package *
-                      </label>
-                      <select
-                        id="package"
-                        name="package"
-                        required
-                        value={formData.package}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-                      >
-                        <option value="">Choose a package...</option>
-                        {packages.map((pkg) => (
-                          <option key={pkg.id} value={pkg.id}>
-                            {pkg.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="address" className="block text-sm font-semibold text-slate-700 mb-2">
-                      Service Address *
-                    </label>
-                    <input
-                      type="text"
-                      id="address"
-                      name="address"
-                      required
-                      value={formData.address}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-                      placeholder="123 Main Street, City, State, ZIP"
-                    />
-                  </div>
-
-                  <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-5">
-                    <p className="text-sm text-amber-900 leading-relaxed">
-                      <strong className="font-semibold">Important Notice:</strong> Additional charges may apply for homes larger than 3,500 square feet, properties located within 7 nautical miles of Reagan National Airport (DCA), or properties with heavy tree canopy or other obstacles that may affect service delivery.
-                    </p>
-                  </div>
-
-                  {submitStatus === 'error' && (
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
-                      There was an error submitting your booking. Please try again or contact us directly at info@skywashinnovations.com
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition-all flex items-center justify-center space-x-2 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 ${
-                      isSubmitting ? 'opacity-50 cursor-not-allowed' : 'shadow-lg hover:shadow-xl'
-                    }`}
-                  >
-                    <span>{isSubmitting ? 'Processing...' : 'Secure My Pre-Summer Pricing'}</span>
-                    <Send size={20} />
-                  </button>
-
-                  <p className="text-center text-sm text-slate-500">
-                    Your information is secure and will only be used to schedule your service.
-                  </p>
-                </form>
-              )}
+              <HoneyBookForm />
             </motion.div>
           </div>
         </section>
