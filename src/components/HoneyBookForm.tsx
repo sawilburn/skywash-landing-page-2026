@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 declare global {
   interface Window {
@@ -11,6 +12,33 @@ interface HoneyBookFormProps {
 }
 
 export function HoneyBookForm({ className }: HoneyBookFormProps) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (
+        typeof event.data === 'string' &&
+        event.data.toLowerCase().includes('honeybook') &&
+        (event.data.toLowerCase().includes('submit') || event.data.toLowerCase().includes('success'))
+      ) {
+        navigate('/thank-you');
+        return;
+      }
+      if (event.data && typeof event.data === 'object') {
+        const type = event.data.type || event.data.event || event.data.action || '';
+        if (
+          typeof type === 'string' &&
+          (type.toLowerCase().includes('submit') || type.toLowerCase().includes('success') || type.toLowerCase().includes('complete'))
+        ) {
+          navigate('/thank-you');
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [navigate]);
+
   useEffect(() => {
     if (document.querySelector('script[src*="honeybook.com/p.png"]')) return;
 
