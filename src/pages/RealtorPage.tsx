@@ -568,7 +568,7 @@ export function RealtorPage() {
                     { service: 'Basic Algae and Mildew Removal', silver: true, gold: true, platinum: true },
                     { service: 'Basic Exterior Window Washing', silver: true, gold: true, platinum: true },
                     { service: 'Interior Window Cleaning (up to 20 windows)', silver: false, gold: true, platinum: true },
-                    { service: 'Enhanced Spot Treatment', silver: false, gold: true, platinum: true },
+
                     { service: 'Streak-Free Crystal Shine Guarantee', silver: false, gold: true, platinum: true },
                     { service: 'Professional Roof Cleaning', silver: false, gold: false, platinum: true },
                     { service: 'Basic Gutter Cleaning', silver: false, gold: false, platinum: true },

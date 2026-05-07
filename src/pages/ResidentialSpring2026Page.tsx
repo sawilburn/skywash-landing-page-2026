@@ -33,7 +33,6 @@ const packages = [
     features: [
       'Everything in Silver',
       'Exterior Window Washing',
-      'Enhanced Spot Treatment',
       'Streak-Free Crystal Shine Guarantee',
       'Basic Gutter Treatment'
     ]
