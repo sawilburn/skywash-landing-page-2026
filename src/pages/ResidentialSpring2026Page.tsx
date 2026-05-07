@@ -47,14 +47,12 @@ const packages = [
 
 export function ResidentialSpring2026Page() {
   const [selectedPackage, setSelectedPackage] = useState('');
-  const [droneInspection, setDroneInspection] = useState(false);
   const [formData, setFormData] = useState({
     contact_name: '',
     email: '',
     phone: '',
     address: '',
-    package: '',
-    drone_inspection: false
+    package: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -105,14 +103,13 @@ export function ResidentialSpring2026Page() {
 
     try {
       const selectedPkg = packages.find(pkg => pkg.id === formData.package);
-      const droneAddon = formData.drone_inspection ? '\nAdd-on: Full Home Drone Inspection & Report (+$99.00)' : '';
 
       const leadData = {
         type: 'residential',
         contact_name: formData.contact_name,
         email: formData.email,
         phone: formData.phone,
-        details: `Pre-Summer 2026 Promotion - ${selectedPkg?.name} Package${droneAddon}\n\nAddress: ${formData.address}\n\nPromotion: Pre-Summer Special (Book before May 31, 2026)`
+        details: `Pre-Summer 2026 Promotion - ${selectedPkg?.name} Package\n\nAddress: ${formData.address}\n\nPromotion: Pre-Summer Special (Book before May 31, 2026)`
       };
 
       const { error } = await supabase.from('leads').insert([leadData]);
@@ -170,11 +167,9 @@ export function ResidentialSpring2026Page() {
         email: '',
         phone: '',
         address: '',
-        package: '',
-        drone_inspection: false
+        package: ''
       });
       setSelectedPackage('');
-      setDroneInspection(false);
 
       setTimeout(() => {
         setSubmitStatus('idle');
@@ -617,33 +612,6 @@ export function ResidentialSpring2026Page() {
                       className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                       placeholder="123 Main Street, City, State, ZIP"
                     />
-                  </div>
-
-                  <div className="bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-xl p-6">
-                    <div className="flex items-start">
-                      <input
-                        type="checkbox"
-                        id="drone_inspection"
-                        name="drone_inspection"
-                        checked={formData.drone_inspection}
-                        onChange={(e) => {
-                          setFormData({ ...formData, drone_inspection: e.target.checked });
-                          setDroneInspection(e.target.checked);
-                        }}
-                        className="w-5 h-5 text-blue-600 border-slate-300 rounded focus:ring-2 focus:ring-blue-500 mt-1"
-                      />
-                      <div className="ml-4">
-                        <label htmlFor="drone_inspection" className="block text-base font-bold text-slate-900 cursor-pointer">
-                          Add Full Home Drone Inspection & Report
-                        </label>
-                        <p className="text-sm text-slate-600 mt-1">
-                          Professional aerial inspection with detailed photo documentation and report of your home's exterior condition. Perfect for identifying issues before they become costly problems.
-                        </p>
-                        <p className="text-lg font-bold text-blue-700 mt-2">
-                          +$99.00
-                        </p>
-                      </div>
-                    </div>
                   </div>
 
                   <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-5">
