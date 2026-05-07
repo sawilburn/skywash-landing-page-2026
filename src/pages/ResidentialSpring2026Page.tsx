@@ -12,37 +12,56 @@ const packages = [
   {
     id: 'silver',
     name: 'Silver',
+    price: '$549',
     icon: Home,
     color: 'from-slate-400 to-slate-500',
     popular: false,
     features: [
-      'Basic Exterior Soft Wash',
-      'Window Rinsing'
+      'Complete Exterior House Wash',
+      'Professional Soft Wash Technique',
+      'Basic Algae & Mildew Removal',
+      'Basic Exterior Window Rinsing'
     ]
   },
   {
     id: 'gold',
     name: 'Gold',
+    price: '$749',
     icon: Sparkles,
     color: 'from-yellow-500 to-yellow-600',
     popular: true,
     features: [
       'Everything in Silver',
       'Exterior Window Washing',
+      'Enhanced Spot Treatment',
+      'Streak-Free Crystal Shine Guarantee',
       'Basic Gutter Treatment'
     ]
   },
   {
     id: 'platinum',
     name: 'Platinum',
+    price: '$1,149',
     icon: Crown,
     color: 'from-blue-600 to-blue-700',
     popular: false,
     features: [
       'Everything in Gold',
-      'Interior Windows (up to 20)'
+      'Professional Roof Cleaning',
+      'Basic Gutter Cleaning',
+      'Interior Windows (up to 20)',
+      'VIP Same-Week Scheduling'
     ]
   }
+];
+
+const addOns = [
+  { name: 'Roof Cleaning', description: 'Soft wash treatment removes moss, algae, and black streaks' },
+  { name: 'Deck & Railing Cleaning', description: 'Restore your deck and railings to like-new condition' },
+  { name: 'Sidewalk & Walkway Cleaning', description: 'Pressure wash concrete, pavers, and stone pathways' },
+  { name: 'Driveway Cleaning', description: 'Remove oil stains, tire marks, and embedded grime' },
+  { name: 'Fence Cleaning', description: 'Wood, vinyl, or metal — we restore any fence type' },
+  { name: 'Gutter Brightening', description: 'Remove tiger stripes and oxidation from gutter exteriors' },
 ];
 
 export function ResidentialSpring2026Page() {
@@ -399,6 +418,10 @@ export function ResidentialSpring2026Page() {
                     <div className={`bg-gradient-to-r ${pkg.color} text-white p-6`}>
                       <Icon size={40} className="mb-4" />
                       <h3 className="text-2xl font-bold">{pkg.name}</h3>
+                      <div className="mt-2 flex items-baseline gap-1">
+                        <span className="text-3xl font-extrabold">{pkg.price}</span>
+                        <span className="text-white/80 text-sm">starting price</span>
+                      </div>
                     </div>
 
                     <div className="p-6">
@@ -421,6 +444,63 @@ export function ResidentialSpring2026Page() {
                   </motion.div>
                 );
               })}
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                Customize With Add-Ons
+              </h2>
+              <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+                Enhance any package with targeted services. Pricing provided upon quote.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {addOns.map((addon, index) => (
+                <motion.div
+                  key={index}
+                  variants={fadeInUp}
+                  className="bg-slate-50 border border-slate-200 rounded-xl p-6 hover:border-blue-400 hover:shadow-md transition-all duration-200"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Droplets className="text-blue-600" size={18} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-slate-900 mb-1">{addon.name}</h3>
+                      <p className="text-slate-600 text-sm leading-relaxed">{addon.description}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="mt-10 text-center"
+            >
+              <p className="text-slate-500 text-sm">
+                Add-on pricing varies based on property size and condition. Ask about bundling discounts when adding multiple services.
+              </p>
             </motion.div>
           </div>
         </section>

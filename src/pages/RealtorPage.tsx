@@ -627,7 +627,7 @@ export function RealtorPage() {
                     <td className="px-6 py-4 text-lg">Price</td>
                     <td className="px-6 py-4 text-center text-lg">$549</td>
                     <td className="px-6 py-4 text-center text-lg">$749</td>
-                    <td className="px-6 py-4 text-center text-lg">$1,249</td>
+                    <td className="px-6 py-4 text-center text-lg">$1,149</td>
                   </tr>
                 </tbody>
               </table>
