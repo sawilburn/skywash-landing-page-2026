@@ -12,42 +12,35 @@ const packages = [
   {
     id: 'silver',
     name: 'Silver',
-    price: 549,
     icon: Home,
     color: 'from-slate-400 to-slate-500',
     popular: false,
     features: [
-      'Complete exterior house wash',
-      'Professional soft wash technique',
-      'Basic algae and mildew removal',
-      'Basic exterior window washing'
+      'Basic Exterior Soft Wash',
+      'Window Rinsing'
     ]
   },
   {
     id: 'gold',
     name: 'Gold',
-    price: 749,
     icon: Sparkles,
     color: 'from-yellow-500 to-yellow-600',
     popular: true,
     features: [
       'Everything in Silver',
-      'Interior window cleaning (up to 20 windows)',
-      'Enhanced spot treatment',
-      'Streak-free crystal shine guarantee'
+      'Exterior Window Washing',
+      'Basic Gutter Treatment'
     ]
   },
   {
     id: 'platinum',
     name: 'Platinum',
-    price: 1249,
     icon: Crown,
     color: 'from-blue-600 to-blue-700',
+    popular: false,
     features: [
       'Everything in Gold',
-      'Professional roof cleaning',
-      'Basic gutter cleaning',
-      'VIP same-week scheduling'
+      'Interior Windows (up to 20)'
     ]
   }
 ];
@@ -73,7 +66,7 @@ export function ResidentialSpring2026Page() {
   });
 
   useEffect(() => {
-    const targetDate = new Date('2026-04-15T23:59:59').getTime();
+    const targetDate = new Date('2026-05-31T23:59:59').getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -113,14 +106,13 @@ export function ResidentialSpring2026Page() {
     try {
       const selectedPkg = packages.find(pkg => pkg.id === formData.package);
       const droneAddon = formData.drone_inspection ? '\nAdd-on: Full Home Drone Inspection & Report (+$99.00)' : '';
-      const totalPrice = selectedPkg ? selectedPkg.price + (formData.drone_inspection ? 99 : 0) : 0;
 
       const leadData = {
         type: 'residential',
         contact_name: formData.contact_name,
         email: formData.email,
         phone: formData.phone,
-        details: `Spring 2026 Promotion - ${selectedPkg?.name} Package ($${selectedPkg?.price})${droneAddon}\nTotal Price: $${totalPrice}\n\nAddress: ${formData.address}\n\nPromotion: Early Bird Pricing (Book before April 15, 2026)`
+        details: `Pre-Summer 2026 Promotion - ${selectedPkg?.name} Package${droneAddon}\n\nAddress: ${formData.address}\n\nPromotion: Pre-Summer Special (Book before May 31, 2026)`
       };
 
       const { error } = await supabase.from('leads').insert([leadData]);
@@ -251,16 +243,16 @@ export function ResidentialSpring2026Page() {
               </motion.div>
 
               <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Spring 2026 Residential Refresh
+                Pre-Summer Specials
               </motion.h1>
 
               <motion.p variants={fadeInUp} className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">
-                Premium exterior cleaning packages to get your home ready for the season. Professional service, guaranteed results.
+                Premium exterior cleaning packages to get your home ready for summer. Professional service, guaranteed results.
               </motion.p>
 
               <motion.div variants={fadeInUp} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border-2 border-green-400 mb-8">
                 <p className="text-lg md:text-xl font-semibold mb-6">
-                  Book before April 15th, 2026 to lock in these rates!
+                  Book before May 31st, 2026 to lock in these rates!
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
@@ -382,7 +374,7 @@ export function ResidentialSpring2026Page() {
                 Choose Your Package
               </h2>
               <p className="text-xl text-slate-600">
-                Select the perfect cleaning solution for your home
+                Select the perfect pre-summer cleaning package for your home
               </p>
             </motion.div>
 
@@ -411,10 +403,7 @@ export function ResidentialSpring2026Page() {
 
                     <div className={`bg-gradient-to-r ${pkg.color} text-white p-6`}>
                       <Icon size={40} className="mb-4" />
-                      <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
-                      <div className="flex items-baseline">
-                        <span className="text-4xl font-bold">${pkg.price}</span>
-                      </div>
+                      <h3 className="text-2xl font-bold">{pkg.name}</h3>
                     </div>
 
                     <div className="p-6">
@@ -451,10 +440,10 @@ export function ResidentialSpring2026Page() {
                 variants={fadeInUp}
               >
                 <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                  Why Choose Our Spring Package?
+                  Why Choose Our Pre-Summer Package?
                 </h2>
                 <p className="text-xl text-white/90 mb-8 leading-relaxed">
-                  Spring is the perfect time to remove winter buildup and prepare your home for the warmer months. Our specialized packages are designed to tackle seasonal challenges while protecting your investment.
+                  Now is the perfect time to remove spring buildup and get your home looking its best before summer arrives. Our specialized packages are designed to tackle seasonal challenges while protecting your investment.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -509,10 +498,10 @@ export function ResidentialSpring2026Page() {
               className="text-center mb-12"
             >
               <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                Book Your Spring Service
+                Book Your Pre-Summer Service
               </h2>
               <p className="text-xl text-slate-600">
-                Secure your early bird pricing today
+                Secure your pre-summer pricing today
               </p>
             </motion.div>
 
@@ -530,7 +519,7 @@ export function ResidentialSpring2026Page() {
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-4">Booking Received!</h3>
                   <p className="text-slate-600 text-lg mb-6">
-                    Thank you for choosing Skywash Innovations! Your early bird pricing has been secured. We'll contact you within 24 hours to schedule your service.
+                    Thank you for choosing Skywash Innovations! Your pre-summer pricing has been secured. We'll contact you within 24 hours to schedule your service.
                   </p>
                   <button
                     onClick={() => setSubmitStatus('idle')}
@@ -607,7 +596,7 @@ export function ResidentialSpring2026Page() {
                         <option value="">Choose a package...</option>
                         {packages.map((pkg) => (
                           <option key={pkg.id} value={pkg.id}>
-                            {pkg.name} - ${pkg.price}
+                            {pkg.name}
                           </option>
                         ))}
                       </select>
@@ -657,20 +646,6 @@ export function ResidentialSpring2026Page() {
                     </div>
                   </div>
 
-                  {formData.package && (
-                    <div className="bg-slate-100 border-2 border-slate-300 rounded-xl p-4">
-                      <div className="flex justify-between items-center">
-                        <span className="text-lg font-semibold text-slate-900">Estimated Total:</span>
-                        <span className="text-2xl font-bold text-green-700">
-                          ${packages.find(pkg => pkg.id === formData.package)?.price || 0}
-                          {formData.drone_inspection && ' + $99'}
-                          {' = '}
-                          ${(packages.find(pkg => pkg.id === formData.package)?.price || 0) + (formData.drone_inspection ? 99 : 0)}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-
                   <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-5">
                     <p className="text-sm text-amber-900 leading-relaxed">
                       <strong className="font-semibold">Important Notice:</strong> Additional charges may apply for homes larger than 3,500 square feet, properties located within 7 nautical miles of Reagan National Airport (DCA), or properties with heavy tree canopy or other obstacles that may affect service delivery.
@@ -690,7 +665,7 @@ export function ResidentialSpring2026Page() {
                       isSubmitting ? 'opacity-50 cursor-not-allowed' : 'shadow-lg hover:shadow-xl'
                     }`}
                   >
-                    <span>{isSubmitting ? 'Processing...' : 'Secure My Early Bird Pricing'}</span>
+                    <span>{isSubmitting ? 'Processing...' : 'Secure My Pre-Summer Pricing'}</span>
                     <Send size={20} />
                   </button>
 
