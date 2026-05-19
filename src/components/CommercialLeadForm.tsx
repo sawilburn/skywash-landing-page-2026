@@ -15,12 +15,12 @@ export function CommercialLeadForm() {
 
     try {
       const { error: dbError } = await supabase.from('leads').insert([{
-        name: formData.name,
+        type: 'commercial',
+        contact_name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        message: `Company: ${formData.company}\n\n${formData.message}`,
-        source: 'Commercial Page',
-        lead_type: 'commercial',
+        company_name: formData.company,
+        details: formData.message || 'Commercial quote request',
       }]);
 
       if (dbError) throw dbError;

@@ -27,12 +27,12 @@ export function RoofingPartnersPage() {
       const { error } = await supabase
         .from('leads')
         .insert([{
-          name: formData.contactName,
+          type: 'partner',
+          contact_name: formData.contactName,
           email: formData.email,
           phone: formData.phone,
-          message: `ROOFING PARTNER INQUIRY\n\nCompany: ${formData.companyName}\nLocation: ${formData.location}\nYears in Business: ${formData.yearsInBusiness}\n\n${formData.message}`,
-          source: 'roofing-partners',
-          lead_type: 'partner'
+          company_name: formData.companyName,
+          details: `ROOFING PARTNER INQUIRY\n\nLocation: ${formData.location}\nYears in Business: ${formData.yearsInBusiness}\n\n${formData.message}`
         }]);
 
       if (error) throw error;

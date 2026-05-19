@@ -15,12 +15,11 @@ export function RealtorLeadForm() {
 
     try {
       const { error: dbError } = await supabase.from('leads').insert([{
-        name: formData.name,
+        type: 'realtor',
+        contact_name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        message: `Property Address: ${formData.address}\n\n${formData.message}`,
-        source: 'Realtor Page',
-        lead_type: 'realtor',
+        details: [formData.address ? `Property: ${formData.address}` : '', formData.message].filter(Boolean).join('\n\n') || 'Realtor inquiry',
       }]);
 
       if (dbError) throw dbError;

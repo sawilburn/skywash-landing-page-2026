@@ -27,12 +27,12 @@ export function PestWildlifePartnersPage() {
       const { error } = await supabase
         .from('leads')
         .insert([{
-          name: formData.contactName,
+          type: 'partner',
+          contact_name: formData.contactName,
           email: formData.email,
           phone: formData.phone,
-          message: `PEST & WILDLIFE PARTNER INQUIRY\n\nCompany: ${formData.companyName}\nLocation: ${formData.location}\nYears in Business: ${formData.yearsInBusiness}\n\n${formData.message}`,
-          source: 'pest-wildlife-partners',
-          lead_type: 'partner'
+          company_name: formData.companyName,
+          details: `PEST & WILDLIFE PARTNER INQUIRY\n\nLocation: ${formData.location}\nYears in Business: ${formData.yearsInBusiness}\n\n${formData.message}`
         }]);
 
       if (error) throw error;

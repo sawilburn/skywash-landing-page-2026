@@ -13,19 +13,24 @@ export function ResidentialLeadForm() {
     setIsSubmitting(true);
     setError('');
 
+    const details = [
+      formData.address ? `Address: ${formData.address}` : '',
+      formData.message || '',
+    ].filter(Boolean).join('\n\n') || 'Residential quote request';
+
     try {
       const { error: dbError } = await supabase.from('leads').insert([{
-        name: formData.name,
+        type: 'residential',
+        contact_name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        message: `Address: ${formData.address}\n\n${formData.message}`,
-        source: 'Residential Page',
-        lead_type: 'residential',
+        details,
       }]);
 
       if (dbError) throw dbError;
       navigate('/thank-you');
-    } catch {
+    } catch (err) {
+      console.error('Lead submission error:', err);
       setError('Something went wrong. Please try again or call us directly.');
     } finally {
       setIsSubmitting(false);

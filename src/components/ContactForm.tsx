@@ -15,12 +15,11 @@ export function ContactForm() {
 
     try {
       const { error: dbError } = await supabase.from('leads').insert([{
-        name: formData.name,
+        type: 'general',
+        contact_name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        message: formData.message,
-        source: 'Contact Form',
-        lead_type: 'general',
+        details: formData.message || 'General inquiry',
       }]);
 
       if (dbError) throw dbError;

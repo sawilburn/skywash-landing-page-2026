@@ -31,12 +31,12 @@ export function HOAServicesPage() {
     try {
       const { error } = await supabase.from('leads').insert([
         {
-          name: formData.name,
+          type: 'commercial',
+          contact_name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          message: `Company/HOA: ${formData.company}\n\n${formData.message}`,
-          source: 'HOA Services Page',
-          lead_type: 'commercial'
+          company_name: formData.company,
+          details: formData.message || 'HOA services inquiry'
         }
       ]);
 
