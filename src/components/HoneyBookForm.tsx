@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 declare global {
@@ -13,23 +13,23 @@ interface HoneyBookFormProps {
 
 export function HoneyBookForm({ className }: HoneyBookFormProps) {
   const navigate = useNavigate();
+  const observerRef = useRef<MutationObserver | null>(null);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      if (
-        typeof event.data === 'string' &&
-        event.data.toLowerCase().includes('honeybook') &&
-        (event.data.toLowerCase().includes('submit') || event.data.toLowerCase().includes('success'))
-      ) {
-        navigate('/thank-you');
-        return;
+      if (typeof event.data === 'string') {
+        const lower = event.data.toLowerCase();
+        if (
+          (lower.includes('honeybook') || lower.includes('hb')) &&
+          (lower.includes('submit') || lower.includes('success') || lower.includes('complete') || lower.includes('sent'))
+        ) {
+          navigate('/thank-you');
+          return;
+        }
       }
       if (event.data && typeof event.data === 'object') {
-        const type = event.data.type || event.data.event || event.data.action || '';
-        if (
-          typeof type === 'string' &&
-          (type.toLowerCase().includes('submit') || type.toLowerCase().includes('success') || type.toLowerCase().includes('complete'))
-        ) {
+        const type = String(event.data.type || event.data.event || event.data.action || event.data.status || '').toLowerCase();
+        if (type.includes('submit') || type.includes('success') || type.includes('complete') || type.includes('sent')) {
           navigate('/thank-you');
         }
       }
@@ -37,6 +37,41 @@ export function HoneyBookForm({ className }: HoneyBookFormProps) {
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
+  }, [navigate]);
+
+  // Watch the DOM for HoneyBook's success/confirmation state
+  useEffect(() => {
+    const successKeywords = ['thank you', 'success', 'submitted', 'confirmation', 'received', 'on its way'];
+
+    const checkNode = (node: Element) => {
+      const text = node.textContent?.toLowerCase() || '';
+      return successKeywords.some((kw) => text.includes(kw));
+    };
+
+    observerRef.current = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        for (const node of Array.from(mutation.addedNodes)) {
+          if (node instanceof Element && checkNode(node)) {
+            navigate('/thank-you');
+            return;
+          }
+        }
+        if (mutation.type === 'characterData' && mutation.target.parentElement) {
+          if (checkNode(mutation.target.parentElement)) {
+            navigate('/thank-you');
+            return;
+          }
+        }
+      }
+    });
+
+    observerRef.current.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+    });
+
+    return () => observerRef.current?.disconnect();
   }, [navigate]);
 
   useEffect(() => {
