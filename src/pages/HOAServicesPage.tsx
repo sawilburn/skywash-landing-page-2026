@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { Shield, Leaf, BadgeCheck, Plane, Building2, ParkingSquare, Fence, SignpostBig, Home, Droplets, Wind, Sparkles, FileText, ClipboardCheck, Wrench, Phone, Mail, Globe, Sparkle } from 'lucide-react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
 export function HOAServicesPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -41,10 +42,7 @@ export function HOAServicesPage() {
 
       if (error) throw error;
 
-      setSubmitStatus('success');
-      setFormData({ name: '', company: '', email: '', phone: '', message: '' });
-
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      navigate('/thank-you');
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
@@ -482,12 +480,6 @@ export function HOAServicesPage() {
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}
               </button>
-
-              {submitStatus === 'success' && (
-                <div className="bg-green-500/20 border border-green-400 text-white px-6 py-4 rounded-lg">
-                  Thank you for your inquiry! We'll be in touch soon.
-                </div>
-              )}
 
               {submitStatus === 'error' && (
                 <div className="bg-red-500/20 border border-red-400 text-white px-6 py-4 rounded-lg">

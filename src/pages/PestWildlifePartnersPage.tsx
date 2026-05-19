@@ -1,9 +1,11 @@
 import { CheckCircle, Handshake, DollarSign, Camera, Search, Droplets, Award, Users, Bug, Bird } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
 export function PestWildlifePartnersPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     companyName: '',
     contactName: '',
@@ -35,16 +37,7 @@ export function PestWildlifePartnersPage() {
 
       if (error) throw error;
 
-      setSubmitStatus('success');
-      setFormData({
-        companyName: '',
-        contactName: '',
-        email: '',
-        phone: '',
-        location: '',
-        yearsInBusiness: '',
-        message: ''
-      });
+      navigate('/thank-you');
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
@@ -482,12 +475,6 @@ export function PestWildlifePartnersPage() {
                   placeholder="What types of pest and wildlife services do you specialize in? How many projects do you complete per year?"
                 />
               </div>
-
-              {submitStatus === 'success' && (
-                <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
-                  Thank you for your interest! We'll contact you within 24 hours to set up your partner account.
-                </div>
-              )}
 
               {submitStatus === 'error' && (
                 <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
