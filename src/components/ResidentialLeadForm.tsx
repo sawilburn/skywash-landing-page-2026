@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
+import { submitLead } from '../lib/supabase';
 
 export function ResidentialLeadForm() {
   const navigate = useNavigate();
@@ -19,15 +19,13 @@ export function ResidentialLeadForm() {
     ].filter(Boolean).join('\n\n') || 'Residential quote request';
 
     try {
-      const { error: dbError } = await supabase.from('leads').insert([{
+      await submitLead({
         type: 'residential',
         contact_name: formData.name,
         email: formData.email,
         phone: formData.phone,
         details,
-      }]);
-
-      if (dbError) throw dbError;
+      });
       navigate('/thank-you');
     } catch (err) {
       console.error('Lead submission error:', err);

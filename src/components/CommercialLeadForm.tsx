@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
+import { submitLead } from '../lib/supabase';
 
 export function CommercialLeadForm() {
   const navigate = useNavigate();
@@ -14,16 +14,14 @@ export function CommercialLeadForm() {
     setError('');
 
     try {
-      const { error: dbError } = await supabase.from('leads').insert([{
+      await submitLead({
         type: 'commercial',
         contact_name: formData.name,
         email: formData.email,
         phone: formData.phone,
         company_name: formData.company,
         details: formData.message || 'Commercial quote request',
-      }]);
-
-      if (dbError) throw dbError;
+      });
       navigate('/thank-you');
     } catch {
       setError('Something went wrong. Please try again or call us directly.');

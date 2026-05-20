@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
+import { submitLead } from '../lib/supabase';
 
 export function ContactForm() {
   const navigate = useNavigate();
@@ -14,15 +14,13 @@ export function ContactForm() {
     setError('');
 
     try {
-      const { error: dbError } = await supabase.from('leads').insert([{
+      await submitLead({
         type: 'general',
         contact_name: formData.name,
         email: formData.email,
         phone: formData.phone,
         details: formData.message || 'General inquiry',
-      }]);
-
-      if (dbError) throw dbError;
+      });
       navigate('/thank-you');
     } catch {
       setError('Something went wrong. Please try again or call us directly.');

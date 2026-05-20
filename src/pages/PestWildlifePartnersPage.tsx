@@ -2,7 +2,7 @@ import { CheckCircle, Handshake, DollarSign, Camera, Search, Droplets, Award, Us
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
+import { submitLead } from '../lib/supabase';
 
 export function PestWildlifePartnersPage() {
   const navigate = useNavigate();
@@ -24,19 +24,14 @@ export function PestWildlifePartnersPage() {
     setSubmitStatus('idle');
 
     try {
-      const { error } = await supabase
-        .from('leads')
-        .insert([{
-          type: 'partner',
-          contact_name: formData.contactName,
-          email: formData.email,
-          phone: formData.phone,
-          company_name: formData.companyName,
-          details: `PEST & WILDLIFE PARTNER INQUIRY\n\nLocation: ${formData.location}\nYears in Business: ${formData.yearsInBusiness}\n\n${formData.message}`
-        }]);
-
-      if (error) throw error;
-
+      await submitLead({
+        type: 'partner',
+        contact_name: formData.contactName,
+        email: formData.email,
+        phone: formData.phone,
+        company_name: formData.companyName,
+        details: `PEST & WILDLIFE PARTNER INQUIRY\n\nLocation: ${formData.location}\nYears in Business: ${formData.yearsInBusiness}\n\n${formData.message}`,
+      });
       navigate('/thank-you');
     } catch (error) {
       console.error('Error submitting form:', error);

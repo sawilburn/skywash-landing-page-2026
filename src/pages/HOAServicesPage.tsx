@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Shield, Leaf, BadgeCheck, Plane, Building2, ParkingSquare, Fence, SignpostBig, Home, Droplets, Wind, Sparkles, FileText, ClipboardCheck, Wrench, Phone, Mail, Globe, Sparkle } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
+import { submitLead } from '../lib/supabase';
 
 export function HOAServicesPage() {
   const navigate = useNavigate();
@@ -29,18 +29,14 @@ export function HOAServicesPage() {
     setSubmitStatus('idle');
 
     try {
-      const { error } = await supabase.from('leads').insert([
-        {
-          type: 'commercial',
-          contact_name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company_name: formData.company,
-          details: formData.message || 'HOA services inquiry'
-        }
-      ]);
-
-      if (error) throw error;
+      await submitLead({
+        type: 'commercial',
+        contact_name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company_name: formData.company,
+        details: formData.message || 'HOA services inquiry',
+      });
 
       navigate('/thank-you');
     } catch (error) {

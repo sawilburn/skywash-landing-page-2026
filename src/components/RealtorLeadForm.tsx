@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
+import { submitLead } from '../lib/supabase';
 
 export function RealtorLeadForm() {
   const navigate = useNavigate();
@@ -14,15 +14,13 @@ export function RealtorLeadForm() {
     setError('');
 
     try {
-      const { error: dbError } = await supabase.from('leads').insert([{
+      await submitLead({
         type: 'realtor',
         contact_name: formData.name,
         email: formData.email,
         phone: formData.phone,
         details: [formData.address ? `Property: ${formData.address}` : '', formData.message].filter(Boolean).join('\n\n') || 'Realtor inquiry',
-      }]);
-
-      if (dbError) throw dbError;
+      });
       navigate('/thank-you');
     } catch {
       setError('Something went wrong. Please try again or call us directly.');
