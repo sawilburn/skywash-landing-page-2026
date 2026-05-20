@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { CheckCircle } from 'lucide-react';
 
 declare global {
   interface Window {
@@ -16,6 +17,7 @@ export function HoneyBookForm({ className, id }: HoneyBookFormProps) {
   const navigate = useNavigate();
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const didRedirect = useRef(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const goToThankYou = () => {
     if (didRedirect.current) return;
@@ -25,54 +27,71 @@ export function HoneyBookForm({ className, id }: HoneyBookFormProps) {
   };
 
   useEffect(() => {
-    // postMessage from HoneyBook or from our /honeybook-redirect bridge page
     const handleMessage = (event: MessageEvent) => {
-      if (event.data && typeof event.data === 'object') {
-        if (event.data.type === 'hb-form-submitted') {
-          goToThankYou();
-          return;
-        }
+      if (!event.data) return;
+      if (typeof event.data === 'object') {
+        if (event.data.type === 'hb-form-submitted') { goToThankYou(); return; }
         const str = JSON.stringify(event.data).toLowerCase();
-        if (str.includes('thank-you') || str.includes('thank_you') || str.includes('submitted') || str.includes('success')) {
+        if (str.includes('thank') || str.includes('submit') || str.includes('success') || str.includes('sent')) {
           goToThankYou();
-          return;
         }
       }
       if (typeof event.data === 'string') {
         const lower = event.data.toLowerCase();
-        if (lower.includes('thank-you') || lower.includes('submitted') || lower.includes('success')) {
+        if (lower.includes('thank') || lower.includes('submit') || lower.includes('success')) {
           goToThankYou();
         }
       }
     };
-
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
   }, []);
 
-  // Poll all iframes every 300ms — when HoneyBook redirects its iframe to our
-  // domain (/thank-you or /honeybook-redirect), it becomes same-origin and
-  // readable. We detect the pathname change and navigate the parent window.
+  // Poll iframes for same-origin URL change (fires when HoneyBook redirects iframe to our domain)
   useEffect(() => {
     intervalRef.current = setInterval(() => {
-      const iframes = document.querySelectorAll('iframe');
-      iframes.forEach((iframe) => {
+      document.querySelectorAll('iframe').forEach((iframe) => {
         try {
-          const loc = iframe.contentWindow?.location;
-          if (!loc) return;
-          const path = loc.pathname + loc.search;
-          if (path.includes('thank-you') || path.includes('thank_you') || path.includes('honeybook-redirect')) {
+          const path = iframe.contentWindow?.location?.pathname ?? '';
+          if (path.includes('thank') || path.includes('honeybook-redirect')) {
             goToThankYou();
           }
-        } catch {
-          // cross-origin — can't read, expected while HoneyBook is on their domain
-        }
+        } catch { /* cross-origin, expected */ }
       });
     }, 300);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, []);
 
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+  // Watch for HoneyBook injecting a success/confirmation element into the page
+  useEffect(() => {
+    const DONE_SELECTORS = [
+      '.hb-success',
+      '.hb-confirmation',
+      '[class*="success"]',
+      '[class*="confirmation"]',
+      '[class*="thank"]',
+    ];
+    const successText = ['thank you', 'your inquiry', 'received your', 'be in touch', 'message sent'];
+
+    const check = (root: Element) => {
+      for (const sel of DONE_SELECTORS) {
+        if (root.matches?.(sel) || root.querySelector?.(sel)) {
+          goToThankYou(); return;
+        }
+      }
+      const text = root.textContent?.toLowerCase() ?? '';
+      if (successText.some(t => text.includes(t))) {
+        goToThankYou();
+      }
     };
+
+    const observer = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        m.addedNodes.forEach(n => { if (n instanceof Element) check(n); });
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -84,14 +103,33 @@ export function HoneyBookForm({ className, id }: HoneyBookFormProps) {
       script.type = 'text/javascript';
       script.async = true;
       script.src = 'https://widget.honeybook.com/assets_users_production/websiteplacements/placement-controller.min.js';
-      const firstScript = document.getElementsByTagName('script')[0];
-      firstScript.parentNode?.insertBefore(script, firstScript);
+      document.head.appendChild(script);
     }
   }, []);
+
+  if (submitted) {
+    return (
+      <div className={className} id={id}>
+        <div className="flex flex-col items-center justify-center py-16 text-center">
+          <CheckCircle className="text-green-500 mb-4" size={52} />
+          <h3 className="text-2xl font-bold text-slate-800 mb-2">Thank You!</h3>
+          <p className="text-slate-600">Your request has been received. We'll be in touch shortly.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div id={id} className={className}>
       <div className="hb-p-69cf2c57c60881003ffe524f-1"></div>
+      {/* Fallback submit button overlay detection */}
+      <button
+        className="sr-only"
+        aria-hidden="true"
+        tabIndex={-1}
+        onClick={() => setSubmitted(true)}
+        id="hb-fallback-submit"
+      />
     </div>
   );
 }
