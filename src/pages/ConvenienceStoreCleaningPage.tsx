@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { CommercialLeadForm } from '../components/CommercialLeadForm';
+import { HoneyBookForm } from '../components/HoneyBookForm';
 import {
   Zap,
   Shield,
@@ -17,7 +16,10 @@ import {
 } from 'lucide-react';
 
 export function ConvenienceStoreCleaningPage() {
-  const [showLeadForm, setShowLeadForm] = useState(false);
+  const scrollToForm = () => {
+    const el = document.getElementById('honeybook-form');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -48,7 +50,7 @@ export function ConvenienceStoreCleaningPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button
-                onClick={() => setShowLeadForm(true)}
+                onClick={scrollToForm}
                 className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-300 hover:text-blue-700 transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center space-x-2"
               >
                 <Zap size={24} />
@@ -333,7 +335,7 @@ export function ConvenienceStoreCleaningPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button
-                onClick={() => setShowLeadForm(true)}
+                onClick={scrollToForm}
                 className="bg-white text-blue-600 px-10 py-5 rounded-xl font-black text-xl hover:bg-yellow-300 hover:text-blue-700 transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center space-x-3"
               >
                 <Zap size={28} />
@@ -355,12 +357,7 @@ export function ConvenienceStoreCleaningPage() {
         </div>
       </section>
 
-      {showLeadForm && (
-        <CommercialLeadForm
-          onClose={() => setShowLeadForm(false)}
-          serviceType="Convenience & Fuel Station Cleaning"
-        />
-      )}
+      <div id="honeybook-form"><HoneyBookForm /></div>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { DynamicBeforeAfterSlider } from '../components/DynamicBeforeAfterSlider';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
-import { ResidentialLeadForm } from '../components/ResidentialLeadForm';
+import { HoneyBookForm } from '../components/HoneyBookForm';
 
 const packages = [
   {
@@ -488,7 +488,7 @@ export function ResidentialSpring2026Page() {
                 </p>
               </div>
 
-              <ResidentialLeadForm />
+              <HoneyBookForm />
             </motion.div>
           </div>
         </section>

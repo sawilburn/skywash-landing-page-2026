@@ -1,6 +1,6 @@
 import { Heart, Shield, Sparkles, Award, CheckCircle2, Church, Lock, Droplets, Clock, FileCheck, Info } from 'lucide-react';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
-import { CommercialLeadForm } from '../components/CommercialLeadForm';
+import { HoneyBookForm } from '../components/HoneyBookForm';
 
 export function ChurchCleaningPage() {
   const scrollToForm = () => {
@@ -418,7 +418,7 @@ export function ChurchCleaningPage() {
         </div>
       </section>
 
-      <CommercialLeadForm />
+      <HoneyBookForm />
     </div>
   );
 }

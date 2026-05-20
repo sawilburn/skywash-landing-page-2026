@@ -1,7 +1,7 @@
 import { Shield, Clock, FileCheck, Zap, Thermometer, TrendingUp, CheckCircle2, Building2, Sun, Eye, Sparkles, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
-import { CommercialLeadForm } from '../components/CommercialLeadForm';
+import { HoneyBookForm } from '../components/HoneyBookForm';
 
 export function CommercialPage() {
   const scrollToForm = () => {
@@ -495,7 +495,7 @@ export function CommercialPage() {
         </div>
       </section>
 
-      <CommercialLeadForm />
+      <HoneyBookForm />
     </div>
   );
 }

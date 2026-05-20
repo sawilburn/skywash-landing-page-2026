@@ -1,6 +1,6 @@
 import { Building2, Clock, Star, Users, Shield, Sparkles, CheckCircle2, Calendar, Moon, Sun } from 'lucide-react';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
-import { CommercialLeadForm } from '../components/CommercialLeadForm';
+import { HoneyBookForm } from '../components/HoneyBookForm';
 
 export function HotelCleaningPage() {
   const scrollToForm = () => {
@@ -425,7 +425,7 @@ export function HotelCleaningPage() {
         </div>
       </section>
 
-      <CommercialLeadForm />
+      <HoneyBookForm />
     </div>
   );
 }

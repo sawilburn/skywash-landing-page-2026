@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Shield, Clock, FileText, Home, Droplets, Wind, Sparkles, BadgeCheck, Building2, Award, DollarSign, Download } from 'lucide-react';
-import { RealtorLeadForm } from '../components/RealtorLeadForm';
+import { HoneyBookForm } from '../components/HoneyBookForm';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
@@ -656,7 +656,7 @@ export function RealtorPage() {
         </div>
       </section>
 
-      <RealtorLeadForm />
+      <HoneyBookForm />
 
       <section className="py-16 bg-gradient-to-r from-[#1a3c75] to-[#2a4c85] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

@@ -1,7 +1,7 @@
 import { Home, Droplets, Wind, Square, Heart, Shield, Leaf, CheckCircle2, AlertTriangle, Sparkles, ArrowRight, Sun } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { DynamicBeforeAfterSlider } from '../components/DynamicBeforeAfterSlider';
-import { ResidentialLeadForm } from '../components/ResidentialLeadForm';
+import { HoneyBookForm } from '../components/HoneyBookForm';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
 
 export function ResidentialPage() {
@@ -406,7 +406,7 @@ export function ResidentialPage() {
         </div>
       </section>
 
-      <ResidentialLeadForm />
+      <HoneyBookForm />
     </div>
   );
 }
