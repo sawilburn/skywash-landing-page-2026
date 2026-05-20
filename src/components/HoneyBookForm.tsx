@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle } from 'lucide-react';
 
 declare global {
   interface Window {
@@ -13,90 +12,23 @@ interface HoneyBookFormProps {
   id?: string;
 }
 
+const HB_PID = '69cf2c57c60881003ffe524f';
+const HB_DIV_CLASS = `hb-p-${HB_PID}-1`;
+
 export function HoneyBookForm({ className, id }: HoneyBookFormProps) {
   const navigate = useNavigate();
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const didRedirect = useRef(false);
-  const [submitted, setSubmitted] = useState(false);
 
   const goToThankYou = () => {
     if (didRedirect.current) return;
     didRedirect.current = true;
-    if (intervalRef.current) clearInterval(intervalRef.current);
     navigate('/thank-you');
   };
 
   useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
-      if (!event.data) return;
-      if (typeof event.data === 'object') {
-        if (event.data.type === 'hb-form-submitted') { goToThankYou(); return; }
-        const str = JSON.stringify(event.data).toLowerCase();
-        if (str.includes('thank') || str.includes('submit') || str.includes('success') || str.includes('sent')) {
-          goToThankYou();
-        }
-      }
-      if (typeof event.data === 'string') {
-        const lower = event.data.toLowerCase();
-        if (lower.includes('thank') || lower.includes('submit') || lower.includes('success')) {
-          goToThankYou();
-        }
-      }
-    };
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
-
-  // Poll iframes for same-origin URL change (fires when HoneyBook redirects iframe to our domain)
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      document.querySelectorAll('iframe').forEach((iframe) => {
-        try {
-          const path = iframe.contentWindow?.location?.pathname ?? '';
-          if (path.includes('thank') || path.includes('honeybook-redirect')) {
-            goToThankYou();
-          }
-        } catch { /* cross-origin, expected */ }
-      });
-    }, 300);
-    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
-  }, []);
-
-  // Watch for HoneyBook injecting a success/confirmation element into the page
-  useEffect(() => {
-    const DONE_SELECTORS = [
-      '.hb-success',
-      '.hb-confirmation',
-      '[class*="success"]',
-      '[class*="confirmation"]',
-      '[class*="thank"]',
-    ];
-    const successText = ['thank you', 'your inquiry', 'received your', 'be in touch', 'message sent'];
-
-    const check = (root: Element) => {
-      for (const sel of DONE_SELECTORS) {
-        if (root.matches?.(sel) || root.querySelector?.(sel)) {
-          goToThankYou(); return;
-        }
-      }
-      const text = root.textContent?.toLowerCase() ?? '';
-      if (successText.some(t => text.includes(t))) {
-        goToThankYou();
-      }
-    };
-
-    const observer = new MutationObserver((mutations) => {
-      for (const m of mutations) {
-        m.addedNodes.forEach(n => { if (n instanceof Element) check(n); });
-      }
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
     window._HB_ = window._HB_ || { pid: '' };
-    window._HB_.pid = '69cf2c57c60881003ffe524f';
+    window._HB_.pid = HB_PID;
 
     if (!document.querySelector('script[src*="placement-controller"]')) {
       const script = document.createElement('script');
@@ -107,29 +39,101 @@ export function HoneyBookForm({ className, id }: HoneyBookFormProps) {
     }
   }, []);
 
-  if (submitted) {
-    return (
-      <div className={className} id={id}>
-        <div className="flex flex-col items-center justify-center py-16 text-center">
-          <CheckCircle className="text-green-500 mb-4" size={52} />
-          <h3 className="text-2xl font-bold text-slate-800 mb-2">Thank You!</h3>
-          <p className="text-slate-600">Your request has been received. We'll be in touch shortly.</p>
-        </div>
-      </div>
-    );
-  }
+  useEffect(() => {
+    // Watch the HoneyBook widget container. When the form is submitted, HoneyBook
+    // replaces the iframe/form content with a success state — either by mutating
+    // the iframe's src, adding new elements, or changing attributes.
+    const widgetEl = containerRef.current?.querySelector(`.${HB_DIV_CLASS}`) ?? containerRef.current;
+    if (!widgetEl) return;
+
+    const SUCCESS_TEXT = ['thank you', 'thank-you', 'received', 'be in touch', 'submitted', 'on its way', 'sent'];
+    const SUCCESS_CLASSES = ['success', 'confirmation', 'thank', 'submitted', 'complete'];
+
+    const checkElement = (el: Node) => {
+      if (!(el instanceof Element)) return false;
+      const text = el.textContent?.toLowerCase() ?? '';
+      const cls = (el.getAttribute?.('class') ?? '').toLowerCase();
+      if (SUCCESS_TEXT.some(t => text.includes(t))) return true;
+      if (SUCCESS_CLASSES.some(c => cls.includes(c))) return true;
+      // Check all descendant classes
+      const allEls = el.querySelectorAll?.('*') ?? [];
+      for (const child of allEls) {
+        const childCls = (child.getAttribute('class') ?? '').toLowerCase();
+        if (SUCCESS_CLASSES.some(c => childCls.includes(c))) return true;
+      }
+      return false;
+    };
+
+    // Also check iframes for same-origin src changes
+    const checkIframes = () => {
+      document.querySelectorAll('iframe').forEach(iframe => {
+        try {
+          const path = iframe.contentWindow?.location?.pathname ?? '';
+          if (path.includes('thank') || path.includes('success') || path.includes('redirect')) {
+            goToThankYou();
+          }
+          // Check iframe document content if same-origin
+          const iframeText = iframe.contentDocument?.body?.textContent?.toLowerCase() ?? '';
+          if (SUCCESS_TEXT.some(t => iframeText.includes(t))) {
+            goToThankYou();
+          }
+        } catch { /* cross-origin */ }
+      });
+    };
+
+    const observer = new MutationObserver((mutations) => {
+      checkIframes();
+      for (const mutation of mutations) {
+        // Check added nodes
+        for (const node of mutation.addedNodes) {
+          if (checkElement(node)) { goToThankYou(); return; }
+        }
+        // Check attribute changes on existing elements (e.g. class swap)
+        if (mutation.type === 'attributes' && mutation.target instanceof Element) {
+          if (checkElement(mutation.target)) { goToThankYou(); return; }
+        }
+        // Check the mutated target's current text
+        if (mutation.target instanceof Element && checkElement(mutation.target)) {
+          goToThankYou(); return;
+        }
+      }
+    });
+
+    // Observe the widget container AND the whole body (HoneyBook may inject outside the widget div)
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class', 'src', 'style'],
+      characterData: true,
+    });
+
+    // Also poll iframe content every 500ms as fallback
+    const pollInterval = setInterval(checkIframes, 500);
+
+    return () => {
+      observer.disconnect();
+      clearInterval(pollInterval);
+    };
+  }, []);
+
+  // postMessage fallback
+  useEffect(() => {
+    const handle = (e: MessageEvent) => {
+      const data = e.data;
+      if (!data) return;
+      const str = (typeof data === 'string' ? data : JSON.stringify(data)).toLowerCase();
+      if (str.includes('thank') || str.includes('submit') || str.includes('success') || str.includes('hb-form')) {
+        goToThankYou();
+      }
+    };
+    window.addEventListener('message', handle);
+    return () => window.removeEventListener('message', handle);
+  }, []);
 
   return (
-    <div id={id} className={className}>
-      <div className="hb-p-69cf2c57c60881003ffe524f-1"></div>
-      {/* Fallback submit button overlay detection */}
-      <button
-        className="sr-only"
-        aria-hidden="true"
-        tabIndex={-1}
-        onClick={() => setSubmitted(true)}
-        id="hb-fallback-submit"
-      />
+    <div id={id} className={className} ref={containerRef}>
+      <div className={HB_DIV_CLASS}></div>
     </div>
   );
 }
