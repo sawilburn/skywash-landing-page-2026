@@ -666,7 +666,7 @@ export function SolarWashingPage() {
         </div>
       </section>
 
-      <HoneyBookForm />
+      <HoneyBookForm id="residential-form" />
     </div>
   );
 }

@@ -425,7 +425,7 @@ export function HotelCleaningPage() {
         </div>
       </section>
 
-      <HoneyBookForm />
+      <HoneyBookForm id="commercial-form" />
     </div>
   );
 }

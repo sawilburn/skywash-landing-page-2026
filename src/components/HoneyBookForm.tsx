@@ -9,9 +9,10 @@ declare global {
 
 interface HoneyBookFormProps {
   className?: string;
+  id?: string;
 }
 
-export function HoneyBookForm({ className }: HoneyBookFormProps) {
+export function HoneyBookForm({ className, id }: HoneyBookFormProps) {
   const navigate = useNavigate();
   const observerRef = useRef<MutationObserver | null>(null);
 
@@ -98,7 +99,7 @@ export function HoneyBookForm({ className }: HoneyBookFormProps) {
   }, []);
 
   return (
-    <div className={className}>
+    <div id={id} className={className}>
       <div className="hb-p-69cf2c57c60881003ffe524f-1"></div>
     </div>
   );
