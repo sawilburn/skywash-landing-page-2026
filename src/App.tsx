@@ -44,6 +44,7 @@ import { HOAServicesPage } from './pages/HOAServicesPage';
 import { RoofCareGloeocapsaPage } from './pages/RoofCareGloeocapsaPage';
 import { WindowCleaningLearningPage } from './pages/WindowCleaningLearningPage';
 import { ThankYouPage } from './pages/ThankYouPage';
+import { HoneyBookRedirectPage } from './pages/HoneyBookRedirectPage';
 import { useSEO } from './hooks/useSEO';
 
 function AppContent() {
@@ -94,6 +95,7 @@ function AppContent() {
           <Route path="/sitemap" element={<SitemapPage />} />
           <Route path="/why-choose-us" element={<WhyChooseUsPage />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
+          <Route path="/honeybook-redirect" element={<HoneyBookRedirectPage />} />
           <Route path="/admin/upload-photos" element={<ImageUploadPage />} />
           <Route path="/admin/upload-image" element={<ImageUploadPage />} />
           <Route path="/validate" element={<ValidationPage />} />
