@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Zap, Shield, TrendingUp, AlertTriangle, CheckCircle2, XCircle, Leaf, Award, FileCheck, Sun, DollarSign, Clock, Sparkles, Battery, Heart } from 'lucide-react';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
-import { HoneyBookForm } from '../components/HoneyBookForm';
+import { ResidentialLeadForm } from '../components/ResidentialLeadForm';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { getBeforeAfterImages } from '../lib/siteImages';
 
@@ -666,7 +666,7 @@ export function SolarWashingPage() {
         </div>
       </section>
 
-      <HoneyBookForm id="residential-form" />
+      <ResidentialLeadForm />
     </div>
   );
 }

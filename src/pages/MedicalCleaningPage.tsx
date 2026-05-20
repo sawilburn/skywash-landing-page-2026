@@ -1,6 +1,6 @@
 import { Heart, Shield, Clock, CheckCircle2, Users, Lock, Building2, Stethoscope, UserCheck, Eye } from 'lucide-react';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
-import { HoneyBookForm } from '../components/HoneyBookForm';
+import { CommercialLeadForm } from '../components/CommercialLeadForm';
 
 export function MedicalCleaningPage() {
   const scrollToForm = () => {
@@ -437,7 +437,7 @@ export function MedicalCleaningPage() {
         </div>
       </section>
 
-      <HoneyBookForm id="commercial-form" />
+      <CommercialLeadForm />
     </div>
   );
 }

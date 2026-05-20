@@ -1,6 +1,6 @@
 import { GraduationCap, Shield, Zap, Users, TrendingUp, Brain, Sparkles, CheckCircle2, Rocket, Clock, DollarSign, Award, BookOpen, Building2 } from 'lucide-react';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
-import { HoneyBookForm } from '../components/HoneyBookForm';
+import { CommercialLeadForm } from '../components/CommercialLeadForm';
 
 export function SchoolsUniversityCleaningPage() {
   const scrollToForm = () => {
@@ -428,7 +428,7 @@ export function SchoolsUniversityCleaningPage() {
         </div>
       </section>
 
-      <HoneyBookForm id="commercial-form" />
+      <CommercialLeadForm />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Home, Shield, Zap, Sparkles, CheckCircle2, AlertTriangle, Sun, Eye, Droplets, TrendingUp, Clock } from 'lucide-react';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
-import { HoneyBookForm } from '../components/HoneyBookForm';
+import { ResidentialLeadForm } from '../components/ResidentialLeadForm';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { getBeforeAfterImages } from '../lib/siteImages';
 
@@ -509,7 +509,7 @@ export function HouseWashingPage() {
         </div>
       </section>
 
-      <HoneyBookForm id="residential-form" />
+      <ResidentialLeadForm />
     </div>
   );
 }

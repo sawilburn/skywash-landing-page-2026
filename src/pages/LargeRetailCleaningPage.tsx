@@ -14,7 +14,7 @@ import {
   Map,
   Target
 } from 'lucide-react';
-import { HoneyBookForm } from '../components/HoneyBookForm';
+import { CommercialLeadForm } from '../components/CommercialLeadForm';
 
 export function LargeRetailCleaningPage() {
   const scrollToForm = () => {
@@ -452,7 +452,7 @@ export function LargeRetailCleaningPage() {
         </div>
       </section>
 
-      <HoneyBookForm id="commercial-form" />
+      <CommercialLeadForm />
     </div>
   );
 }
