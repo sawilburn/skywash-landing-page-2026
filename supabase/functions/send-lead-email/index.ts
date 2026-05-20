@@ -100,8 +100,9 @@ Deno.serve(async (req: Request) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Skywash Leads <leads@skywashinnovations.com>",
-        to: ["info@skywashinnovations.com"],
+        from: "Skywash Leads <onboarding@resend.dev>",
+        to: ["scott.wilburn@gmail.com"],
+        reply_to: leadData.email,
         subject: subject,
         html: htmlBody,
       }),
