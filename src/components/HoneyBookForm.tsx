@@ -15,100 +15,65 @@ interface HoneyBookFormProps {
 export function HoneyBookForm({ className, id }: HoneyBookFormProps) {
   const navigate = useNavigate();
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const didRedirect = useRef(false);
+
+  const goToThankYou = () => {
+    if (didRedirect.current) return;
+    didRedirect.current = true;
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    navigate('/thank-you');
+  };
 
   useEffect(() => {
-    // Listen for postMessage from HoneyBook iframe
+    // postMessage from HoneyBook or from our /honeybook-redirect bridge page
     const handleMessage = (event: MessageEvent) => {
-      // Primary: message from our /honeybook-redirect page loaded inside HoneyBook's iframe
-      if (event.data && typeof event.data === 'object' && event.data.type === 'hb-form-submitted') {
-        navigate('/thank-you');
-        return;
+      if (event.data && typeof event.data === 'object') {
+        if (event.data.type === 'hb-form-submitted') {
+          goToThankYou();
+          return;
+        }
+        const str = JSON.stringify(event.data).toLowerCase();
+        if (str.includes('thank-you') || str.includes('thank_you') || str.includes('submitted') || str.includes('success')) {
+          goToThankYou();
+          return;
+        }
       }
       if (typeof event.data === 'string') {
         const lower = event.data.toLowerCase();
-        if (
-          lower.includes('thank-you') ||
-          lower.includes('thank_you') ||
-          ((lower.includes('honeybook') || lower.includes('hb')) &&
-            (lower.includes('submit') || lower.includes('success') || lower.includes('complete') || lower.includes('sent')))
-        ) {
-          navigate('/thank-you');
-          return;
-        }
-      }
-      if (event.data && typeof event.data === 'object') {
-        const str = JSON.stringify(event.data).toLowerCase();
-        if (str.includes('thank-you') || str.includes('thank_you')) {
-          navigate('/thank-you');
-          return;
-        }
-        const type = String(event.data.type || event.data.event || event.data.action || event.data.status || '').toLowerCase();
-        if (type.includes('submit') || type.includes('success') || type.includes('complete') || type.includes('sent')) {
-          navigate('/thank-you');
+        if (lower.includes('thank-you') || lower.includes('submitted') || lower.includes('success')) {
+          goToThankYou();
         }
       }
     };
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, [navigate]);
+  }, []);
 
-  // Poll for HoneyBook iframes navigating to our thank-you page
+  // Poll all iframes every 300ms — when HoneyBook redirects its iframe to our
+  // domain (/thank-you or /honeybook-redirect), it becomes same-origin and
+  // readable. We detect the pathname change and navigate the parent window.
   useEffect(() => {
     intervalRef.current = setInterval(() => {
       const iframes = document.querySelectorAll('iframe');
       iframes.forEach((iframe) => {
         try {
-          const src = iframe.getAttribute('src') || '';
-          if (src.includes('thank-you') || src.includes('thank_you')) {
-            if (intervalRef.current) clearInterval(intervalRef.current);
-            navigate('/thank-you');
+          const loc = iframe.contentWindow?.location;
+          if (!loc) return;
+          const path = loc.pathname + loc.search;
+          if (path.includes('thank-you') || path.includes('thank_you') || path.includes('honeybook-redirect')) {
+            goToThankYou();
           }
         } catch {
-          // cross-origin access blocked — expected
+          // cross-origin — can't read, expected while HoneyBook is on their domain
         }
       });
-    }, 500);
+    }, 300);
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [navigate]);
-
-  // Watch DOM for HoneyBook's success/confirmation state appearing in the page
-  useEffect(() => {
-    const successKeywords = ['thank you', 'success', 'submitted', 'confirmation', 'received', 'on its way'];
-
-    const checkNode = (node: Element) => {
-      const text = node.textContent?.toLowerCase() || '';
-      return successKeywords.some((kw) => text.includes(kw));
-    };
-
-    const observer = new MutationObserver((mutations) => {
-      for (const mutation of mutations) {
-        for (const node of Array.from(mutation.addedNodes)) {
-          if (node instanceof Element && checkNode(node)) {
-            navigate('/thank-you');
-            return;
-          }
-        }
-        if (mutation.type === 'characterData' && mutation.target.parentElement) {
-          if (checkNode(mutation.target.parentElement)) {
-            navigate('/thank-you');
-            return;
-          }
-        }
-      }
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      characterData: true,
-    });
-
-    return () => observer.disconnect();
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
     window._HB_ = window._HB_ || { pid: '' };
