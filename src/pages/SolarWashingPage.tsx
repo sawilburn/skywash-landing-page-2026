@@ -51,7 +51,7 @@ export function SolarWashingPage() {
               </h1>
 
               <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-                Restore up to 30% lost efficiency with safe, professional drone-powered cleaning. No workers on your roof. No liability. Just maximum energy production.
+                Restore up to 35% lost efficiency with safe, professional drone-powered cleaning. No workers on your roof. No liability. Just maximum energy production.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -70,7 +70,7 @@ export function SolarWashingPage() {
                 </div>
                 <div className="flex items-center space-x-2 bg-white/80 backdrop-blur-sm p-3 rounded-lg border border-amber-200 shadow-sm">
                   <TrendingUp className="text-amber-600 flex-shrink-0" size={18} />
-                  <span className="font-semibold">30% Efficiency Gain</span>
+                  <span className="font-semibold">35% Efficiency Gain</span>
                 </div>
                 <div className="flex items-center space-x-2 bg-white/80 backdrop-blur-sm p-3 rounded-lg border border-green-200 shadow-sm">
                   <Leaf className="text-green-600 flex-shrink-0" size={18} />
@@ -103,14 +103,14 @@ export function SolarWashingPage() {
               The Efficiency Loss You Can't Afford
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Dirty solar panels can lose 15-30% efficiency. That's money left on the table every single day.
+              Dirty solar panels can lose 15-35% efficiency. That's money left on the table every single day.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 mb-12">
             <div className="bg-gradient-to-br from-red-50 to-white p-8 rounded-2xl border-2 border-red-300 shadow-lg">
               <div className="text-center mb-6">
-                <div className="text-5xl font-bold text-red-600 mb-2">15-30%</div>
+                <div className="text-5xl font-bold text-red-600 mb-2">15-35%</div>
                 <p className="text-slate-700 font-semibold">Efficiency Loss</p>
               </div>
               <p className="text-slate-600 text-center">
@@ -600,7 +600,7 @@ export function SolarWashingPage() {
               <ul className="space-y-3 text-slate-300">
                 <li className="flex items-center">
                   <CheckCircle2 className="text-green-400 mr-3 flex-shrink-0" size={20} />
-                  <span>Up to 30% efficiency restoration</span>
+                  <span>Up to 35% efficiency restoration</span>
                 </li>
                 <li className="flex items-center">
                   <CheckCircle2 className="text-green-400 mr-3 flex-shrink-0" size={20} />
@@ -640,7 +640,7 @@ export function SolarWashingPage() {
               Your Solar Investment Deserves Protection
             </h2>
             <p className="text-xl text-slate-700 mb-8 leading-relaxed">
-              You invested thousands in solar panels to save money and help the environment. Don't lose 15-30% of that investment to dirt and neglect. Professional cleaning pays for itself while protecting your equipment and eliminating liability.
+              You invested thousands in solar panels to save money and help the environment. Don't lose 15-35% of that investment to dirt and neglect. Professional cleaning pays for itself while protecting your equipment and eliminating liability.
             </p>
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div className="bg-white rounded-xl p-6 shadow-md">
@@ -648,7 +648,7 @@ export function SolarWashingPage() {
                 <p className="text-slate-600 text-sm">Professional Cleaning</p>
               </div>
               <div className="bg-white rounded-xl p-6 shadow-md">
-                <p className="text-3xl font-bold text-blue-600 mb-2">+30%</p>
+                <p className="text-3xl font-bold text-blue-600 mb-2">+35%</p>
                 <p className="text-slate-600 text-sm">Efficiency Restoration</p>
               </div>
               <div className="bg-white rounded-xl p-6 shadow-md">
