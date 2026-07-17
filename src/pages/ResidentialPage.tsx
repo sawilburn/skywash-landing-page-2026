@@ -334,6 +334,30 @@ export function ResidentialPage() {
               </ul>
             </div>
 
+            <Link to="/residential/professional-window-cleaning" className="bg-gradient-to-br from-cyan-50 to-white p-8 rounded-2xl border-2 border-cyan-500 hover:shadow-xl transition-all group">
+              <div className="w-14 h-14 bg-cyan-100 rounded-xl flex items-center justify-center mb-6">
+                <Droplets className="text-cyan-600" size={28} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">Window Cleaning</h3>
+              <p className="text-slate-600 mb-4">
+                Interior & exterior window cleaning by certified, background-checked technicians. Screens, tracks, and sills included.
+              </p>
+              <ul className="space-y-2 text-sm text-slate-600 mb-4">
+                <li className="flex items-center">
+                  <CheckCircle2 className="text-green-500 mr-2" size={14} />
+                  Streak-free purified water
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle2 className="text-green-500 mr-2" size={14} />
+                  Inside & out
+                </li>
+              </ul>
+              <div className="flex items-center text-cyan-600 font-semibold text-sm group-hover:underline">
+                <span>Learn More</span>
+                <ArrowRight className="ml-2" size={16} />
+              </div>
+            </Link>
+
             <Link to="/residential/solar-washing" className="bg-gradient-to-br from-amber-50 to-white p-8 rounded-2xl border-2 border-amber-500 hover:shadow-xl transition-all group">
               <div className="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
                 <Sun className="text-amber-600" size={28} />

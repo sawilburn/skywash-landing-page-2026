@@ -37,6 +37,11 @@ export const pageMetadata: Record<string, PageMetadata> = {
     description: 'Professional solar panel cleaning using advanced drone technology. Maximize energy efficiency with safe, effective cleaning. No roof access required.',
     canonical: `${baseUrl}/services/solar-washing`
   },
+  '/residential/professional-window-cleaning': {
+    title: 'Residential Window Cleaning | Interior & Exterior | Skywash Innovations',
+    description: 'Professional residential window cleaning in Loudoun County and Northern Virginia. Interior & exterior glass, screens, tracks, and sills cleaned by trained, certified, background-checked technicians. Streak-free, fully insured.',
+    canonical: `${baseUrl}/residential/professional-window-cleaning`
+  },
   '/services/commercial-window-cleaning': {
     title: 'Commercial Window Cleaning VA | High-Rise Services',
     description: 'Professional commercial window cleaning for high-rise buildings, retail storefronts, and offices. Rope access and drone technology available. Crystal clear results.',
