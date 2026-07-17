@@ -265,6 +265,19 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
     ]
   },
   {
+    pageName: 'Residential Window Cleaning',
+    category: 'residential-services',
+    sections: [
+      {
+        id: 'residential-window-hero',
+        displayName: 'Hero Image - Clean Windows',
+        suggestedAltText: 'Crystal-clear residential windows after professional cleaning',
+        fallbackImage: 'Sparkling Clean Windows',
+        description: 'Main hero image for the residential window cleaning page'
+      }
+    ]
+  },
+  {
     pageName: 'Residential Services Overview',
     category: 'residential-services',
     sections: [
