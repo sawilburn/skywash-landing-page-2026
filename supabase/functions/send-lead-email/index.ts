@@ -13,6 +13,7 @@ interface LeadData {
   phone: string;
   company_name?: string;
   details: string;
+  how_found?: string;
 }
 
 Deno.serve(async (req: Request) => {
@@ -75,6 +76,13 @@ Deno.serve(async (req: Request) => {
               <div class="field">
                 <div class="label">Company Name:</div>
                 <div class="value">${leadData.company_name}</div>
+              </div>
+              ` : ''}
+
+              ${leadData.how_found ? `
+              <div class="field">
+                <div class="label">How did you find us?:</div>
+                <div class="value">${leadData.how_found}</div>
               </div>
               ` : ''}
 

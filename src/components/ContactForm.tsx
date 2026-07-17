@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { submitLead } from '../lib/supabase';
+import { submitLead, HOW_FOUND_OPTIONS } from '../lib/supabase';
 
 export function ContactForm() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '', howFound: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
@@ -20,6 +20,7 @@ export function ContactForm() {
         email: formData.email,
         phone: formData.phone,
         details: formData.message || 'General inquiry',
+        how_found: formData.howFound,
       });
       navigate('/thank-you');
     } catch {
@@ -77,6 +78,22 @@ export function ContactForm() {
                 placeholder="jane@example.com"
                 className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#1a3c75] focus:border-transparent outline-none transition-all"
               />
+            </div>
+
+            <div>
+              <label htmlFor="ct-how-found" className="block text-sm font-semibold text-slate-700 mb-2">How did you find us? *</label>
+              <select
+                id="ct-how-found"
+                required
+                value={formData.howFound}
+                onChange={(e) => setFormData({ ...formData, howFound: e.target.value })}
+                className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#1a3c75] focus:border-transparent outline-none transition-all bg-white"
+              >
+                <option value="" disabled>Select an option</option>
+                {HOW_FOUND_OPTIONS.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
             </div>
 
             <div>

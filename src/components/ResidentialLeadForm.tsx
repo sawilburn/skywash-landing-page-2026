@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { submitLead } from '../lib/supabase';
+import { submitLead, HOW_FOUND_OPTIONS } from '../lib/supabase';
 
 export function ResidentialLeadForm() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', address: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', address: '', message: '', howFound: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
@@ -25,6 +25,7 @@ export function ResidentialLeadForm() {
         email: formData.email,
         phone: formData.phone,
         details,
+        how_found: formData.howFound,
       });
       navigate('/thank-you');
     } catch (err) {
@@ -96,6 +97,22 @@ export function ResidentialLeadForm() {
                   className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#1a3c75] focus:border-transparent outline-none transition-all"
                 />
               </div>
+            </div>
+
+            <div>
+              <label htmlFor="res-how-found" className="block text-sm font-semibold text-slate-700 mb-2">How did you find us? *</label>
+              <select
+                id="res-how-found"
+                required
+                value={formData.howFound}
+                onChange={(e) => setFormData({ ...formData, howFound: e.target.value })}
+                className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#1a3c75] focus:border-transparent outline-none transition-all bg-white"
+              >
+                <option value="" disabled>Select an option</option>
+                {HOW_FOUND_OPTIONS.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
             </div>
 
             <div>

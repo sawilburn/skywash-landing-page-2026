@@ -11,6 +11,8 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export const STORAGE_BUCKET = 'images';
 
+export const HOW_FOUND_OPTIONS = ['Google', 'Friend', 'Saw you on the road', 'Other'] as const;
+
 export interface LeadPayload {
   type: string;
   contact_name: string;
@@ -18,6 +20,7 @@ export interface LeadPayload {
   phone: string;
   details: string;
   company_name?: string;
+  how_found?: string;
 }
 
 export async function submitLead(payload: LeadPayload): Promise<void> {

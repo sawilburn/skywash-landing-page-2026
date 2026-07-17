@@ -21,7 +21,7 @@ import {
   Link as LinkIcon,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { submitLead } from '../lib/supabase';
+import { submitLead, HOW_FOUND_OPTIONS } from '../lib/supabase';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
 
 const SERVICE_OPTIONS = [
@@ -44,6 +44,7 @@ export function ResidentialWindowCleaningPage() {
     cityZip: '',
     service: SERVICE_OPTIONS[0],
     message: '',
+    howFound: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -74,6 +75,7 @@ export function ResidentialWindowCleaningPage() {
         email: formData.email,
         phone: formData.phone,
         details,
+        how_found: formData.howFound,
       });
       navigate('/thank-you');
     } catch (err) {
@@ -618,6 +620,22 @@ export function ResidentialWindowCleaningPage() {
                     ))}
                   </select>
                 </div>
+              </div>
+
+              <div>
+                <label htmlFor="rwc-how-found" className="block text-sm font-semibold text-slate-700 mb-2">How did you find us? *</label>
+                <select
+                  id="rwc-how-found"
+                  required
+                  value={formData.howFound}
+                  onChange={(e) => setFormData({ ...formData, howFound: e.target.value })}
+                  className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#1a3c75] focus:border-transparent outline-none transition-all bg-white"
+                >
+                  <option value="" disabled>Select an option</option>
+                  {HOW_FOUND_OPTIONS.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
               </div>
 
               <div>
