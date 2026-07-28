@@ -24,10 +24,27 @@ export interface LeadPayload {
 }
 
 export async function submitLead(payload: LeadPayload): Promise<void> {
-  const { error: dbError } = await supabase.from('leads').insert([payload]);
+  // The leads table constrains `type` to 'commercial'/'residential'. Map
+  // other lead types to the closest allowed value so the insert succeeds;
+  // the original type is preserved in the email payload.
+  const dbType = payload.type === 'commercial' || payload.type === 'residential'
+    ? payload.type
+    : payload.type === 'realtor'
+      ? 'residential'
+      : 'commercial';
+
+  const { error: dbError } = await supabase.from('leads').insert([{
+    type: dbType,
+    contact_name: payload.contact_name,
+    email: payload.email,
+    phone: payload.phone,
+    company_name: payload.company_name,
+    details: payload.details,
+  }]);
   if (dbError) throw dbError;
 
-  // Fire-and-forget — don't block navigation if email fails
+  // Fire-and-forget — don't block navigation if email fails.
+  // The email payload includes how_found and the original type.
   fetch(`${supabaseUrl}/functions/v1/send-lead-email`, {
     method: 'POST',
     headers: {

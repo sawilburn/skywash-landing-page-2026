@@ -32,10 +32,13 @@ Deno.serve(async (req: Request) => {
       throw new Error("Missing Resend API key in environment variables");
     }
 
-    const isCommercial = leadData.type === "commercial";
-    const subject = isCommercial
-      ? `New Commercial Lead: ${leadData.company_name || leadData.contact_name}`
-      : `New Residential Lead: ${leadData.contact_name}`;
+    const leadTypeLabel = {
+      commercial: 'Commercial',
+      residential: 'Residential',
+      realtor: 'Realtor',
+      general: 'General',
+    }[leadData.type] || 'Residential';
+    const subject = `New ${leadTypeLabel} Lead: ${leadData.company_name || leadData.contact_name}`;
 
     const htmlBody = `
       <!DOCTYPE html>
@@ -54,7 +57,7 @@ Deno.serve(async (req: Request) => {
         <body>
           <div class="container">
             <div class="header">
-              <h1 style="margin: 0;">New ${isCommercial ? 'Commercial' : 'Residential'} Lead</h1>
+              <h1 style="margin: 0;">New ${leadTypeLabel} Lead</h1>
             </div>
             <div class="content">
               <div class="field">
@@ -93,7 +96,7 @@ Deno.serve(async (req: Request) => {
 
               <div class="field" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
                 <div class="label">Lead Type:</div>
-                <div class="value">${isCommercial ? 'Commercial' : 'Residential'}</div>
+                <div class="value">${leadTypeLabel}</div>
               </div>
             </div>
           </div>
