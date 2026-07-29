@@ -72,7 +72,7 @@ export function ResidentialSpring2026Page() {
   });
 
   useEffect(() => {
-    const targetDate = new Date('2026-05-31T23:59:59').getTime();
+    const targetDate = new Date('2026-08-14T23:59:59').getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -148,20 +148,20 @@ export function ResidentialSpring2026Page() {
             >
               <motion.div variants={fadeInUp} className="bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 px-6 rounded-full inline-flex items-center gap-2 mb-8 shadow-lg">
                 <Sparkles size={20} />
-                <span className="text-sm font-bold">Limited Time Offer - Early Bird Pricing</span>
+                <span className="text-sm font-bold">Limited Time Offer - 15% Off Any Service</span>
               </motion.div>
 
               <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Pre-Summer Specials
+                Back to School Specials
               </motion.h1>
 
               <motion.p variants={fadeInUp} className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">
-                Premium exterior cleaning packages to get your home ready for summer. Professional service, guaranteed results.
+                Get 15% off any exterior cleaning service when you book before August 14th. Professional service, guaranteed results.
               </motion.p>
 
               <motion.div variants={fadeInUp} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border-2 border-green-400 mb-8">
                 <p className="text-lg md:text-xl font-semibold mb-6">
-                  Book before May 31st, 2026 to lock in these rates!
+                  Book before August 14th, 2026 to get 15% off any service!
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
@@ -217,7 +217,7 @@ export function ResidentialSpring2026Page() {
                   <Clock className="text-slate-700" size={32} />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Same Week Service</h3>
-                <p className="text-slate-600">Book your spring cleaning before slots fill up</p>
+                <p className="text-slate-600">Book your back-to-school cleaning before slots fill up</p>
               </motion.div>
             </motion.div>
           </div>
@@ -283,7 +283,7 @@ export function ResidentialSpring2026Page() {
                 Choose Your Package
               </h2>
               <p className="text-xl text-slate-600">
-                Select the perfect pre-summer cleaning package for your home
+                Select the perfect back-to-school cleaning package for your home
               </p>
             </motion.div>
 
@@ -410,10 +410,10 @@ export function ResidentialSpring2026Page() {
                 variants={fadeInUp}
               >
                 <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                  Why Choose Our Pre-Summer Package?
+                  Why Choose Our Back to School Package?
                 </h2>
                 <p className="text-xl text-white/90 mb-8 leading-relaxed">
-                  Now is the perfect time to remove spring buildup and get your home looking its best before summer arrives. Our specialized packages are designed to tackle seasonal challenges while protecting your investment.
+                  Now is the perfect time to remove summer buildup and get your home looking its best for the new school year. Our specialized packages are designed to tackle seasonal challenges while protecting your investment.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -427,7 +427,7 @@ export function ResidentialSpring2026Page() {
                     <CheckCircle className="text-green-400 mr-3 flex-shrink-0 mt-1" size={24} />
                     <div>
                       <h4 className="font-bold text-lg mb-1">Boost Curb Appeal</h4>
-                      <p className="text-white/80">Make your home shine for spring gatherings and outdoor living</p>
+                      <p className="text-white/80">Make your home shine for the new school year and fall gatherings</p>
                     </div>
                   </li>
                   <li className="flex items-start">
@@ -449,9 +449,9 @@ export function ResidentialSpring2026Page() {
               >
                 <DynamicSectionImage
                   section="residential-hero"
-                  alt="Beautiful spring home exterior"
+                  alt="Beautiful clean home exterior"
                   className="w-full h-full object-cover"
-                  fallback="Spring Home Cleaning"
+                  fallback="Clean Home Exterior"
                 />
               </motion.div>
             </div>
@@ -468,10 +468,10 @@ export function ResidentialSpring2026Page() {
               className="text-center mb-12"
             >
               <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                Book Your Pre-Summer Service
+                Book Your Back to School Service
               </h2>
               <p className="text-xl text-slate-600">
-                Secure your pre-summer pricing today
+                Secure your 15% off back-to-school pricing today
               </p>
             </motion.div>
 

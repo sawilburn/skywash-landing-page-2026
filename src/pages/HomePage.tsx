@@ -33,12 +33,12 @@ export function HomePage() {
             <div className="flex items-center justify-center gap-3 text-white">
               <Sparkles size={32} className="animate-pulse" />
               <span className="text-2xl md:text-4xl font-bold text-center">
-                Pre-Summer Specials - Limited Time Offers!
+                Back to School Specials - Book Before August 14th!
               </span>
               <Sparkles size={32} className="animate-pulse" />
             </div>
             <p className="text-center text-white/90 mt-2 text-lg font-semibold">
-              Click here to save big on exterior cleaning services!
+              Get 15% off any exterior cleaning service — limited time only!
             </p>
           </Link>
 

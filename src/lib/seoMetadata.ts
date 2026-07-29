@@ -168,8 +168,8 @@ export const pageMetadata: Record<string, PageMetadata> = {
     canonical: `${baseUrl}/safety`
   },
   '/specials/residential-spring-2026': {
-    title: 'Spring 2026 Special Pricing | Residential Power Washing Deals Virginia',
-    description: 'Spring 2026 special pricing on residential power washing, roof cleaning, and house washing services. Limited time offer. Book now and save.',
+    title: 'Back to School Special: 15% Off Any Service | Skywash Innovations',
+    description: 'Back to School special — book any exterior cleaning service before August 14th and get 15% off. Roof cleaning, house washing, window cleaning and more in Northern Virginia.',
     canonical: `${baseUrl}/specials/residential-spring-2026`
   },
   '/careers': {
