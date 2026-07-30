@@ -251,7 +251,7 @@ export function HOAServicesPage() {
               className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-700 hover:to-green-800 transition-all shadow-lg hover:shadow-xl mb-12"
             >
               <Sparkle size={20} />
-              View Spring 2026 Residential Specials
+              View Back to School Residential Specials
             </Link>
           </motion.div>
 

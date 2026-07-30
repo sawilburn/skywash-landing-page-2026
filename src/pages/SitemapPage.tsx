@@ -261,7 +261,7 @@ export function SitemapPage() {
               <li>
                 <Link to="/specials/residential-spring-2026" className="text-slate-700 hover:text-red-600 transition-colors flex items-center">
                   <span className="text-red-400 mr-2">→</span>
-                  Residential Spring 2026
+                  Back to School Special
                 </Link>
               </li>
             </ul>
