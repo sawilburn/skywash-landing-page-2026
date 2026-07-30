@@ -1,10 +1,23 @@
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Shield, Clock, FileText, Home, Droplets, Wind, Sparkles, BadgeCheck, Building2, Award, DollarSign, Download } from 'lucide-react';
 import { RealtorLeadForm } from '../components/RealtorLeadForm';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 export function RealtorPage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const el = document.getElementById(location.state.scrollTo);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+      }
+    }
+  }, [location.state]);
+
   const scrollToForm = () => {
     const form = document.getElementById('realtor-form');
     if (form) {

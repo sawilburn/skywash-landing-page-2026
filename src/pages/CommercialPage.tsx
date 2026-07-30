@@ -1,9 +1,21 @@
 import { Shield, Clock, FileCheck, Zap, Thermometer, TrendingUp, CheckCircle2, Building2, Sun, Eye, Sparkles, ShoppingBag } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
 import { CommercialLeadForm } from '../components/CommercialLeadForm';
 
 export function CommercialPage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const el = document.getElementById(location.state.scrollTo);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+      }
+    }
+  }, [location.state]);
+
   const scrollToForm = () => {
     const element = document.getElementById('commercial-form');
     if (element) element.scrollIntoView({ behavior: 'smooth' });

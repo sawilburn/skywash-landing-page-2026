@@ -557,6 +557,7 @@ export function HomePage() {
             </a>
             <Link
               to="/residential"
+              state={{ scrollTo: 'residential-form' }}
               className="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all flex flex-col items-center justify-center"
             >
               <Home className="text-cyan-400 mb-3" size={32} />
@@ -565,6 +566,7 @@ export function HomePage() {
             </Link>
             <Link
               to="/commercial"
+              state={{ scrollTo: 'commercial-form' }}
               className="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all flex flex-col items-center justify-center"
             >
               <Building2 className="text-cyan-400 mb-3" size={32} />

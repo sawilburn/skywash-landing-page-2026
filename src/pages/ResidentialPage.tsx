@@ -1,10 +1,22 @@
 import { Home, Droplets, Wind, Square, Heart, Shield, Leaf, CheckCircle2, AlertTriangle, Sparkles, ArrowRight, Sun } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { DynamicBeforeAfterSlider } from '../components/DynamicBeforeAfterSlider';
 import { ResidentialLeadForm } from '../components/ResidentialLeadForm';
 import { DynamicSectionImage } from '../components/DynamicSectionImage';
 
 export function ResidentialPage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const el = document.getElementById(location.state.scrollTo);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+      }
+    }
+  }, [location.state]);
+
   const scrollToForm = () => {
     const element = document.getElementById('residential-form');
     if (element) element.scrollIntoView({ behavior: 'smooth' });

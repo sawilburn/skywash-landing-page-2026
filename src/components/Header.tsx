@@ -43,7 +43,17 @@ export function Header() {
   }, [location]);
 
   const handleGetQuote = () => {
-    handleNavigation('contact');
+    const path = location.pathname;
+    if (path.startsWith('/commercial')) {
+      navigate('/commercial', { state: { scrollTo: 'commercial-form' } });
+    } else if (path.startsWith('/residential/who-we-serve/realtor')) {
+      navigate('/residential/who-we-serve/realtor', { state: { scrollTo: 'realtor-form' } });
+    } else if (path.startsWith('/residential')) {
+      navigate('/residential', { state: { scrollTo: 'residential-form' } });
+    } else {
+      navigate('/residential', { state: { scrollTo: 'residential-form' } });
+    }
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -107,7 +117,7 @@ export function Header() {
                   <span className="hidden xl:inline">Call Now</span>
                 </a>
                 <button
-                  onClick={() => handleNavigation('contact')}
+                  onClick={handleGetQuote}
                   className="bg-[#1a3c75] text-white px-6 py-2 rounded-lg hover:bg-[#2a4c85] transition-colors font-medium"
                 >
                   {location.pathname === '/residential/who-we-serve/realtor' ? 'Get Package Quote Now' : 'Get Quote Now'}
@@ -172,7 +182,7 @@ export function Header() {
                 <span>Call Now</span>
               </a>
               <button
-                onClick={() => handleNavigation('contact')}
+                onClick={handleGetQuote}
                 className="bg-[#1a3c75] text-white px-6 py-2 rounded-lg hover:bg-[#2a4c85] transition-colors font-medium text-center"
               >
                 {location.pathname === '/residential/who-we-serve/realtor' ? 'Get Package Quote Now' : 'Get Quote Now'}
