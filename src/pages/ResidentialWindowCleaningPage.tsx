@@ -154,6 +154,37 @@ export function ResidentialWindowCleaningPage() {
         </div>
       </section>
 
+      {/* Back to School Special Banner */}
+      <section className="py-6 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/specials/residential-spring-2026"
+            className="group block mx-auto max-w-4xl rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-300 hover:scale-[1.02]"
+          >
+            <div className="bg-gradient-to-r from-green-600 via-emerald-500 to-green-600 px-8 py-6 sm:px-12 sm:py-8 text-white text-center relative">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_60%)]"></div>
+              <div className="relative z-10">
+                <div className="flex items-center justify-center gap-3 mb-2">
+                  <Sparkles size={28} className="text-yellow-300 animate-pulse" />
+                  <span className="text-sm font-bold uppercase tracking-widest text-yellow-200">Limited Time Offer</span>
+                  <Sparkles size={28} className="text-yellow-300 animate-pulse" />
+                </div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 leading-tight">
+                  Back to School Special — 25% Off Any Service!
+                </h2>
+                <p className="text-lg sm:text-xl font-semibold text-green-50 mb-3">
+                  Book by <span className="text-yellow-300 font-extrabold underline decoration-2 underline-offset-4">August 7</span> and save big on your entire exterior cleaning
+                </p>
+                <div className="inline-flex items-center gap-2 bg-white text-green-700 px-6 py-2.5 rounded-full text-base font-bold shadow-lg group-hover:bg-yellow-50 group-hover:text-green-800 transition-colors">
+                  Claim Your 25% Discount
+                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </section>
+
       {/* Trust / Credentials */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
