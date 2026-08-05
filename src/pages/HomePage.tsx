@@ -27,7 +27,8 @@ export function HomePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <Link
-            to="/#contact"
+            to="/residential"
+            state={{ scrollTo: 'residential-form' }}
             className="group block mb-10 mx-auto max-w-4xl rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-300 hover:scale-[1.02]"
           >
             <div className="bg-gradient-to-r from-green-600 via-emerald-500 to-green-600 px-8 py-6 sm:px-12 sm:py-8 text-white text-center relative">
