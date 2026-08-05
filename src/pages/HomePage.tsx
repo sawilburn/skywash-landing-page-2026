@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen, MapPin, Phone, Mail, Play, Sparkles } from 'lucide-react';
+import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen, MapPin, Phone, Mail, Play, Sparkles, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SupabaseImage } from '../components/SupabaseImage';
 import { PartnersAndMemberships } from '../components/PartnersAndMemberships';
@@ -28,18 +28,28 @@ export function HomePage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <Link
             to="/specials/residential-spring-2026"
-            className="block mb-8 bg-gradient-to-r from-green-500 via-emerald-600 to-green-500 rounded-2xl p-6 shadow-2xl hover:shadow-green-500/50 hover:scale-[1.02] transition-all duration-300"
+            className="group block mb-10 mx-auto max-w-4xl rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-300 hover:scale-[1.02]"
           >
-            <div className="flex items-center justify-center gap-3 text-white">
-              <Sparkles size={32} className="animate-pulse" />
-              <span className="text-2xl md:text-4xl font-bold text-center">
-                Back to School Specials - Book Before August 14th!
-              </span>
-              <Sparkles size={32} className="animate-pulse" />
+            <div className="bg-gradient-to-r from-green-600 via-emerald-500 to-green-600 px-8 py-6 sm:px-12 sm:py-8 text-white text-center relative">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_60%)]"></div>
+              <div className="relative z-10">
+                <div className="flex items-center justify-center gap-3 mb-2">
+                  <Sparkles size={28} className="text-yellow-300 animate-pulse" />
+                  <span className="text-sm font-bold uppercase tracking-widest text-yellow-200">Limited Time Offer</span>
+                  <Sparkles size={28} className="text-yellow-300 animate-pulse" />
+                </div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 leading-tight">
+                  Back to School Special — 25% Off Any Service!
+                </h2>
+                <p className="text-lg sm:text-xl font-semibold text-green-50 mb-3">
+                  Book by <span className="text-yellow-300 font-extrabold underline decoration-2 underline-offset-4">August 7</span> and save big on your entire exterior cleaning
+                </p>
+                <div className="inline-flex items-center gap-2 bg-white text-green-700 px-6 py-2.5 rounded-full text-base font-bold shadow-lg group-hover:bg-yellow-50 group-hover:text-green-800 transition-colors">
+                  Claim Your 25% Discount
+                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
             </div>
-            <p className="text-center text-white/90 mt-2 text-lg font-semibold">
-              Get 15% off any exterior cleaning service — limited time only!
-            </p>
           </Link>
 
           <div className="text-center max-w-4xl mx-auto">
