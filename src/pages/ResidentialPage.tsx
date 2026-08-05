@@ -31,9 +31,9 @@ export function ResidentialPage() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <Link
-            to="/residential#residential-form"
-            className="group block mb-10 mx-auto max-w-4xl rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-300 hover:scale-[1.02]"
+          <button
+            onClick={scrollToForm}
+            className="group block mb-10 mx-auto max-w-4xl rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-300 hover:scale-[1.02] w-full"
           >
             <div className="bg-gradient-to-r from-green-600 via-emerald-500 to-green-600 px-8 py-6 sm:px-12 sm:py-8 text-white text-center relative">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_60%)]"></div>
@@ -55,7 +55,7 @@ export function ResidentialPage() {
                 </div>
               </div>
             </div>
-          </Link>
+          </button>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in-up">
