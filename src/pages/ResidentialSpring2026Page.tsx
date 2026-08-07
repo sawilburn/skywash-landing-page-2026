@@ -163,6 +163,9 @@ export function ResidentialSpring2026Page() {
                 <p className="text-lg md:text-xl font-semibold mb-6">
                   Book before August 7th, 2026 to get 25% off any service!
                 </p>
+                <p className="text-sm md:text-base font-medium text-green-200 mb-6">
+                  Mention "Back to School Special" when contacting Skywash Innovations to claim your 25% discount
+                </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
                   <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">

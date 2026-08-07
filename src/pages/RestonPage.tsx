@@ -47,7 +47,7 @@ export function RestonPage() {
               className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg text-base font-bold hover:from-green-600 hover:to-emerald-700 transform transition-all duration-300 hover:scale-105 shadow-lg mb-8 border-2 border-white/20"
             >
               <Sparkles size={20} />
-              Back to School Special Pricing Available
+              Back to School Special — Mention When Contacting Us
               <span className="text-lg">→</span>
             </Link>
 

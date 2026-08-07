@@ -175,6 +175,9 @@ export function ResidentialWindowCleaningPage() {
                 <p className="text-lg sm:text-xl font-semibold text-green-50 mb-3">
                   Book by <span className="text-yellow-300 font-extrabold underline decoration-2 underline-offset-4">August 7</span> and save big on your entire exterior cleaning
                 </p>
+                <p className="text-sm sm:text-base font-medium text-green-100 mb-3">
+                  Mention "Back to School Special" when contacting Skywash Innovations to claim your 25% discount
+                </p>
                 <div className="inline-flex items-center gap-2 bg-white text-green-700 px-6 py-2.5 rounded-full text-base font-bold shadow-lg group-hover:bg-yellow-50 group-hover:text-green-800 transition-colors">
                   Claim Your 25% Discount
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
