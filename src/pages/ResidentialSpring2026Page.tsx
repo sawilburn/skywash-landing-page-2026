@@ -148,7 +148,7 @@ export function ResidentialSpring2026Page() {
             >
               <motion.div variants={fadeInUp} className="bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 px-6 rounded-full inline-flex items-center gap-2 mb-8 shadow-lg">
                 <Sparkles size={20} />
-                <span className="text-sm font-bold">Limited Time Offer - 25% Off Any Service</span>
+                <span className="text-sm font-bold">Limited Time Offer - 15% Off Any Service</span>
               </motion.div>
 
               <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
@@ -156,15 +156,15 @@ export function ResidentialSpring2026Page() {
               </motion.h1>
 
               <motion.p variants={fadeInUp} className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">
-                Get 25% off any exterior cleaning service when you book before August 7th. Professional service, guaranteed results.
+                Get 15% off any exterior cleaning service when you book before August 21st. Professional service, guaranteed results.
               </motion.p>
 
               <motion.div variants={fadeInUp} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border-2 border-green-400 mb-8">
                 <p className="text-lg md:text-xl font-semibold mb-6">
-                  Book before August 7th, 2026 to get 25% off any service!
+                  Book before August 21st, 2026 to get 15% off any service!
                 </p>
                 <p className="text-sm md:text-base font-medium text-green-200 mb-6">
-                  Mention "Back to School Special" when contacting Skywash Innovations to claim your 25% discount
+                  Mention "Back to School Special" when contacting Skywash Innovations to claim your 15% discount
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
@@ -474,7 +474,7 @@ export function ResidentialSpring2026Page() {
                 Book Your Back to School Service
               </h2>
               <p className="text-xl text-slate-600">
-                Secure your 25% off back-to-school pricing today
+                Secure your 15% off back-to-school pricing today
               </p>
             </motion.div>
 

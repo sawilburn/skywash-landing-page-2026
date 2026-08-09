@@ -170,16 +170,16 @@ export function ResidentialWindowCleaningPage() {
                   <Sparkles size={28} className="text-yellow-300 animate-pulse" />
                 </div>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 leading-tight">
-                  Back to School Special — 25% Off Any Service!
+                  Back to School Special — 15% Off Any Service!
                 </h2>
                 <p className="text-lg sm:text-xl font-semibold text-green-50 mb-3">
-                  Book by <span className="text-yellow-300 font-extrabold underline decoration-2 underline-offset-4">August 7</span> and save big on your entire exterior cleaning
+                  Book by <span className="text-yellow-300 font-extrabold underline decoration-2 underline-offset-4">August 21</span> and save big on your entire exterior cleaning
                 </p>
                 <p className="text-sm sm:text-base font-medium text-green-100 mb-3">
-                  Mention "Back to School Special" when contacting Skywash Innovations to claim your 25% discount
+                  Mention "Back to School Special" when contacting Skywash Innovations to claim your 15% discount
                 </p>
                 <div className="inline-flex items-center gap-2 bg-white text-green-700 px-6 py-2.5 rounded-full text-base font-bold shadow-lg group-hover:bg-yellow-50 group-hover:text-green-800 transition-colors">
-                  Claim Your 25% Discount
+                  Claim Your 15% Discount
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
