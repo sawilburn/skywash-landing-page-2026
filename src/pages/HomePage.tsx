@@ -262,6 +262,7 @@ export function HomePage() {
                 { feature: 'Commercial Cleaning Expertise', pressure: false },
                 { feature: 'No Damage Guarantee', pressure: false },
                 { feature: 'W2, 3rd Party Background Checked Employees', pressure: false },
+                { feature: 'OSHA Certified Technicians', pressure: false },
                 { feature: '100% Satisfaction Guaranteed', pressure: false },
               ].map(({ feature, pressure }) => (
                 <div key={feature} className="grid grid-cols-[minmax(260px,1.4fr)_minmax(160px,1fr)_minmax(160px,1fr)_minmax(190px,1.1fr)] border-b border-slate-200 last:border-b-0">
