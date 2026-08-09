@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen, MapPin, Phone, Mail, Play, Sparkles, ArrowRight } from 'lucide-react';
+import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen, MapPin, Phone, Mail, Play, Sparkles, ArrowRight, Check, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SupabaseImage } from '../components/SupabaseImage';
 import { PartnersAndMemberships } from '../components/PartnersAndMemberships';
@@ -223,6 +223,58 @@ export function HomePage() {
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="inline-flex items-center rounded-full bg-cyan-100 px-4 py-2 text-sm font-bold uppercase tracking-[0.18em] text-[#1a3c75]">
+              The Skywash Difference
+            </span>
+            <h2 className="mt-5 text-4xl md:text-5xl font-bold text-slate-900">
+              See what sets us apart
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-slate-600">
+              We combine commercial-grade expertise, safer technology, and service guarantees that traditional cleaning methods cannot match.
+            </p>
+          </div>
+
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
+            <div className="min-w-[760px]">
+              <div className="grid grid-cols-[minmax(260px,1.4fr)_minmax(160px,1fr)_minmax(160px,1fr)_minmax(190px,1.1fr)] items-end border-b border-slate-200 bg-white">
+                <div className="p-6 md:p-8">
+                  <span className="text-sm font-bold uppercase tracking-[0.16em] text-slate-500">At a glance</span>
+                </div>
+                <div className="p-6 text-center text-lg font-bold leading-tight text-slate-800">Handymen<br />&amp; Freelancers</div>
+                <div className="p-6 text-center text-lg font-bold leading-tight text-slate-800">Pressure<br />Washers</div>
+                <div className="bg-[#1a3c75] p-6 text-center text-white">
+                  <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-white text-xl font-extrabold tracking-tight text-[#1a3c75] shadow-lg">SW</div>
+                  <div className="text-lg font-extrabold leading-tight">Skywash<br />Innovations</div>
+                </div>
+              </div>
+
+              {[
+                'Fully Licensed & Insured',
+                'Soft Washing Specialists',
+                'Commercial Grade Equipment',
+                '6 Month House Washing Warranty',
+                'Commercial Cleaning Expertise',
+                'No Damage Guarantee',
+                '100% Satisfaction Guaranteed',
+              ].map((feature: string) => (
+                <div key={feature} className="grid grid-cols-[minmax(260px,1.4fr)_minmax(160px,1fr)_minmax(160px,1fr)_minmax(190px,1.1fr)] border-b border-slate-200 last:border-b-0">
+                  <div className="flex items-center bg-slate-100 px-6 py-5 md:px-8">
+                    <span className="font-semibold text-slate-800">{feature}</span>
+                  </div>
+                  <div className="flex items-center justify-center px-6 py-5 text-slate-400"><X size={28} strokeWidth={1.5} /></div>
+                  <div className="flex items-center justify-center px-6 py-5 text-slate-400"><X size={28} strokeWidth={1.5} /></div>
+                  <div className="flex items-center justify-center bg-[#1a3c75] px-6 py-5 text-cyan-300"><Check size={32} strokeWidth={3} /></div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="mt-5 text-center text-sm text-slate-500">Scroll horizontally on smaller screens to compare every column.</p>
         </div>
       </section>
 
