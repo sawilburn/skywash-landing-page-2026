@@ -3,7 +3,6 @@ import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen
 import { Link } from 'react-router-dom';
 import { SupabaseImage } from '../components/SupabaseImage';
 import { PartnersAndMemberships } from '../components/PartnersAndMemberships';
-import { OwnerVideoSection } from '../components/OwnerVideoSection';
 import { getSiteImage, SiteImage } from '../lib/siteImages';
 
 export function HomePage() {
@@ -226,8 +225,6 @@ export function HomePage() {
           </div>
         </div>
       </section>
-
-      <OwnerVideoSection />
 
       <section className="py-20 bg-gradient-to-r from-[#1a3c75] to-[#2a5a95] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
