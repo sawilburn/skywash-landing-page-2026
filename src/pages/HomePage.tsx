@@ -255,20 +255,22 @@ export function HomePage() {
               </div>
 
               {[
-                'Fully Licensed & Insured',
-                'Soft Washing Specialists',
-                'Commercial Grade Equipment',
-                '6 Month House Washing Warranty',
-                'Commercial Cleaning Expertise',
-                'No Damage Guarantee',
-                '100% Satisfaction Guaranteed',
-              ].map((feature: string) => (
+                { feature: 'Fully Licensed & Insured', pressure: true },
+                { feature: 'Soft Washing Specialists', pressure: true },
+                { feature: 'Commercial Grade Equipment', pressure: false },
+                { feature: '6 Month House Washing Warranty', pressure: false },
+                { feature: 'Commercial Cleaning Expertise', pressure: false },
+                { feature: 'No Damage Guarantee', pressure: false },
+                { feature: '100% Satisfaction Guaranteed', pressure: false },
+              ].map(({ feature, pressure }) => (
                 <div key={feature} className="grid grid-cols-[minmax(260px,1.4fr)_minmax(160px,1fr)_minmax(160px,1fr)_minmax(190px,1.1fr)] border-b border-slate-200 last:border-b-0">
                   <div className="flex items-center bg-slate-100 px-6 py-5 md:px-8">
                     <span className="font-semibold text-slate-800">{feature}</span>
                   </div>
                   <div className="flex items-center justify-center px-6 py-5 text-slate-400"><X size={28} strokeWidth={1.5} /></div>
-                  <div className="flex items-center justify-center px-6 py-5 text-slate-400"><X size={28} strokeWidth={1.5} /></div>
+                  <div className={`flex items-center justify-center px-6 py-5 ${pressure ? 'text-emerald-500' : 'text-slate-400'}`}>
+                    {pressure ? <Check size={28} strokeWidth={2.5} /> : <X size={28} strokeWidth={1.5} />}
+                  </div>
                   <div className="flex items-center justify-center bg-[#1a3c75] px-6 py-5 text-cyan-300"><Check size={32} strokeWidth={3} /></div>
                 </div>
               ))}
