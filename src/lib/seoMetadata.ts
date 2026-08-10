@@ -173,8 +173,8 @@ export const pageMetadata: Record<string, PageMetadata> = {
     canonical: `${baseUrl}/specials/residential-spring-2026`
   },
   '/specials/august-roof-special': {
-    title: 'August Roof Special: $749 Roof Soft Wash | Skywash Innovations',
-    description: 'Limited-time August roof soft wash special — $749 (regularly $1,499). Drone-applied, low-pressure cleaning that kills algae and protects your shingles. Book by August 15.',
+    title: 'August Roof Special: $999 Roof Soft Wash | Skywash Innovations',
+    description: 'Limited-time August roof soft wash special — $999 (regularly $1,499). Drone-applied, low-pressure cleaning that kills algae and protects your shingles. Book by August 15.',
     canonical: `${baseUrl}/specials/august-roof-special`
   },
   '/careers': {

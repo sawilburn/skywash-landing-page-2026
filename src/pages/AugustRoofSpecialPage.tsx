@@ -94,7 +94,7 @@ export function AugustRoofSpecialPage() {
 
           <div className="mx-6 mb-2 flex flex-col items-start justify-between gap-5 bg-[#c4522d] px-5 py-4 text-white sm:mx-10 sm:flex-row sm:items-center sm:px-7">
             <div><p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffe0d4]">Book by August 15</p><h2 className="text-xl font-black sm:text-2xl">Roof Soft Wash Special</h2><p className="text-[10px] text-[#ffe0d4]">Mention this flyer when you call. After August 15, standard pricing applies.</p></div>
-            <div className="flex items-center gap-4"><span className="text-base font-bold line-through opacity-80">$1,499</span><span className="text-4xl font-black">$749</span><span className="border-l border-white/40 pl-4 text-center text-[10px] font-black uppercase">Save<br />$750</span></div>
+            <div className="flex items-center gap-4"><span className="text-base font-bold line-through opacity-80">$1,499</span><span className="text-4xl font-black">$999</span><span className="border-l border-white/40 pl-4 text-center text-[10px] font-black uppercase">Save<br />$500</span></div>
           </div>
 
           <div className="flex flex-col gap-6 border-t-4 border-[#258bc2] bg-[#e8f3f8] px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-10">
