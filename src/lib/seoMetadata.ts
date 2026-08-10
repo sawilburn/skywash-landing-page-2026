@@ -172,6 +172,11 @@ export const pageMetadata: Record<string, PageMetadata> = {
     description: 'Back to School special — book any exterior cleaning service before August 21st and get 15% off. Roof cleaning, house washing, window cleaning and more in Northern Virginia.',
     canonical: `${baseUrl}/specials/residential-spring-2026`
   },
+  '/specials/august-roof-special': {
+    title: 'August Roof Special: $749 Roof Soft Wash | Skywash Innovations',
+    description: 'Limited-time August roof soft wash special — $749 (regularly $1,499). Drone-applied, low-pressure cleaning that kills algae and protects your shingles. Book by August 15.',
+    canonical: `${baseUrl}/specials/august-roof-special`
+  },
   '/careers': {
     title: 'Careers at Skywash Innovations | Join Our Professional Cleaning Team',
     description: 'Join the Skywash Innovations team. Competitive pay, professional training, FAA Part 107 certification opportunities. Build a career in innovative cleaning services.',
