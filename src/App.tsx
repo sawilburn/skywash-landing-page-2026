@@ -47,6 +47,7 @@ import { WindowCleaningLearningPage } from './pages/WindowCleaningLearningPage';
 import { ThankYouPage } from './pages/ThankYouPage';
 import { HoneyBookRedirectPage } from './pages/HoneyBookRedirectPage';
 import { AugustRoofSpecialPage } from './pages/AugustRoofSpecialPage';
+import { ArtilleryFungusPage } from './pages/ArtilleryFungusPage';
 import { useSEO } from './hooks/useSEO';
 
 function AppContent() {
@@ -77,6 +78,7 @@ function AppContent() {
           <Route path="/residential/who-we-serve/realtor" element={<RealtorPage />} />
           <Route path="/specials/residential-spring-2026" element={<ResidentialSpring2026Page />} />
           <Route path="/specials/august-roof-special" element={<AugustRoofSpecialPage />} />
+          <Route path="/learning-center/artillery-fungus" element={<ArtilleryFungusPage />} />
           <Route path="/schools/arlington-stem-program" element={<ArlingtonSTEMProgramPage />} />
           <Route path="/partners/roofing-experts" element={<RoofingPartnersPage />} />
           <Route path="/partners/pest-and-wildlife-control" element={<PestWildlifePartnersPage />} />

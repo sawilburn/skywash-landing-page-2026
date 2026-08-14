@@ -177,6 +177,11 @@ export const pageMetadata: Record<string, PageMetadata> = {
     description: 'Limited-time August roof soft wash special — $999 (regularly $1,499). Drone-applied, low-pressure cleaning that kills algae and protects your shingles. Book by August 15.',
     canonical: `${baseUrl}/specials/august-roof-special`
   },
+  '/learning-center/artillery-fungus': {
+    title: 'Artillery Fungus: The Black Spots a Soft Wash Won\'t Remove | Skywash',
+    description: 'Artillery fungus shoots tiny black spores onto your siding, windows, and car. Learn what causes it, why a standard soft wash will not remove it, and what actually works.',
+    canonical: `${baseUrl}/learning-center/artillery-fungus`
+  },
   '/careers': {
     title: 'Careers at Skywash Innovations | Join Our Professional Cleaning Team',
     description: 'Join the Skywash Innovations team. Competitive pay, professional training, FAA Part 107 certification opportunities. Build a career in innovative cleaning services.',
