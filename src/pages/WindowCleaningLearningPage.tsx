@@ -148,7 +148,7 @@ export function WindowCleaningLearningPage() {
           <motion.div initial="initial" animate="animate" variants={stagger}>
             <motion.div variants={fadeInUp} className="mb-8">
               <Link
-                to="/blogs"
+                to="/learning-center"
                 className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm font-medium transition-colors"
               >
                 <ArrowLeft size={16} />
@@ -438,7 +438,7 @@ export function WindowCleaningLearningPage() {
                 View Residential Services
               </Link>
               <Link
-                to="/blogs"
+                to="/learning-center"
                 className="border-2 border-white/40 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-all"
               >
                 Back to Learning Center
