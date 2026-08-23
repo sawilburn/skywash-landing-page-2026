@@ -1,26 +1,31 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Calendar, AlertTriangle, CheckCircle, Info, Droplets, Wind, Shield, ChevronRight } from 'lucide-react';
+import { getSiteImage, getImageUrl } from '../lib/siteImages';
 
 const infestationImages = [
   {
     label: 'Mild Infestation',
     description: 'Early-stage GM growth — faint black streaking beginning to appear on the upper slope.',
-    pexelsUrl: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800',
+    sectionId: 'learning/gloeocapsa-infestation-mild',
+    fallbackUrl: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800',
     badge: 'Mild',
     badgeColor: 'bg-yellow-500',
   },
   {
     label: 'Moderate Infestation',
     description: 'Visible dark streaks running down multiple shingle courses. Common on north-facing slopes.',
-    pexelsUrl: 'https://images.pexels.com/photos/209272/pexels-photo-209272.jpeg?auto=compress&cs=tinysrgb&w=800',
+    sectionId: 'learning/gloeocapsa-infestation-moderate',
+    fallbackUrl: 'https://images.pexels.com/photos/209272/pexels-photo-209272.jpeg?auto=compress&cs=tinysrgb&w=800',
     badge: 'Moderate',
     badgeColor: 'bg-orange-500',
   },
   {
     label: 'Heavy Infestation',
     description: 'Dense, widespread black-brown colonization. May require a second treatment after initial soft wash.',
-    pexelsUrl: 'https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&w=800',
+    sectionId: 'learning/gloeocapsa-infestation-heavy',
+    fallbackUrl: 'https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&w=800',
     badge: 'Severe',
     badgeColor: 'bg-red-600',
   },
@@ -82,12 +87,31 @@ const stagger = {
 };
 
 export function RoofCareGloeocapsaPage() {
+  const [galleryImages, setGalleryImages] = useState<Record<string, string>>({});
+  const [heroBg, setHeroBg] = useState('https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920');
+
+  useEffect(() => {
+    async function loadImages() {
+      const heroRecord = await getSiteImage('learning/gloeocapsa-hero');
+      if (heroRecord) setHeroBg(getImageUrl(heroRecord.storage_path));
+
+      const entries = await Promise.all(
+        infestationImages.map(async (img) => {
+          const record = await getSiteImage(img.sectionId);
+          return [img.sectionId, record ? getImageUrl(record.storage_path) : img.fallbackUrl] as [string, string];
+        })
+      );
+      setGalleryImages(Object.fromEntries(entries));
+    }
+    loadImages();
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-slate-900 via-slate-800 to-[#1a3c75] text-white overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-15"
-          style={{ backgroundImage: "url('https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920')" }}
+          style={{ backgroundImage: `url('${heroBg}')` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 to-slate-900/80" />
 
@@ -355,7 +379,7 @@ export function RoofCareGloeocapsaPage() {
                 >
                   <div className="relative">
                     <img
-                      src={img.pexelsUrl}
+                      src={galleryImages[img.sectionId] ?? img.fallbackUrl}
                       alt={img.label}
                       className="w-full h-52 object-cover"
                     />

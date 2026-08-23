@@ -513,6 +513,40 @@ export const PAGE_SECTION_MAPPINGS: PageMapping[] = [
     ]
   },
   {
+    pageName: 'Roof Care - Gloeocapsa Magma',
+    category: 'learning-center',
+    sections: [
+      {
+        id: 'learning/gloeocapsa-hero',
+        displayName: 'Hero Background',
+        suggestedAltText: 'Roof with Gloeocapsa magma black streaking',
+        fallbackImage: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920',
+        description: 'Background image for the hero section of the Gloeocapsa magma learning page'
+      },
+      {
+        id: 'learning/gloeocapsa-infestation-mild',
+        displayName: 'Infestation Gallery - Mild',
+        suggestedAltText: 'Mild Gloeocapsa magma infestation on asphalt shingles',
+        fallbackImage: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800',
+        description: 'Mild infestation reference image in the severity gallery'
+      },
+      {
+        id: 'learning/gloeocapsa-infestation-moderate',
+        displayName: 'Infestation Gallery - Moderate',
+        suggestedAltText: 'Moderate Gloeocapsa magma infestation on asphalt shingles',
+        fallbackImage: 'https://images.pexels.com/photos/209272/pexels-photo-209272.jpeg?auto=compress&cs=tinysrgb&w=800',
+        description: 'Moderate infestation reference image in the severity gallery'
+      },
+      {
+        id: 'learning/gloeocapsa-infestation-heavy',
+        displayName: 'Infestation Gallery - Heavy',
+        suggestedAltText: 'Heavy Gloeocapsa magma infestation on asphalt shingles',
+        fallbackImage: 'https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&w=800',
+        description: 'Heavy infestation reference image in the severity gallery'
+      }
+    ]
+  },
+  {
     pageName: 'Window Cleaning Learning Center',
     category: 'learning-center',
     sections: [
