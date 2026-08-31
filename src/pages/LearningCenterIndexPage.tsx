@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Clock, Calendar, BookOpen, ChevronRight, Droplets, Leaf, Sparkles } from 'lucide-react';
+import { ArrowLeft, Clock, Calendar, BookOpen, ChevronRight, Droplets, Leaf, Sparkles, FlaskConical } from 'lucide-react';
 
 const articles = [
   {
@@ -26,6 +26,18 @@ const articles = [
     excerpt: 'The black streaking on your roof isn\'t just dirt — and understanding what it actually is will help you know what to expect after a professional cleaning.',
     readTime: '5 min read',
     date: '2026',
+  },
+  {
+    path: '/learning-center/how-we-work',
+    category: 'Our Process',
+    categoryColor: 'bg-teal-600',
+    icon: FlaskConical,
+    iconBg: 'bg-teal-100',
+    iconColor: 'text-teal-700',
+    title: 'How We Work: Our Approach, Our Chemistry, Your Property',
+    excerpt: 'Transparency matters. Here is exactly what solutions we use, why we use them, and how we protect your home and landscaping throughout the process.',
+    readTime: '6 min read',
+    date: 'August 2026',
   },
   {
     path: '/learning-center/window-cleaning',

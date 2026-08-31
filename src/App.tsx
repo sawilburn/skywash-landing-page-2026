@@ -49,6 +49,7 @@ import { HoneyBookRedirectPage } from './pages/HoneyBookRedirectPage';
 import { AugustRoofSpecialPage } from './pages/AugustRoofSpecialPage';
 import { ArtilleryFungusPage } from './pages/ArtilleryFungusPage';
 import { LearningCenterIndexPage } from './pages/LearningCenterIndexPage';
+import { HowWeWorkPage } from './pages/HowWeWorkPage';
 import { useSEO } from './hooks/useSEO';
 
 function AppContent() {
@@ -98,6 +99,7 @@ function AppContent() {
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/learning-center/roof-care/gloeocapsa-magma" element={<RoofCareGloeocapsaPage />} />
           <Route path="/learning-center/window-cleaning" element={<WindowCleaningLearningPage />} />
+          <Route path="/learning-center/how-we-work" element={<HowWeWorkPage />} />
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/sitemap" element={<SitemapPage />} />
