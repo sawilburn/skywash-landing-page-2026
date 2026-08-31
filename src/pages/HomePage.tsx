@@ -1,13 +1,49 @@
-import { useState, useEffect } from 'react';
-import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen, MapPin, Phone, Mail, Play, Sparkles, ArrowRight, Check, X } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen, MapPin, Phone, Mail, Play, Sparkles, ArrowRight, Check, X, Timer } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SupabaseImage } from '../components/SupabaseImage';
 import { PartnersAndMemberships } from '../components/PartnersAndMemberships';
 import { getSiteImage, SiteImage } from '../lib/siteImages';
 
+const SEASON_DEADLINE = new Date('2026-10-15T23:59:59').getTime();
+
+function useCountdown(target: number) {
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  return useMemo(() => {
+    const diff = Math.max(0, target - now);
+    return {
+      days: Math.floor(diff / 86400000),
+      hours: Math.floor((diff % 86400000) / 3600000),
+      minutes: Math.floor((diff % 3600000) / 60000),
+      seconds: Math.floor((diff % 60000) / 1000),
+      expired: diff === 0,
+    };
+  }, [target, now]);
+}
+
+function CountdownUnit({ value, label }: { value: number; label: string }) {
+  return (
+    <div className="flex flex-col items-center">
+      <div className="bg-white/15 backdrop-blur-sm rounded-xl w-16 sm:w-20 py-3 px-2 border border-white/20 shadow-lg">
+        <div className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums text-center">
+          {String(value).padStart(2, '0')}
+        </div>
+      </div>
+      <span className="mt-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-yellow-200">
+        {label}
+      </span>
+    </div>
+  );
+}
+
 export function HomePage() {
   const [aboutImage, setAboutImage] = useState<SiteImage | null>(null);
   const [showVideo, setShowVideo] = useState(false);
+  const countdown = useCountdown(SEASON_DEADLINE);
 
   useEffect(() => {
     getSiteImage('about').then((img) => {
@@ -25,35 +61,50 @@ export function HomePage() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <Link
-            to="/residential"
-            state={{ scrollTo: 'residential-form' }}
-            className="group block mb-10 mx-auto max-w-4xl rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-300 hover:scale-[1.02]"
-          >
-            <div className="bg-gradient-to-r from-green-600 via-emerald-500 to-green-600 px-8 py-6 sm:px-12 sm:py-8 text-white text-center relative">
+          <div className="block mb-10 mx-auto max-w-4xl rounded-2xl overflow-hidden shadow-2xl">
+            <div className="bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 px-8 py-6 sm:px-12 sm:py-8 text-white text-center relative">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_60%)]"></div>
               <div className="relative z-10">
-                <div className="flex items-center justify-center gap-3 mb-2">
-                  <Sparkles size={28} className="text-yellow-300 animate-pulse" />
-                  <span className="text-sm font-bold uppercase tracking-widest text-yellow-200">Limited Time Offer</span>
-                  <Sparkles size={28} className="text-yellow-300 animate-pulse" />
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <Timer size={26} className="text-yellow-300 animate-pulse" />
+                  <span className="text-sm font-bold uppercase tracking-widest text-yellow-200">End of Season — Time Is Running Out</span>
+                  <Timer size={26} className="text-yellow-300 animate-pulse" />
                 </div>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 leading-tight">
-                  Back to School Special — 15% Off Any Service!
+                  Book Now &amp; Save 10% — Last Chance for Exterior Washing
                 </h2>
-                <p className="text-lg sm:text-xl font-semibold text-green-50 mb-3">
-                  Book by <span className="text-yellow-300 font-extrabold underline decoration-2 underline-offset-4">August 21</span> and save big on your entire exterior cleaning
+                <p className="text-lg sm:text-xl font-semibold text-orange-50 mb-5">
+                  October 15 is the final day to get exterior pressure washing this season. Book now before the season ends.
                 </p>
-                <p className="text-sm sm:text-base font-medium text-green-100 mb-3">
-                  Mention "Back to School Special" when contacting Skywash Innovations to claim your 15% discount
+
+                {countdown.expired ? (
+                  <p className="text-2xl font-extrabold text-yellow-300">The season has ended — thank you for a great year!</p>
+                ) : (
+                  <div className="flex items-center justify-center gap-3 sm:gap-4 mb-5">
+                    <CountdownUnit value={countdown.days} label="Days" />
+                    <span className="text-3xl sm:text-4xl font-extrabold text-white/40 -mt-5">:</span>
+                    <CountdownUnit value={countdown.hours} label="Hours" />
+                    <span className="text-3xl sm:text-4xl font-extrabold text-white/40 -mt-5">:</span>
+                    <CountdownUnit value={countdown.minutes} label="Min" />
+                    <span className="text-3xl sm:text-4xl font-extrabold text-white/40 -mt-5">:</span>
+                    <CountdownUnit value={countdown.seconds} label="Sec" />
+                  </div>
+                )}
+
+                <p className="text-sm sm:text-base font-medium text-orange-100 mb-3">
+                  Mention the end-of-season special when contacting Skywash Innovations to claim your 10% discount
                 </p>
-                <div className="inline-flex items-center gap-2 bg-white text-green-700 px-6 py-2.5 rounded-full text-base font-bold shadow-lg group-hover:bg-yellow-50 group-hover:text-green-800 transition-colors">
-                  Claim Your 15% Discount
+                <Link
+                  to="/residential"
+                  state={{ scrollTo: 'residential-form' }}
+                  className="inline-flex items-center gap-2 bg-white text-red-700 px-6 py-2.5 rounded-full text-base font-bold shadow-lg hover:bg-yellow-50 hover:text-red-800 transition-colors"
+                >
+                  Claim Your 10% Discount
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                </div>
+                </Link>
               </div>
             </div>
-          </Link>
+          </div>
 
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-cyan-300 text-sm font-semibold mb-6">
