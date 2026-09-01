@@ -13,6 +13,8 @@ import {
   Phone,
   Loader2,
   AlertCircle,
+  MapPin,
+  Home as HomeIcon,
 } from 'lucide-react';
 
 const PRODUCT_NAME = 'Exterior Window Cleaning';
@@ -22,11 +24,77 @@ const PRICE = 249.0;
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
+const WESTERN_LOUDOUN_ZIPS = [
+  '20117', // Bluemont
+  '20132', // Purcellville
+  '20135', // Round Hill
+  '20158', // Lincoln
+  '20175', // Leesburg (western portions)
+  '20176', // Leesburg (western portions)
+  '20180',  // Lovettsville
+  '20181',  // Marshall (serves western Loudoun)
+  '20187',  // Kearnysville (serves western Loudoun)
+  '20197', // Waterford
+  '22430',  // Round Hill area
+  '22625', // Mountville
+  '22645',  // Round Hill
+  '20129', // Paeonian Springs
+  '20133', // Middleburg (western Loudoun border)
+  '20143',  // Linden
+  '20185',  // Upperville
+  '22701',  // Culpeper (some western Loudoun overlap)
+];
+
 export function WindowSelfServicePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [address, setAddress] = useState('');
+  const [zipCode, setZipCode] = useState('');
+  const [sqft, setSqft] = useState('');
+  const [eligibilityError, setEligibilityError] = useState('');
+
+  const checkEligibility = (): boolean => {
+    setEligibilityError('');
+
+    if (!address.trim()) {
+      setEligibilityError('Please enter your property address.');
+      return false;
+    }
+
+    const zip = zipCode.trim();
+    if (!zip) {
+      setEligibilityError('Please enter your ZIP code to verify you are in our Western Loudoun service area.');
+      return false;
+    }
+
+    if (!WESTERN_LOUDOUN_ZIPS.includes(zip)) {
+      setEligibilityError(
+        'Sorry, this $249 flat-rate offer is only available for homes in Western Loudoun County, VA. Please call us for a custom quote if you are outside this area.',
+      );
+      return false;
+    }
+
+    const sqftNum = Number(sqft);
+    if (!sqft || isNaN(sqftNum) || sqftNum <= 0) {
+      setEligibilityError('Please enter your home\'s approximate square footage.');
+      return false;
+    }
+
+    if (sqftNum > 2500) {
+      setEligibilityError(
+        'Sorry, this $249 flat-rate offer is for homes under 2,500 sq ft. Please call us for a custom quote for larger homes.',
+      );
+      return false;
+    }
+
+    return true;
+  };
 
   const handleCheckout = async () => {
+    if (!checkEligibility()) {
+      return;
+    }
+
     setIsLoading(true);
     setError('');
 
@@ -45,6 +113,9 @@ export function WindowSelfServicePage() {
           currency: 'usd',
           success_url: `${origin}/thank-you`,
           cancel_url: `${origin}/window-self-service`,
+          customer_address: address,
+          customer_zip: zipCode,
+          customer_sqft: sqft,
         }),
       });
 
@@ -157,6 +228,78 @@ export function WindowSelfServicePage() {
                 ))}
               </ul>
 
+              {/* Eligibility form */}
+              <div className="bg-blue-50 rounded-2xl p-6 border border-blue-200 mb-6">
+                <h3 className="text-sm font-bold uppercase tracking-widest text-[#1a3c75] mb-4 flex items-center gap-2">
+                  <MapPin size={16} />
+                  Verify Your Eligibility
+                </h3>
+                <p className="text-sm text-slate-600 mb-4">
+                  This $249 flat-rate offer is available for homes in Western Loudoun County, VA that are under 2,500 sq ft. Enter your address details below to verify.
+                </p>
+
+                <div className="space-y-4">
+                  <div>
+                    <label htmlFor="wss-address" className="block text-sm font-semibold text-slate-700 mb-2">
+                      Property Address *
+                    </label>
+                    <input
+                      id="wss-address"
+                      type="text"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      placeholder="123 Main St, Purcellville, VA"
+                      className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#1a3c75] focus:border-transparent outline-none transition-all"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="wss-zip" className="block text-sm font-semibold text-slate-700 mb-2">
+                        ZIP Code *
+                      </label>
+                      <input
+                        id="wss-zip"
+                        type="text"
+                        maxLength={5}
+                        value={zipCode}
+                        onChange={(e) => setZipCode(e.target.value.replace(/\D/g, '').slice(0, 5))}
+                        placeholder="20132"
+                        className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#1a3c75] focus:border-transparent outline-none transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="wss-sqft" className="block text-sm font-semibold text-slate-700 mb-2">
+                        Home Sq Ft *
+                      </label>
+                      <input
+                        id="wss-sqft"
+                        type="number"
+                        min={0}
+                        value={sqft}
+                        onChange={(e) => setSqft(e.target.value)}
+                        placeholder="e.g. 1800"
+                        className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#1a3c75] focus:border-transparent outline-none transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-2 text-xs text-slate-500 bg-white/60 rounded-lg p-3 border border-slate-200">
+                    <HomeIcon size={14} className="text-slate-400 flex-shrink-0 mt-0.5" />
+                    <span>
+                      Square footage is based on public records. By entering your home's square footage, you confirm it is under 2,500 sq ft. We verify all orders prior to scheduling.
+                    </span>
+                  </div>
+                </div>
+
+                {eligibilityError && (
+                  <div className="mt-4 flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl p-4">
+                    <AlertCircle className="text-red-600 flex-shrink-0 mt-0.5" size={18} />
+                    <p className="text-red-700 text-sm">{eligibilityError}</p>
+                  </div>
+                )}
+              </div>
+
               {/* Price */}
               <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 mb-6">
                 <div className="flex items-baseline justify-between">
@@ -203,6 +346,27 @@ export function WindowSelfServicePage() {
                 You'll be redirected to Stripe's secure checkout to complete your payment. We'll contact you to schedule your appointment after payment.
               </p>
             </div>
+          </div>
+
+          {/* Qualification footnote */}
+          <div className="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-5">
+            <h4 className="text-sm font-bold text-amber-900 mb-2 flex items-center gap-2">
+              <AlertCircle size={16} />
+              Qualification Requirements
+            </h4>
+            <ul className="space-y-1.5 text-sm text-amber-800">
+              <li className="flex items-start gap-2">
+                <span className="font-bold">1.</span>
+                <span>Property must be located in <strong>Western Loudoun County, Virginia</strong>. ZIP codes we serve include: 20117, 20132, 20135, 20158, 20175, 20176, 20180, 20197, 20129, 20133, and surrounding areas.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="font-bold">2.</span>
+                <span>Home must be <strong>under 2,500 square feet</strong>. Square footage is verified against public property records prior to scheduling.</span>
+              </li>
+            </ul>
+            <p className="text-xs text-amber-700 mt-3 pt-3 border-t border-amber-200">
+              If your home does not meet these requirements, please call us for a custom quote tailored to your property.
+            </p>
           </div>
 
           {/* Alternative contact */}

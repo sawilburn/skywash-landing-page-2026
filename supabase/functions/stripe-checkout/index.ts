@@ -47,6 +47,9 @@ Deno.serve(async (req) => {
       success_url,
       cancel_url,
       customer_email,
+      customer_address,
+      customer_zip,
+      customer_sqft,
     } = await req.json();
 
     if (!product_name || typeof product_name !== 'string') {
@@ -61,6 +64,11 @@ Deno.serve(async (req) => {
     if (!cancel_url || typeof cancel_url !== 'string') {
       return corsResponse({ error: 'Missing required parameter cancel_url' }, 400);
     }
+
+    const metadata: Record<string, string> = {};
+    if (customer_address) metadata.customer_address = String(customer_address);
+    if (customer_zip) metadata.customer_zip = String(customer_zip);
+    if (customer_sqft) metadata.customer_sqft = String(customer_sqft);
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -79,6 +87,7 @@ Deno.serve(async (req) => {
         },
       ],
       ...(customer_email ? { customer_email } : {}),
+      ...(Object.keys(metadata).length > 0 ? { metadata } : {}),
       success_url,
       cancel_url,
     });
