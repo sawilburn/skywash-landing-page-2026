@@ -80,9 +80,9 @@ export function WindowSelfServicePage() {
       return false;
     }
 
-    if (sqftNum > 2500) {
+    if (sqftNum > 3500) {
       setEligibilityError(
-        'Sorry, this $249 flat-rate offer is for homes under 2,500 sq ft. Please call us for a custom quote for larger homes.',
+        'Sorry, this $249 flat-rate offer is for homes under 3,500 sq ft. Please call us for a custom quote for larger homes.',
       );
       return false;
     }
@@ -235,7 +235,7 @@ export function WindowSelfServicePage() {
                   Verify Your Eligibility
                 </h3>
                 <p className="text-sm text-slate-600 mb-4">
-                  This $249 flat-rate offer is available for homes in Western Loudoun County, VA that are under 2,500 sq ft. Enter your address details below to verify.
+                  This $249 flat-rate offer is available for homes in Western Loudoun County, VA that are under 3,500 sq ft. Enter your address details below to verify.
                 </p>
 
                 <div className="space-y-4">
@@ -287,7 +287,7 @@ export function WindowSelfServicePage() {
                   <div className="flex items-start gap-2 text-xs text-slate-500 bg-white/60 rounded-lg p-3 border border-slate-200">
                     <HomeIcon size={14} className="text-slate-400 flex-shrink-0 mt-0.5" />
                     <span>
-                      Square footage is based on public records. By entering your home's square footage, you confirm it is under 2,500 sq ft. We verify all orders prior to scheduling.
+                      Square footage is based on public records. By entering your home's square footage, you confirm it is under 3,500 sq ft. We verify all orders prior to scheduling.
                     </span>
                   </div>
                 </div>
@@ -361,7 +361,7 @@ export function WindowSelfServicePage() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="font-bold">2.</span>
-                <span>Home must be <strong>under 2,500 square feet</strong>. Square footage is verified against public property records prior to scheduling.</span>
+                <span>Home must be <strong>under 3,500 square feet</strong>. Square footage is verified against public property records prior to scheduling.</span>
               </li>
             </ul>
             <p className="text-xs text-amber-700 mt-3 pt-3 border-t border-amber-200">
