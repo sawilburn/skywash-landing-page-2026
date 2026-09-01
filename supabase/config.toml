@@ -1,0 +1,14 @@
+[functions.stripe-checkout]
+verify_jwt = false
+
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.send-lead-email]
+verify_jwt = false
+
+[functions.upload-site-image]
+verify_jwt = false
+
+[functions.zoho-crm-sync]
+verify_jwt = false
