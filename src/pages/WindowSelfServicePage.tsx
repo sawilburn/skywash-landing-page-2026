@@ -221,6 +221,3 @@ export function WindowSelfServicePage() {
     </div>
   );
 }
-
-
-export { WindowSelfServicePage }
