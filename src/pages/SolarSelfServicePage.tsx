@@ -96,7 +96,14 @@ export function SolarSelfServicePage() {
     setIsLoading(true);
     setError('');
 
-    window.location.replace(STRIPE_PAYMENT_LINK);
+    const stripeWindow = window.open(STRIPE_PAYMENT_LINK, '_blank', 'noopener,noreferrer');
+    if (!stripeWindow) {
+      setError('Your browser blocked the checkout popup. Please allow popups for this site, or call us to book by phone.');
+      setIsLoading(false);
+      return;
+    }
+
+    setIsLoading(false);
   };
 
   return (
@@ -319,7 +326,7 @@ export function SolarSelfServicePage() {
               </button>
 
               <p className="text-center text-xs text-slate-400 mt-4">
-                You'll be redirected to Stripe's secure checkout to complete your payment. We'll contact you to schedule your appointment after payment.
+                You'll be taken to Stripe's secure checkout in a new tab to complete your payment. We'll contact you to schedule your appointment after payment.
               </p>
             </div>
           </div>
