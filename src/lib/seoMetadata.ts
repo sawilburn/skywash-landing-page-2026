@@ -201,6 +201,11 @@ export const pageMetadata: Record<string, PageMetadata> = {
     title: 'Sitemap | Skywash Innovations Services & Locations',
     description: 'Complete sitemap of Skywash Innovations services and locations. Professional power washing throughout Virginia with drone technology.',
     canonical: `${baseUrl}/sitemap`
+  },
+  '/solar-self-service': {
+    title: 'Residential Solar Panel Cleaning | Self-Service Booking | Skywash Innovations',
+    description: 'Book residential solar panel cleaning online in minutes. Flat-rate, panel-safe soft wash that restores up to 35% lost efficiency. Serving Western Loudoun County, VA.',
+    canonical: `${baseUrl}/solar-self-service`
   }
 };
 

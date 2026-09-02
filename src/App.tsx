@@ -51,6 +51,7 @@ import { ArtilleryFungusPage } from './pages/ArtilleryFungusPage';
 import { LearningCenterIndexPage } from './pages/LearningCenterIndexPage';
 import { HowWeWorkPage } from './pages/HowWeWorkPage';
 import { WindowSelfServicePage } from './pages/WindowSelfServicePage';
+import { SolarSelfServicePage } from './pages/SolarSelfServicePage';
 import { useSEO } from './hooks/useSEO';
 
 function AppContent() {
@@ -102,6 +103,7 @@ function AppContent() {
           <Route path="/learning-center/window-cleaning" element={<WindowCleaningLearningPage />} />
           <Route path="/learning-center/how-we-work" element={<HowWeWorkPage />} />
           <Route path="/window-self-service" element={<WindowSelfServicePage />} />
+          <Route path="/solar-self-service" element={<SolarSelfServicePage />} />
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/sitemap" element={<SitemapPage />} />
