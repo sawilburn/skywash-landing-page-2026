@@ -96,7 +96,7 @@ export function SolarSelfServicePage() {
     setIsLoading(true);
     setError('');
 
-    window.location.href = STRIPE_PAYMENT_LINK;
+    window.location.replace(STRIPE_PAYMENT_LINK);
   };
 
   return (
