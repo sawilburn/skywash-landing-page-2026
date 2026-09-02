@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen, MapPin, Phone, Mail, Play, Sparkles, ArrowRight, Check, X, Timer } from 'lucide-react';
+import { Shield, Zap, Target, Clock, DollarSign, Leaf, Building2, Home, BookOpen, MapPin, Phone, Mail, Play, Sparkles, ArrowRight, Check, X, Timer, Sun, Droplets, CalendarCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SupabaseImage } from '../components/SupabaseImage';
 import { PartnersAndMemberships } from '../components/PartnersAndMemberships';
@@ -420,6 +420,64 @@ export function HomePage() {
               </span>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Self-Service Booking */}
+      <section className="py-24 bg-gradient-to-br from-slate-900 via-[#1a3c75] to-slate-800 text-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-cyan-300 text-sm font-semibold mb-5">
+              <CalendarCheck size={16} />
+              Self-Service Booking
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Choose Your Service, Pay &amp; Schedule
+            </h2>
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+              Book and pay for your cleaning online in minutes. Flat-rate pricing, no surprise fees, secure checkout.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <Link
+              to="/solar-self-service"
+              className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all hover:shadow-2xl"
+            >
+              <div className="w-16 h-16 bg-amber-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Sun className="text-white" size={32} />
+              </div>
+              <h3 className="text-2xl font-bold mb-3">Residential Solar Panel Cleaning</h3>
+              <p className="text-slate-300 mb-6 leading-relaxed">
+                Restore up to 35% lost efficiency with panel-safe soft wash cleaning. Flat-rate pricing for homes in Western Loudoun County.
+              </p>
+              <span className="inline-flex items-center gap-2 text-amber-400 font-semibold group-hover:gap-3 transition-all">
+                Book &amp; Pay Online
+                <ArrowRight size={18} />
+              </span>
+            </Link>
+
+            <Link
+              to="/window-self-service"
+              className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all hover:shadow-2xl"
+            >
+              <div className="w-16 h-16 bg-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Droplets className="text-white" size={32} />
+              </div>
+              <h3 className="text-2xl font-bold mb-3">Exterior Window Cleaning</h3>
+              <p className="text-slate-300 mb-6 leading-relaxed">
+                Professional exterior window cleaning using purified water and squeegee technique for a streak-free finish. $249 flat rate.
+              </p>
+              <span className="inline-flex items-center gap-2 text-cyan-300 font-semibold group-hover:gap-3 transition-all">
+                Book &amp; Pay Online
+                <ArrowRight size={18} />
+              </span>
+            </Link>
+          </div>
+
+          <p className="text-center text-sm text-slate-400 mt-8">
+            Both services are flat-rate for qualified homes in Western Loudoun County, VA. We verify eligibility before scheduling.
+          </p>
         </div>
       </section>
 
