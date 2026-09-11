@@ -130,7 +130,7 @@ export function SolarSelfServicePage() {
             Residential Solar Panel Cleaning
           </h1>
           <p className="text-lg md:text-xl text-white/80 leading-relaxed">
-            Professional solar panel cleaning that restores up to 35% lost efficiency. One flat price, no surprise fees. Book and pay securely online in minutes.
+            Professional solar panel cleaning that restores up to 35% lost efficiency. One flat price of $399 — no surprise fees. Book and pay securely online in minutes.
           </p>
         </div>
       </section>
@@ -286,15 +286,26 @@ export function SolarSelfServicePage() {
               </div>
 
               {/* Price */}
-              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 mb-6">
-                <div className="flex items-baseline justify-between">
+              <div className="relative bg-gradient-to-br from-[#1a3c75] to-[#2a5a95] rounded-2xl p-8 mb-6 overflow-hidden">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-amber-400/20 rounded-full blur-3xl"></div>
+                <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div>
-                    <p className="text-sm font-semibold text-slate-500 uppercase tracking-wide">Flat Rate</p>
-                    <p className="text-sm text-slate-400 mt-1">Pay via Stripe checkout</p>
+                    <p className="text-sm font-bold uppercase tracking-widest text-cyan-300 mb-1">Flat Rate — No Hidden Fees</p>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-5xl md:text-6xl font-extrabold text-white">$399</span>
+                      <span className="text-lg text-slate-300 font-medium">one-time</span>
+                    </div>
+                    <p className="text-sm text-slate-300 mt-2 flex items-center gap-1.5">
+                      <Sparkles size={14} className="text-amber-400" />
+                      Start saving today — restore up to 35% energy output
+                    </p>
                   </div>
-                  <div className="text-right">
-                    <p className="text-xs text-slate-400">Secure checkout</p>
-                    <p className="text-sm font-semibold text-slate-600">Powered by Stripe</p>
+                  <div className="text-center sm:text-right">
+                    <div className="inline-flex items-center gap-1.5 bg-green-500/20 text-green-300 text-sm font-bold px-4 py-2 rounded-full mb-2">
+                      <Shield size={14} />
+                      Secure Checkout
+                    </div>
+                    <p className="text-xs text-slate-300">Powered by Stripe</p>
                   </div>
                 </div>
               </div>
