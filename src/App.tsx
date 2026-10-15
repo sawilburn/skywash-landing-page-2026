@@ -48,6 +48,7 @@ import { ThankYouPage } from './pages/ThankYouPage';
 import { HoneyBookRedirectPage } from './pages/HoneyBookRedirectPage';
 import { AugustRoofSpecialPage } from './pages/AugustRoofSpecialPage';
 import { ArtilleryFungusPage } from './pages/ArtilleryFungusPage';
+import { EtchedGlassPage } from './pages/EtchedGlassPage';
 import { LearningCenterIndexPage } from './pages/LearningCenterIndexPage';
 import { HowWeWorkPage } from './pages/HowWeWorkPage';
 import { WindowSelfServicePage } from './pages/WindowSelfServicePage';
@@ -84,6 +85,7 @@ function AppContent() {
           <Route path="/specials/august-roof-special" element={<AugustRoofSpecialPage />} />
           <Route path="/learning-center" element={<LearningCenterIndexPage />} />
           <Route path="/learning-center/artillery-fungus" element={<ArtilleryFungusPage />} />
+          <Route path="/learning-center/etched-glass" element={<EtchedGlassPage />} />
           <Route path="/schools/arlington-stem-program" element={<ArlingtonSTEMProgramPage />} />
           <Route path="/partners/roofing-experts" element={<RoofingPartnersPage />} />
           <Route path="/partners/pest-and-wildlife-control" element={<PestWildlifePartnersPage />} />

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Clock, Calendar, BookOpen, ChevronRight, Droplets, Leaf, Sparkles, FlaskConical } from 'lucide-react';
+import { ArrowLeft, Clock, Calendar, BookOpen, ChevronRight, Droplets, Leaf, Sparkles, FlaskConical, Eye } from 'lucide-react';
 
 const articles = [
   {
@@ -26,6 +26,18 @@ const articles = [
     excerpt: 'The black streaking on your roof isn\'t just dirt — and understanding what it actually is will help you know what to expect after a professional cleaning.',
     readTime: '5 min read',
     date: '2026',
+  },
+  {
+    path: '/learning-center/etched-glass',
+    category: 'Window Care',
+    categoryColor: 'bg-sky-600',
+    icon: Eye,
+    iconBg: 'bg-sky-100',
+    iconColor: 'text-sky-700',
+    title: 'Etched Glass: What It Is, How It Happens, and What Can Be Done',
+    excerpt: 'That cloudy, foggy haze on your windows that no amount of cleaning seems to fix may not be dirt at all. It could be etched glass — a permanent chemical change in the surface of the window itself. Here\'s how to tell, what causes it, and what options exist.',
+    readTime: '7 min read',
+    date: 'October 2026',
   },
   {
     path: '/learning-center/how-we-work',
