@@ -229,16 +229,19 @@ export function EtchedGlassPage() {
               What is etched glass?
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-slate-700 text-lg leading-relaxed mb-6">
-              Glass is made primarily of silica (silicon dioxide). Under normal conditions it's an extremely hard, smooth, non-reactive surface. But glass is not impervious. When minerals — particularly calcium and magnesium from hard water — are allowed to sit on the surface and repeatedly dry, they undergo a chemical reaction with the silica. Over time, the minerals don't just sit on the glass; they become part of it.
+              There are two things happening on mineral-damaged glass, and understanding the difference between them is the most important takeaway of this article. First, minerals — primarily calcium and magnesium from hard water — build up on the surface as a visible white crust. This crust is a deposit sitting on top of the glass, and it can be removed with the right professional cleaning. Second, underneath that crust, the minerals have been slowly reacting with the silica in the glass itself, chemically altering the surface. That underlying damage is the etching, and it is permanent.
+            </motion.p>
+            <motion.p variants={fadeInUp} className="text-slate-700 text-lg leading-relaxed mb-6">
+              <strong className="text-slate-900">The calcium crust is removable. The etching underneath is not.</strong> We have cleaned windows where we successfully removed a heavy white calcium buildup — the glass looked dramatically better afterward — but a cloudy, hazy pattern remained visible in direct sunlight. That haze is the etching. The crust was gone, but the surface of the glass beneath it had already been permanently altered.
             </motion.p>
             <motion.p variants={fadeInUp} className="text-slate-700 text-lg leading-relaxed mb-8">
-              This process is called <strong className="text-slate-900">etching</strong>. The result is a surface that has been microscopically roughened and chemically altered. Light scatters unevenly off the damaged surface, giving the glass a permanent cloudy, foggy, or milky appearance. No amount of standard window cleaning — no soap, no squeegee, no household glass cleaner — will remove it, because the cloudiness is not a substance on the glass. It is the glass itself, changed.
+              This is what makes etched glass so confusing for homeowners. You can have your windows professionally cleaned, see a real and visible improvement as the crust comes off, and still notice that the glass doesn't look quite clear. It's not that the cleaning failed — the cleaning did exactly what it could. The etching was already there beneath the buildup, and removing the buildup simply revealed it.
             </motion.p>
             <motion.div variants={fadeInUp} className="bg-sky-50 border-l-4 border-sky-500 p-6 rounded-r-xl">
               <div className="flex items-start gap-3">
                 <Info className="text-sky-600 flex-shrink-0 mt-0.5" size={22} />
                 <p className="text-sky-900 text-lg leading-relaxed">
-                  The key distinction: water spots sit on the glass and can be removed. Etched glass has been chemically altered and cannot be cleaned away. The difference is whether the damage is on the surface or in the surface.
+                  The key distinction: the white calcium crust sits on the glass and can be professionally removed. The etching underneath has chemically altered the glass surface itself and cannot be cleaned away. Removing the crust reveals the true condition of the glass beneath — which may still be permanently cloudy.
                 </p>
               </div>
             </motion.div>
@@ -316,7 +319,7 @@ export function EtchedGlassPage() {
             <motion.div variants={fadeInUp} className="mt-8 bg-slate-100 border border-slate-200 rounded-xl p-6 flex gap-4">
               <Search className="text-[#1a3c75] flex-shrink-0 mt-0.5" size={22} />
               <p className="text-slate-700 text-base leading-relaxed">
-                <strong>How to tell which stage you're in:</strong> Inspect the glass in direct sunlight at an angle. If the haze disappears when wet and reappears when dry, it is likely Stage 1 or early Stage 2. If the haze is visible even when the glass is wet, the etching has likely progressed to Stage 3 and is permanent.
+                <strong>How to tell which stage you're in:</strong> If there is a visible white crust on the glass, that crust is a surface deposit — a professional cleaning will remove it. What matters is what the glass looks like underneath. After the crust is removed, inspect the glass in direct sunlight at an angle. If the remaining haze disappears when wet and reappears when dry, it is likely early Stage 2 and may be improvable. If the haze is visible even when the glass is wet, the etching has likely progressed to Stage 3 and is permanent.
               </p>
             </motion.div>
           </motion.div>
@@ -335,7 +338,7 @@ export function EtchedGlassPage() {
               Can etched glass be mechanically improved?
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-slate-700 text-lg leading-relaxed mb-8">
-              The answer depends entirely on the stage of damage. Stage 1 water spots are completely removable. Stage 2 cloudiness can often be significantly improved with professional mechanical polishing. Stage 3 permanent etching cannot be restored without replacing the glass. Here is what each option involves.
+              The answer depends entirely on the stage of damage. The white calcium crust that sits on the surface is completely removable — that is what a professional window cleaning addresses. But once that crust is removed, the question becomes what the glass looks like underneath. Stage 2 cloudiness can often be significantly improved with professional mechanical polishing. Stage 3 permanent etching cannot be restored without replacing the glass. Here is what each option involves.
             </motion.p>
             <motion.div variants={stagger} className="grid md:grid-cols-2 gap-6">
               {mechanicalOptions.map((option, i) => {
@@ -363,7 +366,7 @@ export function EtchedGlassPage() {
             </motion.div>
             <motion.div variants={fadeInUp} className="mt-6 bg-[#1a3c75]/5 border-l-4 border-[#1a3c75] p-6 rounded-r-xl">
               <p className="text-slate-700 italic text-lg leading-relaxed">
-                "We'd rather tell you your windows are permanently etched and save you the cost of a cleaning that won't help than sell you a service that leaves you disappointed. Honesty about what's fixable and what isn't is the foundation of trust."
+        "We've removed heavy calcium crust from windows and the difference was dramatic — the white buildup came off and the glass looked far better. But when we held a light to it afterward, you could still see a cloudy pattern underneath. That's the etching. We removed what was removable, and we were honest that the haze beneath it is permanent. That's the conversation we'd rather have than pretend a cleaning will fix something it can't."
               </p>
             </motion.div>
           </motion.div>
