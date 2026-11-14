@@ -5,7 +5,7 @@ import { SupabaseImage } from '../components/SupabaseImage';
 import { PartnersAndMemberships } from '../components/PartnersAndMemberships';
 import { getSiteImage, SiteImage } from '../lib/siteImages';
 
-const SEASON_DEADLINE = new Date('2026-10-15T23:59:59').getTime();
+const OFFER_DEADLINE = new Date('2026-11-26T23:59:59').getTime();
 
 function useCountdown(target: number) {
   const [now, setNow] = useState(() => Date.now());
@@ -43,7 +43,7 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 export function HomePage() {
   const [aboutImage, setAboutImage] = useState<SiteImage | null>(null);
   const [showVideo, setShowVideo] = useState(false);
-  const countdown = useCountdown(SEASON_DEADLINE);
+  const countdown = useCountdown(OFFER_DEADLINE);
 
   useEffect(() => {
     getSiteImage('about').then((img) => {
@@ -67,18 +67,18 @@ export function HomePage() {
               <div className="relative z-10">
                 <div className="flex items-center justify-center gap-3 mb-3">
                   <Timer size={26} className="text-yellow-300 animate-pulse" />
-                  <span className="text-sm font-bold uppercase tracking-widest text-yellow-200">End of Season — Time Is Running Out</span>
+                  <span className="text-sm font-bold uppercase tracking-widest text-yellow-200">Before the Snow — Time Is Running Out</span>
                   <Timer size={26} className="text-yellow-300 animate-pulse" />
                 </div>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 leading-tight">
-                  Book Now &amp; Save 10% — Last Chance for Exterior Washing
+                  Book Window Cleaning Now &amp; Get Free Sill Cleaning
                 </h2>
                 <p className="text-lg sm:text-xl font-semibold text-orange-50 mb-5">
-                  October 15 is the final day to get exterior pressure washing this season. Book now before the season ends.
+                  Book before Thanksgiving and we will clean your window sills for free. Get your windows sparkling before the snow arrives.
                 </p>
 
                 {countdown.expired ? (
-                  <p className="text-2xl font-extrabold text-yellow-300">The season has ended — thank you for a great year!</p>
+                  <p className="text-2xl font-extrabold text-yellow-300">This offer has ended — thank you for a great season!</p>
                 ) : (
                   <div className="flex items-center justify-center gap-3 sm:gap-4 mb-5">
                     <CountdownUnit value={countdown.days} label="Days" />
@@ -92,14 +92,14 @@ export function HomePage() {
                 )}
 
                 <p className="text-sm sm:text-base font-medium text-orange-100 mb-3">
-                  Mention the end-of-season special when contacting Skywash Innovations to claim your 10% discount
+                  Book before Thanksgiving to receive free sill cleaning with your window cleaning
                 </p>
                 <Link
                   to="/residential"
                   state={{ scrollTo: 'residential-form' }}
                   className="inline-flex items-center gap-2 bg-white text-red-700 px-6 py-2.5 rounded-full text-base font-bold shadow-lg hover:bg-yellow-50 hover:text-red-800 transition-colors"
                 >
-                  Claim Your 10% Discount
+                  Book Window Cleaning
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
