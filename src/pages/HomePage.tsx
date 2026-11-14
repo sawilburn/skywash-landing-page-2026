@@ -62,7 +62,7 @@ export function HomePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="block mb-10 mx-auto max-w-4xl rounded-2xl overflow-hidden shadow-2xl">
-            <div className="bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 px-8 py-6 sm:px-12 sm:py-8 text-white text-center relative">
+            <div className="bg-gradient-to-r from-green-800 via-red-700 to-green-800 px-8 py-6 sm:px-12 sm:py-8 text-white text-center relative">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_60%)]"></div>
               <div className="relative z-10">
                 <div className="flex items-center justify-center gap-3 mb-3">
@@ -73,7 +73,7 @@ export function HomePage() {
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 leading-tight">
                   Book Window Cleaning Now &amp; Get Free Sill Cleaning
                 </h2>
-                <p className="text-lg sm:text-xl font-semibold text-orange-50 mb-5">
+                <p className="text-lg sm:text-xl font-semibold text-red-50 mb-5">
                   Book before Thanksgiving and we will clean your window sills for free. Get your windows sparkling before the snow arrives.
                 </p>
 
@@ -91,7 +91,7 @@ export function HomePage() {
                   </div>
                 )}
 
-                <p className="text-sm sm:text-base font-medium text-orange-100 mb-3">
+                <p className="text-sm sm:text-base font-medium text-red-50 mb-3">
                   Book before Thanksgiving to receive free sill cleaning with your window cleaning
                 </p>
                 <Link
