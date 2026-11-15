@@ -1,0 +1,25 @@
+{
+  "projectId": "62940704",
+  "functions": {
+    "send-lead-email": {
+      "hasChanged": false,
+      "hash": "9f77e0934b2313618bf385ef8850db07870d4d2046ef4e278e19f25188b5d6de"
+    },
+    "stripe-checkout": {
+      "hasChanged": false,
+      "hash": "e64fcb100fbdf0ff0ee4172f91f37dd60f1a69d3115a428110ad72641c680fbd"
+    },
+    "stripe-webhook": {
+      "hasChanged": false,
+      "hash": "12a94a647e5f6f524638ee80f984498f000e4ed602f8b6bc61a8939ab605eb29"
+    },
+    "upload-site-image": {
+      "hasChanged": false,
+      "hash": "7f42e3e6daac4c675386702e529775703a3698cf349b34a65b4db38ae1a42ad7"
+    },
+    "zoho-crm-sync": {
+      "hasChanged": false,
+      "hash": "a86ff4d83b75703a7ffcdc4bd50ce893c1d9ee925b2b102e22f2536f30fb9dc4"
+    }
+  }
+}

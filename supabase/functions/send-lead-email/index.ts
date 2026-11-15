@@ -16,6 +16,11 @@ interface LeadData {
   how_found?: string;
 }
 
+const RECIPIENTS = [
+  "scott.wilburn@skywashinnovations.com",
+  "kimberly.pasco@skywashinnovations.com",
+];
+
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
     return new Response(null, {
@@ -112,7 +117,7 @@ Deno.serve(async (req: Request) => {
       },
       body: JSON.stringify({
         from: "Skywash Leads <leads@skywashinnovations.com>",
-        to: ["scott.wilburn@skywashinnovations.com"],
+        to: RECIPIENTS,
         reply_to: leadData.email,
         subject: subject,
         html: htmlBody,
