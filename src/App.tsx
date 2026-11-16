@@ -54,6 +54,7 @@ import { HowWeWorkPage } from './pages/HowWeWorkPage';
 import { WindowSelfServicePage } from './pages/WindowSelfServicePage';
 import { SolarSelfServicePage } from './pages/SolarSelfServicePage';
 import { HolidayWindowCleaningCampaignPage } from './pages/HolidayWindowCleaningCampaignPage';
+import { HolidaySolarCleaningCampaignPage } from './pages/HolidaySolarCleaningCampaignPage';
 import { useSEO } from './hooks/useSEO';
 
 function AppContent() {
@@ -85,6 +86,7 @@ function AppContent() {
           <Route path="/specials/residential-spring-2026" element={<ResidentialSpring2026Page />} />
           <Route path="/specials/august-roof-special" element={<AugustRoofSpecialPage />} />
           <Route path="/campaigns/holiday-window-cleaning" element={<HolidayWindowCleaningCampaignPage />} />
+          <Route path="/campaigns/holiday-solar-cleaning" element={<HolidaySolarCleaningCampaignPage />} />
           <Route path="/learning-center" element={<LearningCenterIndexPage />} />
           <Route path="/learning-center/artillery-fungus" element={<ArtilleryFungusPage />} />
           <Route path="/learning-center/etched-glass" element={<EtchedGlassPage />} />
